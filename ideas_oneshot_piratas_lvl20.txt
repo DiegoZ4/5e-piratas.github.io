@@ -1,0 +1,194 @@
+═══════════════════════════════════════════════════════════════════════════
+                    ONE SHOT PIRATAS - NIVEL 20 D&D 5E
+                           ALTA MAR Y AVENTURAS
+═══════════════════════════════════════════════════════════════════════════
+
+🏴‍☠️ CONCEPTO PRINCIPAL:
+Los personajes son piratas legendarios de nivel 20 que navegan los mares más peligrosos en busca del tesoro más grande jamás imaginado.
+
+📖 GANCHO PRINCIPAL:
+"La Maldición de las Mil Tormentas" - Un artefacto ancestral conocido como el Corazón de Leviatán ha sido fragmentado en 9 pedazos. Cada fragmento causa tormentas perpetuas que están destruyendo todas las rutas comerciales del mundo. Los gobiernos ofrecen una recompensa legendaria a quien pueda reunir los fragmentos y detener el caos.
+
+🗺️ POSIBLES TRAMAS:
+
+1. LA MALDICIÓN DEL ÚLTIMO TESORO
+- Los PJs deben reunir 7 llaves malditas esparcidas por diferentes islas
+- Cada llave está custodiada por un Capitán Pirata legendario no-muerto
+- Las islas están llenas de trampas mágicas de alto nivel
+- Jefe Final: El Rey Pirata Eldaron (Lich Pirata CR 21)
+
+2. LA FLOTA FANTASMA
+- Una armada de barcos espectrales emerge del Plano Sombra
+- Liderada por el Almirante de la Muerte (Death Knight modificado)
+- Los PJs deben infiltrarse en el barco insignia fantasma
+- Combates navales épicos con cañones mágicos
+- Jefe Final: Batalla en el mar contra toda la flota
+
+3. EL DIOS DEL MAR CORRUPTO
+- Poseidón/Dios del Mar ha sido corrompido por entidades del Abismo
+- Los océanos se vuelven tóxicos y llenos de aberraciones marinas
+- Los PJs necesitan el Tridente de los Profundos para purificarlo
+- Viaje al fondo del océano más profundo del mundo
+- Jefe Final: Avatar Corrupto del Dios del Mar (CR 23)
+
+4. LA ISLA QUE CAMINA
+- Una isla misteriosa aparece y desaparece cada luna llena
+- En realidad es un Tarrasque marino ancestral dormido
+- En su espalda hay una ciudad pirata perdida llena de tesoros
+- Los PJs tienen solo una noche para saquearla antes de que se sumerja
+- Jefe Final: Despertar accidentalmente a la criatura (CR 25)
+
+5. EL TORNEO DE CAPITANES MALDITOS
+- Cada 100 años se celebra un torneo entre los piratas más poderosos
+- El premio: el control de todos los océanos por un siglo
+- Pero este torneo está manipulado por un Archidemonio
+- Los PJs deben participar y descubrir la trampa
+- Jefe Final: Pit Fiend Almirante que controla a los otros capitanes
+
+6. LA REBELIÓN DE LOS ELEMENTALES
+- Los elementales del agua se han rebelado contra los mortales
+- Han creado maelstroms gigantes que conectan con el Plano Elemental
+- Los PJs deben negociar o luchar contra los Señores Elementales
+- Cada maelstrom lleva a una prueba diferente en el plano elemental
+- Jefe Final: Consejo de 4 Nobles Elementales del Agua (CR 22 cada uno)
+
+7. GUERRA DE TRES CORONAS (Imperial)
+- El Imperio ha descubierto la ubicación de los "Cálices Gemelos del Destino"
+- AMBOS CÁLICES SON COMPLETAMENTE IDÉNTICOS - nadie sabe cuál es cuál
+- A PRIMERA VISTA parece que el "Cáliz de la Muerte Eterna" es el premio (inmortalidad)
+- PERO EN REALIDAD: Ese cálice mata instantáneamente a quien beba de él
+- El otro es el "Cáliz del Alma": Concede lo que el alma de quien beba REALMENTE desea
+- Ambos están custodiados juntos en un templo submarino ancestral
+- ¡El truco cruel: Los rivales pensarán que fracasaron cuando vean a alguien "ganar" el de la muerte!
+- PERO: 3 flotas piratas diferentes también los buscan creyendo que ambos dan poder:
+  * Los PJs: Para usar ambos cálices y convertirse en dioses piratas
+  * Flota de "Hierro Negro": Para desear la destrucción de todos los imperios
+  * Flota de "Vela Dorada": Para volverse inmortales y controlar el mundo
+- El Imperio los quiere para crear un Emperador Inmortal con poder divino
+- OBJETIVOS POSIBLES:
+  ✦ Reclamar ambos cálices antes que nadie
+  ✦ Destruir uno de los cálices para que nadie tenga poder absoluto
+  ✦ Formar alianza para compartir los cálices (¿se puede confiar?)
+  ✦ Robar los cálices mientras las otras flotas se destruyen entre sí
+- Jefe Final: Batalla naval masiva 4 facciones + Guardián de los Cálices (Lich Marino Ancestral CR 25)
+
+⚔️ ENCUENTROS ÉPICOS SUGERIDOS:
+
+• BATALLA NAVAL MASIVA
+- 3 galeones enemigos vs el barco de los PJs
+- Cañones mágicos, abordajes, hechizos de área
+- Elementos ambientales: tormenta, remolinos, tentáculos gigantes
+
+• EL KRAKEN ANCESTRAL
+- CR 23, puede hundir barcos de un golpe
+- Arena: En medio de una tormenta perfecta
+- Tentáculos que emergen del agua como torres
+
+• DUELO DE CAPITANES
+- En una isla volcánica mientras erupciona
+- Capitán rival con objetos mágicos legendarios
+- Combate 1vs1 mientras la isla se hunde
+
+🏺 TESOROS LEGENDARIOS TEMÁTICOS:
+
+• Sombrero del Capitán Eterno
+  - Permite controlar el clima en 5 millas
+  - Inmunidad a ahogamiento y presión
+
+• Espada del Maelstrom
+  - +3, puede crear remolinos de 60 pies
+  - 3 cargas diarias de Control Weather
+
+• Brújula de los Destinos
+  - Muestra la ubicación de cualquier tesoro
+  - Puede teletransportar el barco 1 vez al día
+
+• Ancla Dimensional
+  - Puede anclar un barco en el aire o planos
+  - Crea refugio extradimensional dentro del barco
+
+🌊 MECÁNICAS NAVALES ESPECIALES:
+
+• BARCO LEGENDARIO DE LOS PJs:
+- CA 20, 500 PV, velocidad 60 pies
+- Cañones mágicos (8d10 + modificador)
+- Escudo mágico (resistencia a todos los daños 3 veces al día)
+- Vela de Velocidad (puede volar por 1 hora al día)
+
+• TORMENTAS MÁGICAS:
+- Rayos que hacen 12d6 de daño eléctrico
+- Vientos de 200 mph que pueden voltear barcos
+- Lluvia ácida que daña el casco
+
+🏴‍☠️ NPCS IMPORTANTES:
+
+• Capitana "Sangre Negra" Morwyn
+- Humana Guerrera 18 / Hechicera 2
+- Rival/aliada potencial
+- Conoce la ubicación de una de las llaves
+
+• El Navegante Loco - Korvin
+- Gnomo Adivinador 20
+- Puede predecir tormentas y ubicar tesoros
+- Habla solo en acertijos
+
+• Barbablanca el Inmortal
+- Enano Bárbaro 20 con cinturón de gigante de tormenta
+- Ha vivido 500 años
+- Conoce todos los secretos del océano
+
+🎲 OBJETIVOS DE LA SESIÓN:
+
+CORTO PLAZO (2-3 horas):
+- Obtener información sobre el Kraken Dorado
+- Sobrevivir a una tormenta mágica épica
+- Derrotar a un capitán rival
+
+MEDIANO PLAZO (4-6 horas):
+- Reunir las 7 llaves del tesoro
+- Explorar 2-3 islas misteriosas
+- Batallar contra la flota fantasma
+
+LARGO PLAZO (8+ horas):
+- Enfrentar al jefe final
+- Reclamar el tesoro legendario
+- Decidir el destino de los océanos
+
+🗡️ CONSEJOS PARA EL DM:
+
+• Los personajes de nivel 20 son prácticamente dioses
+  - Dales enemigos y desafíos acordes
+  - No temas usar criaturas CR 20+
+
+• Enfatiza la narrativa épica
+  - Cada acción debe sentirse legendaria
+  - Describe todo a gran escala
+
+• Usa el entorno marino
+  - Combates en barcos en movimiento
+  - Agua como elemento táctico
+  - Tormentas y clima extremo
+
+• Permite locuras de nivel 20
+  - Spells de nivel 9 cambian el mundo
+  - Objetos mágicos legendarios abundan
+  - Las acciones tienen consecuencias globales
+
+🎯 POSIBLES FINALES:
+
+HEROICO:
+- Los PJs salvan los océanos y se convierten en leyendas inmortales
+- Obtienen el control de todos los mares del mundo
+
+NEUTRAL:
+- Derrotan la amenaza pero los océanos quedan cambiados para siempre
+- Se retiran como los piratas más ricos de la historia
+
+ÉPICO:
+- Se convierten en nuevos dioses del mar
+- Ascienden a un plano superior pero dejan su marca en el mundo
+
+════════════════════════════════════════════════════════════════════════════
+                           ¡Que tengas buenas aventuras!
+                              🏴‍☠️⚓🗡️⚓🏴‍☠️
+════════════════════════════════════════════════════════════════════════════

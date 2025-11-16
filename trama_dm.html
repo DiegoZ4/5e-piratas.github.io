@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL CÁLIZ DEL DESEO Y LA MUERTE - Trama DM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a1a2e;
+            --secondary-dark: #16213e;
+            --accent-gold: #d4af37;
+            --accent-silver: #c0c0c0;
+            --accent-blood: #8b0000;
+            --text-light: #f5f5f5;
+            --text-muted: #b8b8b8;
+            --danger: #dc3545;
+            --success: #28a745;
+            --warning: #ffc107;
+            --info: #17a2b8;
+            --ocean-blue: #006994;
+            --purple: #9d4edd;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--accent-blood) 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.3), rgba(212, 175, 55, 0.2));
+            padding: 3rem;
+            border-radius: 20px;
+            border: 3px solid var(--accent-gold);
+            box-shadow: 0 10px 40px rgba(139, 0, 0, 0.5);
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-shadow: 3px 3px 10px rgba(139, 0, 0, 0.8);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-silver);
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        /* Secciones */
+        .section {
+            background: rgba(22, 33, 62, 0.5);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent-gold);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.4rem;
+            color: var(--accent-silver);
+            margin: 1.5rem 0 1rem;
+            font-weight: 600;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(26, 26, 46, 0.6);
+            border: 2px solid var(--accent-silver);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .danger-card {
+            border-color: var(--danger);
+            background: rgba(220, 53, 69, 0.2);
+        }
+
+        .success-card {
+            border-color: var(--success);
+            background: rgba(40, 167, 69, 0.2);
+        }
+
+        .warning-card {
+            border-color: var(--warning);
+            background: rgba(255, 193, 7, 0.2);
+        }
+
+        .info-card {
+            border-color: var(--info);
+            background: rgba(23, 162, 184, 0.2);
+        }
+
+        .purple-card {
+            border-color: var(--purple);
+            background: rgba(157, 78, 221, 0.2);
+        }
+
+        /* Grid de personajes */
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .character-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(22, 33, 62, 0.3));
+            border: 2px solid var(--accent-gold);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .character-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .character-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .character-role {
+            color: var(--accent-silver);
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        /* Grid de barcos */
+        .ship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .ship-card {
+            background: linear-gradient(135deg, rgba(0, 105, 148, 0.2), rgba(22, 33, 62, 0.3));
+            border: 3px solid var(--ocean-blue);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .ship-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 105, 148, 0.4);
+        }
+
+        .ship-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .ship-captain {
+            color: var(--accent-silver);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ship-stats {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .stat-line {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* Listas */
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* Highlights */
+        .highlight {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .danger-text {
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .success-text {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .purple-text {
+            color: var(--purple);
+            font-weight: 600;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 3px solid var(--accent-gold);
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '⚓';
+            position: absolute;
+            left: -2.7rem;
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .character-grid,
+            .ship-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <header class="hero">
+            <h1 class="hero-title"><i class="fas fa-skull-crossbones"></i> EL CÁLIZ DEL DESEO Y LA MUERTE <i class="fas fa-skull-crossbones"></i></h1>
+            <p class="hero-subtitle">"Un artefacto antiguo. Tres deseos. Innumerables traiciones."</p>
+            <p style="color: var(--danger); font-weight: bold; margin-top: 1rem;">⚠️ SOLO PARA EL DM - NO COMPARTIR CON JUGADORES ⚠️</p>
+        </header>
+
+        <!-- Sinopsis -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-book-open"></i> SINOPSIS</h2>
+            <div class="purple-card card">
+                <p>El Imperio ha descubierto la ubicación de los legendarios <span class="highlight">Cálices Gemelos del Destino</span>, guardados en un templo submarino ancestral en el <span class="purple-text">Mar de las Almas Perdidas</span>.</p>
+                <p style="margin-top: 1rem;">Según las leyendas, uno es el <strong>Cáliz de la Muerte Eterna</strong> (concede inmortalidad) y el otro es el <strong>Cáliz del Alma</strong> (concede el deseo más profundo del corazón). El problema: <span class="danger-text">SON COMPLETAMENTE IDÉNTICOS</span> - nadie sabe cuál es cuál.</p>
+            </div>
+
+            <div class="danger-card card">
+                <h3 class="section-subtitle"><i class="fas fa-skull"></i> LA TRAMPA CRUEL</h3>
+                <ul>
+                    <li><strong>Cáliz de la Muerte Eterna:</strong> NO concede inmortalidad - <span class="danger-text">MATA INSTANTÁNEAMENTE</span> a quien beba de él</li>
+                    <li><strong>Cáliz del Alma:</strong> Concede lo que el alma del bebedor REALMENTE desea (no lo que dice querer)</li>
+                    <li><strong>El engaño:</strong> Las leyendas se equivocan intencionalmente sobre cuál es cuál</li>
+                    <li><strong>Nadie sabe la verdad:</strong> Los rivales pensarán que fracasaron cuando alguien "gane" el de la muerte</li>
+                </ul>
+            </div>
+
+            <div class="warning-card card">
+                <h3 class="section-subtitle"><i class="fas fa-crown"></i> CUATRO FACCIONES COMPITEN</h3>
+                <ul>
+                    <li><strong>LOS JUGADORES:</strong> Para usar ambos cálices y convertirse en leyendas inmortales</li>
+                    <li><strong>FLOTA HIERRO NEGRO:</strong> Para desear la destrucción de todos los imperios</li>
+                    <li><strong>FLOTA VELA DORADA:</strong> Para volverse inmortales y controlar el mundo</li>
+                    <li><strong>EL IMPERIO:</strong> Para crear un Emperador Inmortal con poder divino</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- La Trama Principal -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> LA TRAMA PRINCIPAL</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">ACTO 1: PUERTO FRUTAL - EL RUMOR</div>
+                    <p><strong>Ubicación inicial:</strong> <span class="highlight">Puerto Frutal</span> - Una antigua granja de frutas del Imperio saqueada por piratas y convertida en un prostíbulo/bar funcionando 24/7.</p>
+                    <p style="margin-top: 0.5rem;">Los PJs están en un bar cuando escuchan el rumor: <span class="danger-text">La Cripta de los Cálices Gemelos se abrirá pronto</span>. Muchos piratas importantes lo saben también.</p>
+                    <p style="margin-top: 0.5rem;"><strong>Información clave:</strong></p>
+                    <ul>
+                        <li>La cripta emerge del océano cada 100 años cuando las lunas se alinean</li>
+                        <li>Dentro hay DOS cálices idénticos - uno da poder, el otro mata</li>
+                        <li>El Imperio también sabe y enviará su flota</li>
+                        <li>Otras flotas piratas ya se están preparando</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Los PJs se alistan y zarpan hacia la ubicación de la cripta.</strong></p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">ACTO 2: LA CARRERA MORTAL</div>
+                    <p>Las 4 facciones (PJs + 3 flotas rivales + Imperio) navegan hacia la ubicación de la cripta. Pero el camino está lleno de peligros letales...</p>
+                    
+                    <h4 style="color: var(--accent-gold); margin-top: 1rem;">ZONA 1: EL ARRECIFE DE LOS AHOGADOS</h4>
+                    <div style="background: rgba(23, 162, 184, 0.2); padding: 1rem; border-radius: 8px; margin-top: 0.5rem;">
+                        <ul>
+                            <li><strong>Desafío:</strong> Aguas poco profundas con rocas afiladas que sobresalen</li>
+                            <li><strong>Mecánica:</strong> Navegación DC 18 para atravesar sin daño
+                                <ul>
+                                    <li>Fallo: 3d10 daño a una sección del barco</li>
+                                    <li>Éxito: Pasan sin daño</li>
+                                    <li>Crítico (20): Encuentran un atajo (+1 turno de ventaja)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Complicación:</strong> <span class="danger-text">Sirenas hostiles</span> emergen del agua
+                                <ul>
+                                    <li>6-8 Sirenas (CR 3 cada una) atacan la tripulación</li>
+                                    <li>Canto de Sirena: Salvación WIS DC 16 o quedar hechizado</li>
+                                    <li>Intentan hacer que los tripulantes salten al agua</li>
+                                </ul>
+                            </li>
+                            <li><strong>Otras flotas:</strong> Algunos barcos encallan o son retrasados. Los PJs pueden ayudar o aprovecharse.</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="color: var(--accent-gold); margin-top: 1.5rem;">ZONA 2: EL MAELSTROM DEL KRAKEN</h4>
+                    <div style="background: rgba(157, 78, 221, 0.2); padding: 1rem; border-radius: 8px; margin-top: 0.5rem;">
+                        <ul>
+                            <li><strong>Desafío:</strong> Remolino gigante de 500 pies de diámetro que succiona barcos</li>
+                            <li><strong>Mecánica:</strong> VELOCIDAD + NAVEGACIÓN combinadas para escapar
+                                <ul>
+                                    <li>DC base: 20 - (Velocidad ÷ 10) - (Navegación ÷ 5)</li>
+                                    <li>Fallo: Arrastrados al centro, pierden 2 turnos + 5d10 daño</li>
+                                    <li>Éxito: Atraviesan el borde sin problemas</li>
+                                    <li><strong>Cooperación grupal:</strong> Si TODOS los PJs trabajan juntos (tirada grupal), pueden desactivar el Maelstrom temporalmente</li>
+                                </ul>
+                            </li>
+                            <li><strong>Enemigos ocultos:</strong> <span class="danger-text">Tentáculos gigantes</span> emergen del remolino
+                                <ul>
+                                    <li>4 Tentáculos de Kraken (50 HP cada uno)</li>
+                                    <li>Agarran barcos y arrastran hacia el centro</li>
+                                    <li>Cada tentáculo hace 4d8+7 de daño por constricción</li>
+                                </ul>
+                            </li>
+                            <li><strong>Otras flotas:</strong> 2-3 barcos son destruidos aquí. Cadáveres y escombros flotan en el agua.</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="color: var(--accent-gold); margin-top: 1.5rem;">ZONA 3: LA NIEBLA ESPECTRAL</h4>
+                    <div style="background: rgba(220, 53, 69, 0.2); padding: 1rem; border-radius: 8px; margin-top: 0.5rem;">
+                        <ul>
+                            <li><strong>Desafío:</strong> Niebla mágica densa que desorienta y causa visiones</li>
+                            <li><strong>Mecánica:</strong> Salvación WIS DC 17 para todos a bordo
+                                <ul>
+                                    <li>Fallo: Ven su peor miedo, -2 a todas las tiradas por 1 hora</li>
+                                    <li>Éxito: Resisten las visiones</li>
+                                    <li>Crítico (20): Ven el futuro - conocen la traición de Ricky O descubren cuál cáliz es cuál</li>
+                                </ul>
+                            </li>
+                            <li><strong>Visiones proféticas:</strong> Los jugadores ven fragmentos del futuro:
+                                <ul>
+                                    <li>Barbavelos convirtiéndose en polvo</li>
+                                    <li>Ricky apuntando un arma a alguien</li>
+                                    <li>Un cáliz brillando con luz dorada vs uno con luz negra (pista sobre cuál es cuál)</li>
+                                    <li>La cripta hundiéndose de nuevo en el océano</li>
+                                </ul>
+                            </li>
+                            <li><strong>Fantasmas:</strong> Espíritus de piratas muertos flotan en la niebla
+                                <ul>
+                                    <li>Advierten: "No bebas del dorado oscuro..." (pista confusa)</li>
+                                    <li>Algunos atacan (6 Espectros CR 1)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Otras flotas:</strong> Algunos capitanes enloquecen temporalmente y atacan aliados.</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="color: var(--accent-gold); margin-top: 1.5rem;">BATALLA NAVAL FINAL - LA LLEGADA</h4>
+                    <p>Después de sobrevivir las tres zonas, los PJs llegan a las coordenadas. Ya hay barcos esperando:</p>
+                    <ul>
+                        <li><strong>Flota Hierro Negro:</strong> 3 barcos sobrevivientes (perdieron 2)</li>
+                        <li><strong>Flota Vela Dorada:</strong> 4 barcos intactos (son los más rápidos y hábiles)</li>
+                        <li><strong>Piratas independientes:</strong> 5-6 barcos dispersos</li>
+                    </ul>
+                    
+                    <p style="margin-top: 1rem;"><strong>De repente:</strong> <span class="danger-text">La Armada Imperial aparece desde el horizonte</span> - 8 navíos masivos con banderas imperiales. Evitaron las zonas peligrosas tomando una ruta más larga pero segura.</p>
+                    
+                    <p style="margin-top: 1rem;"><strong>¡COMIENZA LA BATALLA CAMPAL!</strong></p>
+                    <ul>
+                        <li>El Imperio abre fuego contra TODOS los piratas</li>
+                        <li>Los piratas se defienden pero también se atacan entre sí</li>
+                        <li>Cañonazos, abordajes, hechizos volando por todas partes</li>
+                        <li>Ricky pelea valientemente al lado de los PJs, demostrando ser útil</li>
+                    </ul>
+
+                    <p style="margin-top: 1.5rem;"><strong>EN MEDIO DE LA BATALLA:</strong></p>
+                    <p>Una <span class="highlight">LUZ BRILLANTE</span> emerge desde las profundidades - como un beacon de Minecraft alcanzando el cielo.</p>
+                    <p>Las aguas burbujean violentamente. Un terremoto submarino sacude todos los barcos (tiradas de Acrobacias DC 15 o caer).</p>
+                    <p><strong style="color: var(--accent-gold); font-size: 1.2rem;">LA CRIPTA EMERGE COMO UNA ISLA PIRAMIDAL DESDE EL FONDO DEL MAR</strong></p>
+                    
+                    <p style="margin-top: 1rem;">Todos los barcos dejan de pelear, observando asombrados. Luego: <span class="success-text">¡CARRERA LOCA HACIA LA ENTRADA DE LA CRIPTA!</span></p>
+
+                    <div style="background: rgba(0, 105, 148, 0.3); padding: 1rem; border-radius: 8px; margin-top: 1rem; border: 2px solid var(--ocean-blue);">
+                        <h4 style="color: var(--accent-gold);">NOTA DM: MAPA DE BATALLA NAVAL</h4>
+                        <p>Necesitarás graficar un océano gigante en papel milimetrado o digital (50x50 casillas, cada casilla = 10 pies)</p>
+                        <p><strong>Diseño recomendado:</strong></p>
+                        <ul>
+                            <li><strong>Centro:</strong> Punto donde emergerá la cripta (marca con X)</li>
+                            <li><strong>Zona Norte:</strong> Arrecife de los Ahogados (dibuja rocas)</li>
+                            <li><strong>Zona Central:</strong> Maelstrom del Kraken (espiral gigante)</li>
+                            <li><strong>Zona Sur:</strong> Niebla Espectral (área sombreada)</li>
+                            <li><strong>Ubicación final flotas:</strong>
+                                <ul>
+                                    <li>Norte: Hierro Negro (3 barcos en línea defensiva)</li>
+                                    <li>Este: Vela Dorada (4 barcos rodeando)</li>
+                                    <li>Oeste: Piratas independientes (dispersos)</li>
+                                    <li>Sur: Armada Imperial (8 barcos en formación perfecta)</li>
+                                    <li>Los PJs: Posición libre al llegar</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p style="margin-top: 0.5rem;"><strong>Duración total Acto 2:</strong> 10-15 rondas (3 zonas + batalla naval)</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">ACTO 3: LA CRIPTA ANCESTRAL</div>
+                    <p>La cripta emerge completamente - es una <strong>estructura piramidal antigua</strong> con una entrada oscura en la base.</p>
+                    <p>Los PJs (y Ricky) entran mientras afuera continúa la batalla naval. Ricky dice: <span class="highlight">"Yo me quedo cuidando el barco, capitán. No soy bueno en combate"</span></p>
+                    
+                    <div style="background: rgba(0, 105, 148, 0.3); padding: 1rem; border-radius: 8px; margin-top: 1rem; border: 2px solid var(--ocean-blue);">
+                        <h4 style="color: var(--accent-gold);">NOTA DM: DISEÑO DE MAZMORRAS</h4>
+                        <p>La cripta está diseñada como un dungeon crawler clásico - necesitarás dibujar varias salas en una cuadrícula.</p>
+                        <p><strong>Sugerencia de estructura:</strong></p>
+                        <ul>
+                            <li><strong>Entrada:</strong> Pasillo largo con estatuas de guerreros antiguos</li>
+                            <li><strong>Sala 1:</strong> Trampa de flechas + 4 Guerreros Momia (CR 5 cada uno)</li>
+                            <li><strong>Sala 2:</strong> Puente sobre un abismo, requiere Acrobacia DC 18 o caída</li>
+                            <li><strong>Sala 3:</strong> Acertijo en lengua muerta (Historia DC 20 para resolver)</li>
+                            <li><strong>Sala 4:</strong> Encuentro con Capitán Barbavelos + el primer cáliz</li>
+                            <li><strong>Pasillo secreto:</strong> Lleva a la sala del Guardián Final</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="color: var(--accent-gold); margin-top: 1.5rem;">SALA 4: CAPITÁN BARBAVELOS</h4>
+                    <p>Los PJs entran a una cámara iluminada por antorchas mágicas. En el centro hay un altar con UN cáliz dorado.</p>
+                    <p style="margin-top: 0.5rem;"><strong>Capitán Barbavelos:</strong> Un pirata legendario (nivel 18) está de pie frente al altar, sosteniendo el cáliz.</p>
+                    <ul>
+                        <li><strong>Apariencia:</strong> Barba larga y plateada, cicatrices por todo el cuerpo, ojos brillantes de codicia</li>
+                        <li><strong>Diálogo:</strong> "¡Por fin! ¡El Cáliz de la Muerte Eterna! ¡Seré INMORTAL!" (se ríe como loco)</li>
+                        <li><strong>Los PJs:</strong> Pueden intentar detenerlo, pero es demasiado tarde</li>
+                    </ul>
+
+                    <p style="margin-top: 1rem;"><strong style="color: var(--danger);">BARBAVELOS BEBE DEL CÁLIZ</strong></p>
+                    <p>Su sonrisa se congela. Sus ojos se abren con horror. En 6 segundos, <span class="danger-text">su cuerpo se convierte en polvo</span> y el cáliz cae al suelo, rodando hasta los pies de los PJs.</p>
+                    <p style="margin-top: 0.5rem;">Una inscripción en el altar ahora es visible: <em style="color: var(--accent-gold);">"Dos copas, dos destinos. Una aquí, una más adelante. Elige con sabiduría."</em></p>
+
+                    <p style="margin-top: 1rem;"><strong>Los PJs ahora saben:</strong> Este cáliz mata. El OTRO debe estar más adelante.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">ACTO 4: LA SALA FINAL Y LA TRAICIÓN</div>
+                    
+                    <h4 style="color: var(--accent-gold);">PARTE 1: LA SALA VACÍA</h4>
+                    <p>Los PJs continúan por la mazmorra. Llegan a una <strong>sala masiva que parece vacía</strong> - apenas iluminada por cristales brillantes en el techo.</p>
+                    <p>En el centro hay un altar de obsidiana con UN solo cáliz dorado (el segundo). Parece exactamente igual al que vieron antes.</p>
+
+                    <h4 style="color: var(--accent-gold); margin-top: 1.5rem;">PARTE 2: ¡NO ESTÁN SOLOS!</h4>
+                    <p>De repente, de túneles laterales emergen TODAS LAS FACCIONES RIVALES:</p>
+                    <ul>
+                        <li><strong>Capitán Kael (Hierro Negro)</strong> + 4 piratas élite</li>
+                        <li><strong>Capitana Seraphine (Vela Dorada)</strong> + 3 asesinos</li>
+                        <li><strong>Almirante Cornelius (Imperio)</strong> + 5 soldados imperiales</li>
+                        <li><strong>2-3 piratas independientes</strong> que lograron entrar</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>TODOS:</strong> Miran el cáliz. Miran a los demás. La tensión es palpable.</p>
+                    <p><strong>Kael grita:</strong> "¡ESE CÁLIZ ES MÍO!" y ataca.</p>
+                    <p><strong>¡COMIENZA UNA BATALLA CAMPAL MASIVA!</strong></p>
+
+                    <h4 style="color: var(--accent-gold); margin-top: 1.5rem;">PARTE 3: EL GUARDIÁN DESPIERTA</h4>
+                    <p>Con todo el caos, el ruido, la magia y la sangre derramada, el altar comienza a brillar.</p>
+                    <p><span class="danger-text">EL LICH OSWALD "EL ORÁCULO" SE MATERIALIZA</span> - un esqueleto flotante envuelto en túnicas negras, sosteniendo un cetro de huesos marinos.</p>
+                    <p style="margin-top: 0.5rem;"><strong>Oswald:</strong> "Después de mil años... ¡finalmente tengo público! ¡Entretédanme, mortales!"</p>
+                    
+                    <div style="background: rgba(139, 0, 0, 0.3); padding: 1rem; border-radius: 8px; margin-top: 1rem; border: 2px solid var(--danger);">
+                        <h4 style="color: var(--accent-gold);">MECÁNICA DE COMBATE - BATALLA CAÓTICA</h4>
+                        <p><strong>Objetivo:</strong> Sobrevivir y derrotar a Oswald mientras las otras facciones también pelean</p>
+                        <ul>
+                            <li><strong>Oswald (CR 25):</strong> Ataca a TODOS por igual</li>
+                            <li><strong>Facciones rivales:</strong> Se atacan entre sí Y a los PJs</li>
+                            <li><strong>Los PJs:</strong> Pueden enfocarse en Oswald o eliminar rivales primero</li>
+                            <li><strong>Ambiente:</strong> Caótico - AOE spells vuelan por todas partes</li>
+                            <li><strong>Duración estimada:</strong> 8-12 rondas de combate intenso</li>
+                        </ul>
+                        <p style="margin-top: 0.5rem;"><strong>Oswald es derrotado cuando baja a 0 HP.</strong> Su phylactery está en otro lado, pero su forma física se desvanece por ahora.</p>
+                    </div>
+
+                    <h4 style="color: var(--accent-gold); margin-top: 1.5rem;">PARTE 4: LA TRAICIÓN DE RICKY</h4>
+                    <p>Los PJs están exhaustos después de la batalla. Algunos rivales han huido, otros están muertos. El cáliz sigue en el altar.</p>
+                    <p style="margin-top: 0.5rem;"><strong>De repente:</strong> <span class="danger-text">RICKY APARECE</span> desde las sombras (había seguido a los PJs en secreto).</p>
+                    <p>Se mueve rápido, agarra del cuello a un PJ debilitado o a un NPC aliado, y pone un cuchillo contra su garganta.</p>
+                    
+                    <p style="margin-top: 1rem;"><strong>Ricky (voz temblorosa pero determinada):</strong></p>
+                    <p style="font-style: italic; color: var(--text-light); padding-left: 1rem;">"Lo siento... lo siento mucho. Pero NECESITO ese cáliz. El Imperio mató a mi familia. Los piratas me torturaron durante AÑOS. ¡Todos ustedes van a pagar!"</p>
+                    <p style="margin-top: 0.5rem;"><strong>"Denme el cáliz. AHORA. O esta persona muere."</strong></p>
+
+                    <div style="background: rgba(255, 193, 7, 0.3); padding: 1rem; border-radius: 8px; margin-top: 1rem; border: 2px solid var(--warning);">
+                        <h4 style="color: var(--accent-gold);">DECISIÓN FINAL DE LOS JUGADORES</h4>
+                        <ul>
+                            <li><strong>Darle el Cáliz del Alma (el que está en el altar):</strong>
+                                <ul>
+                                    <li>Ricky bebe confiado</li>
+                                    <li>Su deseo se cumple: Destruir el Imperio y los piratas</li>
+                                    <li>Una onda expansiva mágica emana de él</li>
+                                    <li>Los PJs tienen 1d4 rondas para HUIR antes de que el colapso los alcance</li>
+                                    <li><strong>Consecuencia:</strong> Miles de personas mueren (incluidos posiblemente los PJs si no escapan)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Darle el Cáliz de la Muerte (el que recogieron de Barbavelos):</strong>
+                                <ul>
+                                    <li>Ricky bebe pensando que es el del poder</li>
+                                    <li>Se convierte en polvo en 6 segundos</li>
+                                    <li>Muere con una expresión de traición en su cara</li>
+                                    <li>Los PJs pueden escapar tranquilamente</li>
+                                    <li><strong>Consecuencia:</strong> ¿Sienten culpa por engañar a un chico roto?</li>
+                                </ul>
+                            </li>
+                            <li><strong>Negociar (Persuasion DC 25):</strong>
+                                <ul>
+                                    <li>Intentar convencerlo de que hay otra forma</li>
+                                    <li>Ofrecerle ayuda para su venganza sin destruir todo</li>
+                                    <li>Si tienen éxito: Ricky baja el arma y acepta dialogar</li>
+                                    <li><strong>Consecuencia:</strong> Pueden encontrar una solución pacífica</li>
+                                </ul>
+                            </li>
+                            <li><strong>Atacarlo directamente:</strong>
+                                <ul>
+                                    <li>Ricky mata/hiere al rehén en su último acto</li>
+                                    <li>Es derrotado fácilmente (nivel 8 vs nivel 20)</li>
+                                    <li>Muere diciendo "Solo... quería que parara..."</li>
+                                    <li><strong>Consecuencia:</strong> Victoria cruel - mataron a un chico destruido</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ricky - NPC Importante -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-user-secret"></i> RICKY - EL INFILTRADO</h2>
+            
+            <div class="danger-card card">
+                <h3 class="section-subtitle">Ricky [Apellido a elegir]</h3>
+                <p><strong>Apariencia:</strong> Joven (20 años), aspecto humilde, ojos determinados</p>
+                <p><strong>Primer encuentro:</strong> Cuando los PJs llegan a su barco para zarpar, Ricky se ofrece para servir en la tripulación</p>
+                
+                <h4 style="color: var(--accent-gold); margin-top: 1.5rem;">HISTORIA DE RICKY (REVELAR GRADUALMENTE)</h4>
+                <ul>
+                    <li><strong>Familia destruida:</strong> El Imperio quemó su aldea costera acusándolos de ser piratas (eran pescadores inocentes)</li>
+                    <li><strong>Perdió todo:</strong> Sus padres, hermanos, su hogar - todo fue arrasado por la Armada Imperial</li>
+                    <li><strong>Esclavizado:</strong> Fue capturado y vendido como esclavo a piratas crueles que lo torturaron durante años</li>
+                    <li><strong>Escapó:</strong> Logró huir hace 6 meses y ha estado buscando venganza desde entonces</li>
+                    <li><strong>Objetivo:</strong> Usar el Cáliz del Alma para desear la destrucción del Imperio Y los piratas que arruinaron su vida</li>
+                </ul>
+
+                <h4 style="color: var(--accent-gold); margin-top: 1.5rem;">COMPORTAMIENTO EN LA AVENTURA</h4>
+                <ul>
+                    <li><strong>Acto 1 (Puerto Frutal → Barco):</strong> Humilde, trabajador, agradecido. Dice que solo quiere una oportunidad</li>
+                    <li><strong>Acto 2 (Batalla Naval):</strong> Lucha valientemente, demuestra ser útil. Gana confianza de los PJs</li>
+                    <li><strong>Acto 3 (Dentro de la Cripta):</strong> Se ofrece a "cuidar el barco" mientras los PJs exploran</li>
+                    <li><strong>Acto 4 (Revelación):</strong> Aparece en la sala final, agarra del cuello a algún PJ o NPC, exige el cáliz</li>
+                </ul>
+
+                <h4 style="color: var(--accent-gold); margin-top: 1.5rem;">MOMENTOS PARA EMPATÍA</h4>
+                <p>Durante el viaje en barco, Ricky puede compartir pequeños fragmentos de su historia:</p>
+                <ul>
+                    <li><strong>"Mi familia pescaba aquí antes..."</strong> (voz quebrada)</li>
+                    <li><strong>"He perdido todo lo que amaba"</strong> (mirando al horizonte)</li>
+                    <li><strong>"Solo quiero que alguien pague por lo que hicieron"</strong> (apretando los puños)</li>
+                    <li><strong>Cicatrices visibles:</strong> De látigos, cadenas, y tortura</li>
+                </ul>
+            </div>
+
+            <div class="warning-card card">
+                <h3 class="section-subtitle"><i class="fas fa-exclamation-triangle"></i> LA TRAICIÓN FINAL DE RICKY</h3>
+                <p><strong>Timing:</strong> Después de derrotar al Guardián Lich, cuando todos están debilitados</p>
+                <p style="margin-top: 0.5rem;"><strong>Acción:</strong> Ricky aparece (supuestamente estaba cuidando el barco), agarra del cuello a un PJ o NPC débil, y exige el cáliz</p>
+                
+                <h4 style="color: var(--accent-gold); margin-top: 1rem;">OPCIONES DE LOS JUGADORES:</h4>
+                <ul>
+                    <li><strong>Darle el Cáliz del Alma (el bueno):</strong>
+                        <ul>
+                            <li>Ricky bebe y su deseo se cumple</li>
+                            <li>El Imperio y todas las flotas piratas son destruidos (incluyendo probablemente a los PJs)</li>
+                            <li>Ricky se arrepiente al final al ver la destrucción que causó</li>
+                            <li><strong>Final trágico:</strong> Consiguió venganza pero perdió su humanidad</li>
+                        </ul>
+                    </li>
+                    <li><strong>Darle el Cáliz de la Muerte (el veneno):</strong>
+                        <ul>
+                            <li>Ricky bebe confiado y muere instantáneamente, convirtiéndose en polvo</li>
+                            <li>Los PJs pueden escapar sin consecuencias</li>
+                            <li>Pero... ¿se sentirán culpables de haberlo engañado?</li>
+                            <li><strong>Dilema moral:</strong> Era solo un chico destruido buscando justicia</li>
+                        </ul>
+                    </li>
+                    <li><strong>Negociar/Convencerlo:</strong>
+                        <ul>
+                            <li>Persuasion DC 25 (muy difícil - está desesperado)</li>
+                            <li>Si tienen éxito: Ricky suelta al rehén y acepta otra solución</li>
+                            <li>Pueden ofrecerle ayuda para su venganza de otra forma</li>
+                            <li><strong>Final redentivo:</strong> Ricky se une a ellos y juntos encuentran otra manera</li>
+                        </ul>
+                    </li>
+                    <li><strong>Atacarlo:</strong>
+                        <ul>
+                            <li>Ricky tiene al rehén - si lo atacan, el rehén sufre</li>
+                            <li>Es nivel 8 (Rogue 5 / Fighter 3) - no es match para nivel 20</li>
+                            <li>Pero matarlo sin piedad será moralmente horrible</li>
+                            <li><strong>Final cruel:</strong> Victoria a costa de su humanidad</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="info-card card">
+                <h3 class="section-subtitle"><i class="fas fa-theater-masks"></i> ROLEPLAYING TIPS PARA RICKY</h3>
+                <ul>
+                    <li><strong>Voz:</strong> Joven, a veces temblorosa, pero con determinación de acero</li>
+                    <li><strong>Gestos:</strong> Se toca las cicatrices inconscientemente cuando está nervioso</li>
+                    <li><strong>Actitud inicial:</strong> Respetuoso, casi servil (años de esclavitud)</li>
+                    <li><strong>Actitud final:</strong> Desesperado, furioso, pero también quebrado y asustado</li>
+                    <li><strong>Líneas memorables:</strong>
+                        <ul>
+                            <li>"Solo quiero que esto termine... de una vez por todas"</li>
+                            <li>"Ustedes no entienden lo que es perderlo TODO"</li>
+                            <li>"¡EL IMPERIO MATÓ A MI FAMILIA! ¡Los piratas me convirtieron en esto!"</li>
+                            <li>"Perdóname... pero no tengo otra opción"</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Personajes Jugadores -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-users"></i> CAPITANES JUGADORES (NIVEL 20)</h2>
+            
+            <div class="character-grid">
+                <div class="character-card">
+                    <div class="character-name"><i class="fas fa-crown"></i> Capitana Elena "La Serpiente"</div>
+                    <div class="character-role">Pícara Asesina / Maestra del Engaño</div>
+                    <ul>
+                        <li><strong>Motivación:</strong> Desea resucitar a su hermana asesinada</li>
+                        <li><strong>Secreto:</strong> Su hermana la traicionó, pero ella aún la ama</li>
+                        <li><strong>Habilidad especial:</strong> Puede disfrazarse perfectamente</li>
+                        <li><strong>Debilidad:</strong> Leal solo a su tripulación, desconfía de todos</li>
+                    </ul>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-name"><i class="fas fa-fist-raised"></i> Capitán Marcus "El Coloso"</div>
+                    <div class="character-role">Guerrero Bárbaro / Fuerza Bruta</div>
+                    <ul>
+                        <li><strong>Motivación:</strong> Busca venganza contra la Armada Real</li>
+                        <li><strong>Secreto:</strong> Era un almirante antes de volverse pirata</li>
+                        <li><strong>Habilidad especial:</strong> Resistencia sobrehumana en combate</li>
+                        <li><strong>Debilidad:</strong> Ataques de ira incontrolable</li>
+                    </ul>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-name"><i class="fas fa-hat-wizard"></i> Capitán Lysander "El Brujo"</div>
+                    <div class="character-role">Hechicero de Tormentas / Mago del Mar</div>
+                    <ul>
+                        <li><strong>Motivación:</strong> Desea poder ilimitado para controlar el clima</li>
+                        <li><strong>Secreto:</strong> Hizo un pacto con una entidad marina oscura</li>
+                        <li><strong>Habilidad especial:</strong> Puede invocar tormentas y rayos</li>
+                        <li><strong>Debilidad:</strong> Su magia está consumiendo su humanidad</li>
+                    </ul>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-name"><i class="fas fa-compass"></i> Capitana Aria "La Navegante"</div>
+                    <div class="character-role">Exploradora Druida / Maestra del Mar</div>
+                    <ul>
+                        <li><strong>Motivación:</strong> Busca deshacer la maldición de su clan</li>
+                        <li><strong>Secreto:</strong> Su familia está maldita a morir en el mar</li>
+                        <li><strong>Habilidad especial:</strong> Puede comunicarse con criaturas marinas</li>
+                        <li><strong>Debilidad:</strong> Aterrorizada de morir como sus ancestros</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Barcos de los Jugadores -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-ship"></i> BARCOS DE LOS CAPITANES</h2>
+            
+            <div class="ship-grid">
+                <div class="ship-card">
+                    <div class="ship-name"><i class="fas fa-snake"></i> LA VÍBORA NEGRA</div>
+                    <div class="ship-captain">Capitana: Elena "La Serpiente"</div>
+                    <p><strong>Tipo:</strong> Fragata Rápida | <strong>Especialidad:</strong> Velocidad y Sigilo</p>
+                    <div class="ship-stats">
+                        <div class="stat-line"><span>Casco:</span> <span class="highlight">25 pts</span></div>
+                        <div class="stat-line"><span>Velocidad:</span> <span class="success-text">40 pts</span></div>
+                        <div class="stat-line"><span>Artillería:</span> <span>15 pts</span></div>
+                        <div class="stat-line"><span>Navegación:</span> <span class="highlight">15 pts</span></div>
+                        <div class="stat-line"><span>Ingeniería:</span> <span>3 pts</span></div>
+                        <div class="stat-line"><span>Tripulación:</span> <span>2 pts</span></div>
+                    </div>
+                    <p><strong>Ventaja especial:</strong> Puede volverse invisible en niebla (Navegación 15+)</p>
+                </div>
+
+                <div class="ship-card">
+                    <div class="ship-name"><i class="fas fa-shield-alt"></i> EL MARTILLO DE HIERRO</div>
+                    <div class="ship-captain">Capitán: Marcus "El Coloso"</div>
+                    <p><strong>Tipo:</strong> Galeón de Guerra | <strong>Especialidad:</strong> Resistencia y Embestidas</p>
+                    <div class="ship-stats">
+                        <div class="stat-line"><span>Casco:</span> <span class="highlight">50 pts (MÁXIMO)</span></div>
+                        <div class="stat-line"><span>Velocidad:</span> <span>10 pts</span></div>
+                        <div class="stat-line"><span>Artillería:</span> <span class="success-text">30 pts</span></div>
+                        <div class="stat-line"><span>Navegación:</span> <span>4 pts</span></div>
+                        <div class="stat-line"><span>Ingeniería:</span> <span>6 pts</span></div>
+                        <div class="stat-line"><span>Tripulación:</span> <span>0 pts</span></div>
+                    </div>
+                    <p><strong>Ventaja especial:</strong> Tiene ROMPEHIELOS - puede partir barcos enemigos</p>
+                </div>
+
+                <div class="ship-card">
+                    <div class="ship-name"><i class="fas fa-bolt"></i> LA TORMENTA ETERNA</div>
+                    <div class="ship-captain">Capitán: Lysander "El Brujo"</div>
+                    <p><strong>Tipo:</strong> Corbeta Mágica | <strong>Especialidad:</strong> Magia y Artillería</p>
+                    <div class="ship-stats">
+                        <div class="stat-line"><span>Casco:</span> <span>20 pts</span></div>
+                        <div class="stat-line"><span>Velocidad:</span> <span>20 pts</span></div>
+                        <div class="stat-line"><span>Artillería:</span> <span class="highlight">45 pts (MÁXIMO)</span></div>
+                        <div class="stat-line"><span>Navegación:</span> <span>10 pts</span></div>
+                        <div class="stat-line"><span>Ingeniería:</span> <span>3 pts</span></div>
+                        <div class="stat-line"><span>Tripulación:</span> <span>2 pts</span></div>
+                    </div>
+                    <p><strong>Ventaja especial:</strong> Cañones disparan munición mágica (daño elemental)</p>
+                </div>
+
+                <div class="ship-card">
+                    <div class="ship-name"><i class="fas fa-water"></i> EL DELFÍN DORADO</div>
+                    <div class="ship-captain">Capitana: Aria "La Navegante"</div>
+                    <p><strong>Tipo:</strong> Balandra Exploración | <strong>Especialidad:</strong> Navegación y Maniobras</p>
+                    <div class="ship-stats">
+                        <div class="stat-line"><span>Casco:</span> <span>30 pts</span></div>
+                        <div class="stat-line"><span>Velocidad:</span> <span class="success-text">32 pts</span></div>
+                        <div class="stat-line"><span>Artillería:</span> <span>12 pts</span></div>
+                        <div class="stat-line"><span>Navegación:</span> <span class="highlight">30 pts (MÁXIMO)</span></div>
+                        <div class="stat-line"><span>Ingeniería:</span> <span>0 pts</span></div>
+                        <div class="stat-line"><span>Tripulación:</span> <span>0 pts</span></div>
+                    </div>
+                    <p><strong>Ventaja especial:</strong> Inmune a tormentas y puede atravesar el Maelstrom</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flotas Rivales -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-flag-pirate"></i> FLOTAS RIVALES</h2>
+            
+            <div class="ship-grid">
+                <div class="danger-card card">
+                    <h3 class="section-subtitle"><i class="fas fa-anchor"></i> FLOTA HIERRO NEGRO</h3>
+                    <p><strong>Líder:</strong> Capitán Kael "Martillo de Hierro"</p>
+                    <p><strong>Motivación:</strong> Destruir todos los imperios y gobiernos del mundo</p>
+                    <p><strong>Ideología:</strong> Anarquía total - nadie debe gobernar a nadie</p>
+                    <p style="margin-top: 1rem;"><strong>Flota:</strong> 5 galeones de guerra pesados</p>
+                    <ul>
+                        <li>60 cañones por barco</li>
+                        <li>Tripulaciones de ex-esclavos liberados</li>
+                        <li>Combaten con furia suicida</li>
+                        <li>Usarán el Cáliz del Alma para desear: "Destruir todo gobierno del mundo"</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Táctica:</strong> Atacan sin piedad, sin tomar prisioneros</p>
+                </div>
+
+                <div class="warning-card card">
+                    <h3 class="section-subtitle"><i class="fas fa-crown"></i> FLOTA VELA DORADA</h3>
+                    <p><strong>Líder:</strong> Capitana Seraphine "La Emperatriz"</p>
+                    <p><strong>Motivación:</strong> Volverse inmortales y crear un imperio pirata eterno</p>
+                    <p><strong>Ideología:</strong> Los piratas deben gobernar el mundo, no esconderse</p>
+                    <p style="margin-top: 1rem;"><strong>Flota:</strong> 4 fragatas rápidas doradas</p>
+                    <ul>
+                        <li>Velocidad extrema (puede alcanzar a cualquiera)</li>
+                        <li>Tripulaciones élite entrenadas en abordaje</li>
+                        <li>Prefieren robar los cálices en lugar de luchar</li>
+                        <li>Usarán ambos cálices para ser inmortales y todopoderosos</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Táctica:</strong> Sigilo, emboscadas, y traiciones</p>
+                </div>
+
+                <div class="info-card card">
+                    <h3 class="section-subtitle"><i class="fas fa-flag"></i> FLOTA IMPERIAL</h3>
+                    <p><strong>Líder:</strong> Almirante Cornelius von Stahl</p>
+                    <p><strong>Motivación:</strong> Crear un Emperador Inmortal con poder divino</p>
+                    <p><strong>Ideología:</strong> El Imperio debe expandirse eternamente y controlar todos los mares</p>
+                    <p style="margin-top: 1rem;"><strong>Flota:</strong> 8 navíos de línea imperiales</p>
+                    <ul>
+                        <li>Disciplina militar perfecta</li>
+                        <li>Magos de batalla a bordo</li>
+                        <li>Recursos ilimitados del Imperio</li>
+                        <li>Usarán ambos cálices para el Emperador (no saben de la trampa)</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Táctica:</strong> Fuerza bruta y números superiores</p>
+                </div>
+            </div>
+
+            <div class="purple-card card">
+                <h3 class="section-subtitle"><i class="fas fa-exclamation-triangle"></i> DINÁMICAS ENTRE FACCIONES</h3>
+                <ul>
+                    <li><strong>Hierro Negro vs Imperio:</strong> Odio absoluto - se atacan a muerte</li>
+                    <li><strong>Vela Dorada vs Jugadores:</strong> Pueden formar alianzas temporales (luego traicionarse)</li>
+                    <li><strong>Imperio vs Todos:</strong> Los ve como criminales que deben ser ejecutados</li>
+                    <li><strong>Jugadores:</strong> Pueden manipular a las facciones para que se destruyan entre sí</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Nota DM:</strong> Las flotas rivales pueden atacar durante la carrera (Acto 2) o esperar al templo (Acto 3)</p>
+            </div>
+        </section>
+
+        <!-- Villano Principal -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-skull"></i> EL VILLANO: LICH OSWALD "EL ORÁCULO"</h2>
+            
+            <div class="danger-card card">
+                <h3 class="section-subtitle">Oswald "El Oráculo" - Guardián Inmortal</h3>
+                <p><strong>Verdadera identidad:</strong> Lich Marino Ancestral (CR 25) que lleva 1000 años guardando el templo</p>
+                <p style="margin-top: 1rem;"><strong>Plan secreto:</strong> Filtró la información sobre los cálices al Imperio para crear una guerra masiva. Quiere ver quién es lo suficientemente digno (o loco) para tomar los cálices. <span class="purple-text">Todo es un juego para él</span>.</p>
+                
+                <h4 style="color: var(--accent-gold); margin-top: 1.5rem;">ESTADÍSTICAS DE COMBATE</h4>
+                <ul>
+                    <li><strong>CA:</strong> 22 (armadura mágica antigua)</li>
+                    <li><strong>PV:</strong> 450 (inmune a no-mágico)</li>
+                    <li><strong>Inmunidades:</strong> Veneno, frío, necrotic, no-mágico</li>
+                    <li><strong>Resistencias:</strong> Todo el resto</li>
+                    <li><strong>Legendary Actions:</strong> 3 por ronda</li>
+                </ul>
+
+                <h4 style="color: var(--accent-gold); margin-top: 1.5rem;">HABILIDADES ESPECIALES</h4>
+                <ul>
+                    <li><strong>Visión del Destino:</strong> Puede ver 3 turnos en el futuro (ventaja en saves y ataques)</li>
+                    <li><strong>Controlar Agua:</strong> Puede inundar cámaras del templo o crear torbellinos</li>
+                    <li><strong>Invocar No-Muertos:</strong> 2d6 guerreros ahogados por turno</li>
+                    <li><strong>Prisión de Almas:</strong> Save WIS DC 22 o quedar paralizado en un cristal</li>
+                    <li><strong>Power Word Kill:</strong> Si conoce la verdad sobre los cálices, puede usarlo</li>
+                </ul>
+            </div>
+
+            <div class="warning-card card">
+                <h3 class="section-subtitle"><i class="fas fa-chess"></i> TÁCTICAS DE OSWALD</h3>
+                <ul>
+                    <li>No aparece hasta que alguien entre a la cámara de los cálices</li>
+                    <li>Primero observa quién entra, evaluando su valor</li>
+                    <li>Si los jugadores muestran codicia pura, ataca de inmediato</li>
+                    <li>Si muestran sabiduría o duda, ofrece un acertijo sobre los cálices</li>
+                    <li><strong>Objetivo real:</strong> Está aburrido después de 1000 años - quiere ser entretenido</li>
+                    <li><strong>Victoria alternativa:</strong> Puede ser derrotado con ingenio en lugar de fuerza bruta</li>
+                </ul>
+            </div>
+
+            <div class="info-card card">
+                <h3 class="section-subtitle"><i class="fas fa-book-dead"></i> ACERTIJO DE OSWALD (OPCIONAL)</h3>
+                <p style="font-style: italic;">"Dos copas ante ti, gemelas en forma. Una concede vida sin fin, la otra vida que termina. Pero la muerte puede ser un regalo, y la vida eterna una maldición. El alma conoce la verdad que la mente ignora. ¿Beberás de lo que deseas, o de lo que necesitas?"</p>
+                <p style="margin-top: 1rem;"><strong>Pista oculta:</strong> El "Cáliz de la Muerte Eterna" mata. El "Cáliz del Alma" concede el deseo verdadero del corazón (que puede ser morir en paz si el personaje está cansado).</p>
+            </div>
+        </section>
+
+        <!-- Encuentros y Desafíos -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-dice-d20"></i> ENCUENTROS DURANTE LA CARRERA</h2>
+            
+            <div class="info-card card">
+                <h3 class="section-subtitle">1. EL ARRECIFE DE LOS AHOGADOS</h3>
+                <p><strong>Desafío:</strong> Navegación DC 18 para atravesar sin daño</p>
+                <ul>
+                    <li>Fallo: 3d10 daño a una sección del barco</li>
+                    <li>Éxito: Pasan sin daño</li>
+                    <li>Crítico (20): Encuentran un atajo secreto (+1 turno de ventaja)</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Complicación:</strong> Hay <span class="danger-text">sirenas hostiles</span> que intentan hechizar a la tripulación (Salvación WIS DC 16)</p>
+            </div>
+
+            <div class="info-card card">
+                <h3 class="section-subtitle">2. EL MAELSTROM DEL KRAKEN</h3>
+                <p><strong>Desafío:</strong> Velocidad + Navegación para escapar</p>
+                <ul>
+                    <li>DC base: 20 - (Velocidad ÷ 10) - (Navegación ÷ 5)</li>
+                    <li>Fallo: Arrastrados al centro, pierden 2 turnos</li>
+                    <li>Éxito: Atraviesan el borde sin problemas</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Twist:</strong> Si TODOS los jugadores cooperan (tirada grupal), pueden desactivar el Maelstrom temporalmente</p>
+            </div>
+
+            <div class="info-card card">
+                <h3 class="section-subtitle">3. LA NIEBLA ESPECTRAL</h3>
+                <p><strong>Desafío:</strong> Salvación WIS DC 17 o sufrir visiones</p>
+                <ul>
+                    <li>Fallo: Ven su peor miedo, -2 a todas las tiradas por 1 hora</li>
+                    <li>Éxito: Resisten las visiones</li>
+                    <li>Crítico (20): Ven el futuro - conocen la traición de Oswald</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Efecto de ambiente:</strong> La niebla muestra fantasmas de piratas muertos que advierten sobre el Cáliz</p>
+            </div>
+
+            <div class="danger-card card">
+                <h3 class="section-subtitle">4. COMBATE NAVAL ENTRE JUGADORES</h3>
+                <p>En algún momento, los jugadores decidirán atacarse. Opciones:</p>
+                <ul>
+                    <li><strong>Combate directo:</strong> Sistema naval completo</li>
+                    <li><strong>Sabotaje nocturno:</strong> Sigilo para infiltrar barcos enemigos</li>
+                    <li><strong>Duelo de capitanes:</strong> 1v1 mientras los barcos observan</li>
+                    <li><strong>Alianzas temporales:</strong> 2v2 con traiciones posteriores</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Los Cálices -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-wine-glass"></i> LOS CÁLICES GEMELOS DEL DESTINO</h2>
+            
+            <div class="purple-card card">
+                <h3 class="section-subtitle">APARIENCIA FÍSICA</h3>
+                <ul>
+                    <li><strong>Rareza:</strong> Artefactos Legendarios Únicos (2 en total)</li>
+                    <li><strong>Apariencia:</strong> DOS copas de oro pálido con inscripciones en lengua muerta</li>
+                    <li><strong>Idénticos:</strong> NO hay forma de distinguirlos visualmente - parecen gemelos perfectos</li>
+                    <li><strong>Peso:</strong> Livianos, casi etéreos</li>
+                    <li><strong>Aura:</strong> Ambos emanan poder divino (Detect Magic muestra abjuración y nigromancia en ambos)</li>
+                </ul>
+
+                <h3 class="section-subtitle" style="margin-top: 1.5rem;">LA VERDAD (SOLO DM)</h3>
+                <div style="background: rgba(139, 0, 0, 0.3); padding: 1rem; border-radius: 8px; border: 2px solid var(--danger);">
+                    <p><strong>CÁLIZ A (Izquierda):</strong> <span class="danger-text">CÁLIZ DE LA MUERTE ETERNA</span></p>
+                    <ul>
+                        <li>Quien beba de él muere INSTANTÁNEAMENTE</li>
+                        <li>Save de Constitución DC 30 (casi imposible para nivel 20)</li>
+                        <li>Inmunidad a Revivify, Raise Dead, Resurrection</li>
+                        <li>Solo True Resurrection o Wish pueden revivirlo</li>
+                        <li><strong>Efecto visual:</strong> El bebedor se convierte en polvo en 1 round</li>
+                    </ul>
+
+                    <p style="margin-top: 1rem;"><strong>CÁLIZ B (Derecha):</strong> <span class="success-text">CÁLIZ DEL ALMA</span></p>
+                    <ul>
+                        <li>Concede lo que el ALMA del bebedor realmente desea (no lo que dice)</li>
+                        <li>No tiene límite - puede ser cualquier cosa dentro de poder de Wish</li>
+                        <li>Puede ser diferente a lo que el personaje CREE querer</li>
+                        <li><strong>Ejemplos:</strong> Si Elena dice "quiero poder" pero su alma desea "paz", obtiene paz</li>
+                        <li>Solo funciona UNA VEZ por persona</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning-card card">
+                <h3 class="section-subtitle">CÓMO DETERMINAR CUÁL ES CUÁL</h3>
+                <ul>
+                    <li><strong>Investigación (Arcana DC 25):</strong> Revela que las leyendas son contradictorias</li>
+                    <li><strong>Investigación (Historia DC 28):</strong> Encuentra registro de 3 personas que bebieron y murieron instantáneamente</li>
+                    <li><strong>Hablar con muertos:</strong> Si encuentran esqueletos cerca, pueden preguntar qué pasó</li>
+                    <li><strong>Identify/Legend Lore:</strong> Ambos cálices resisten estas magias (solo muestran info falsa)</li>
+                    <li><strong>El acertijo de Oswald:</strong> Si lo resuelven, da una pista sobre cuál es cuál</li>
+                    <li><strong>Última opción:</strong> Alguien tiene que beber para descubrir la verdad</li>
+                </ul>
+            </div>
+
+            <div class="info-card card">
+                <h3 class="section-subtitle">EJEMPLOS DE DESEOS DEL ALMA</h3>
+                <p>El Cáliz del Alma lee el VERDADERO deseo del corazón:</p>
+                <ul>
+                    <li><strong>Elena dice "Quiero poder"</strong> → Su alma desea "redimir a su hermana" → Su hermana es resucitada y redimida</li>
+                    <li><strong>Marcus dice "Quiero venganza"</strong> → Su alma desea "encontrar paz" → Olvida su odio y encuentra serenidad</li>
+                    <li><strong>Lysander dice "Quiero magia infinita"</strong> → Su alma desea "ser humano de nuevo" → Pierde su pacto oscuro y recupera su humanidad</li>
+                    <li><strong>Aria dice "Quiero romper la maldición"</strong> → Su alma desea exactamente eso → La maldición de su clan es destruida</li>
+                </ul>
+                <p style="margin-top: 1rem; color: var(--accent-gold);"><strong>Nota DM:</strong> Habla con cada jugador en privado ANTES de la sesión sobre qué desea realmente su personaje en el fondo de su corazón.</p>
+            </div>
+        </section>
+
+        <!-- Finales Posibles -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-flag-checkered"></i> FINALES POSIBLES</h2>
+            
+            <div class="success-card card">
+                <h3 class="section-subtitle"><i class="fas fa-handshake"></i> FINAL 1: COOPERACIÓN</h3>
+                <p>Los jugadores se unen, derrotan a Oswald, y deciden destruir el Cáliz juntos.</p>
+                <p><strong>Resultado:</strong> Liberan las almas atrapadas. Cada uno recibe una bendición menor de las almas agradecidas. Se vuelven leyendas.</p>
+            </div>
+
+            <div class="danger-card card">
+                <h3 class="section-subtitle"><i class="fas fa-skull"></i> FINAL 2: TRAICIÓN TOTAL</h3>
+                <p>Uno de los jugadores traiciona a todos, toma el Cáliz y pide sus 3 deseos.</p>
+                <p><strong>Resultado:</strong> Cumple sus deseos pero pierde a su tripulación y eventualmente muere. Los otros jugadores quedan varados o muertos.</p>
+            </div>
+
+            <div class="purple-card card">
+                <h3 class="section-subtitle"><i class="fas fa-balance-scale"></i> FINAL 3: SACRIFICIO</h3>
+                <p>Un jugador usa el primer deseo para salvar a todos los demás, sabiendo que morirá.</p>
+                <p><strong>Resultado:</strong> Acto heroico. Su alma queda libre y se convierte en el nuevo guardián del Cáliz, evitando que otros lo usen.</p>
+            </div>
+
+            <div class="warning-card card">
+                <h3 class="section-subtitle"><i class="fas fa-chess-queen"></i> FINAL 4: OSWALD GANA</h3>
+                <p>Oswald logra engañar a todos y se apodera del Cáliz.</p>
+                <p><strong>Resultado:</strong> Usa el primer deseo para transferir la maldición a Elena. Usa el segundo para controlar las tormentas. Antes del tercero, los jugadores tienen UNA oportunidad de matarlo.</p>
+            </div>
+
+            <div class="info-card card">
+                <h3 class="section-subtitle"><i class="fas fa-dice"></i> FINAL 5: TWIST SORPRESA</h3>
+                <p>El Cáliz era una prueba. Una entidad divina estaba observando para encontrar héroes dignos.</p>
+                <p><strong>Resultado:</strong> Si actúan con honor, reciben bendiciones verdaderas sin maldición. Si actúan con codicia, la entidad los maldice eternamente.</p>
+            </div>
+        </section>
+
+        <!-- Notas del DM -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-scroll"></i> NOTAS Y CONSEJOS DEL DM</h2>
+            
+            <div class="card">
+                <h3 class="section-subtitle">GESTIÓN DE LA SESIÓN</h3>
+                <ul>
+                    <li><strong>Duración estimada:</strong> 6-8 horas (dividir en 2 sesiones si es necesario)</li>
+                    <li><strong>Tono:</strong> Épico, oscuro, con toques de tragicomedia</li>
+                    <li><strong>Música recomendada:</strong> Piratas del Caribe + música épica orquestal</li>
+                    <li><strong>Props:</strong> Imprime imágenes de los barcos, usa un dado como "Cáliz"</li>
+                </ul>
+
+                <h3 class="section-subtitle" style="margin-top: 1.5rem;">MANEJO DE CONFLICTOS</h3>
+                <ul>
+                    <li>Deja que los jugadores se traicionen, pero mantén el equilibrio</li>
+                    <li>Si un jugador muere temprano, ofrécele controlar NPCs o tripulantes</li>
+                    <li>Oswald siempre tiene un plan de respaldo - improvisalo según las acciones de los jugadores</li>
+                    <li>La maldición del Cáliz es real - no hagas trampa con las consecuencias</li>
+                </ul>
+
+                <h3 class="section-subtitle" style="margin-top: 1.5rem;">IMPROVISACIÓN</h3>
+                <ul>
+                    <li>Si los jugadores se alían demasiado rápido, Oswald envía mensajes falsos para separarlos</li>
+                    <li>Si ignoran el combate naval, haz que Oswald los ataque por sorpresa</li>
+                    <li>Si nadie quiere el Cáliz, haz que un tripulante se vuelva codicioso y lo robe</li>
+                    <li>Prepara 2-3 encuentros aleatorios de backup (barcos fantasma, monstruos marinos, tormenta mágica)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(139, 0, 0, 0.3); border-radius: 15px; border: 2px solid var(--accent-gold);">
+            <h2 style="font-family: 'Cinzel', serif; color: var(--accent-gold); margin-bottom: 1rem;">¡QUE COMIENCE LA AVENTURA!</h2>
+            <p style="color: var(--accent-silver);">"En el mar, solo hay dos tipos de piratas: los muertos y los que aún no lo saben."</p>
+            <div style="margin-top: 1rem; font-size: 1.5rem;">
+                <i class="fas fa-skull-crossbones"></i>
+                <i class="fas fa-wine-glass"></i>
+                <i class="fas fa-ship"></i>
+                <i class="fas fa-wine-glass"></i>
+                <i class="fas fa-skull-crossbones"></i>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

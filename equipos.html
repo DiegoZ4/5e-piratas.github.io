@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos & Objetos Navales - Piratas D&D 5E</title>
+    
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Remix Icons (alternativa moderna) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- jsPDF para generar PDFs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- CSS del sistema de equipos -->
+    <link rel="stylesheet" href="equipos.css">
+</head>
+<body>
+    <!-- Navegación fija -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-title"><i class="fas fa-flag-pirate"></i> TIENDA DEL PIRATA <i class="fas fa-flag-pirate"></i></div>
+            <a href="sistema_combate_naval.html" class="nav-link"><i class="fas fa-anchor"></i> Volver al Combate Naval</a>
+        </div>
+    </nav>
+
+    <!-- Contador de monedas flotante con flecha -->
+    <div class="gold-counter-new" id="goldCounterNew">
+        <i class="fas fa-coins" style="color: #ffd700;"></i>
+        <span id="goldAmount" style="color: #ffd700; font-weight: bold;">2000</span>
+        <span style="color: #ffd700; font-weight: bold;">po</span>
+        <i class="fas fa-chevron-down" id="cartToggle" style="color: #ffd700; margin-left: 8px; cursor: pointer; transition: transform 0.3s;" title="Mostrar/Ocultar carrito"></i>
+    </div>
+
+    <!-- Carrito de compras rediseñado -->
+    <div class="shopping-cart-new" id="shoppingCart" style="display: none;">
+        <div class="cart-title-new">TUS COMPRAS</div>
+        <div id="cartItems" class="cart-items-new">
+            <!-- Se llena dinámicamente -->
+        </div>
+        <div class="cart-total-new" id="cartTotal">
+            Total invertido: 0 <i class="fas fa-coins" style="color: #ffd700;"></i>
+        </div>
+        <div style="margin-top: 1rem; display: flex; gap: 8px; flex-direction: column;">
+            <button onclick="generatePDF(false)" style="width: 100%; padding: 12px; background: linear-gradient(135deg, #ffd700, #ffed4e); color: #000; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 14px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                <i class="fas fa-file-pdf"></i> PDF Color
+            </button>
+            <button onclick="generatePDF(true)" style="width: 100%; padding: 10px; background: linear-gradient(135deg, #e5e5e5, #ffffff); color: #000; border: 2px solid #666; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 14px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+                <i class="fas fa-print"></i> PDF Blanco y Negro
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Hero section -->
+        <header class="hero fade-in">
+            <h1 class="hero-title"><i class="fas fa-flag-pirate"></i> TIENDA DEL PIRATA <i class="fas fa-flag-pirate"></i></h1>
+            <p class="hero-subtitle">¡EQUÍPATE PARA CONQUISTAR LOS SIETE MARES!</p>
+        </header>
+
+        <!-- Introducción -->
+        <section class="section fade-in">
+            <h2 class="section-title"><i class="fas fa-flag-pirate"></i> BIENVENIDO, BUCANERO</h2>
+            <div class="info-card card">
+                <p>¡Ahoy, marinero! Has llegado al mejor arsenal pirata de los Siete Mares. 
+                Aquí encontrarás todo lo que necesitas para convertirte en el pirata más temido y respetado del océano.</p>
+                
+                <h3 class="section-subtitle"><i class="fas fa-info-circle"></i> Información de la Tienda:</h3>
+                <ul>
+                    <li><strong><i class="fas fa-coins" style="color: #ffd700;"></i> Monedas de Oro:</strong> Cada pirata comienza con 2300 po</li>
+                    <li><strong><i class="fas fa-star" style="color: #ffd700;"></i> Rareza:</strong> Los objetos van desde Común hasta Legendario</li>
+                    <li><strong><i class="fas fa-bolt" style="color: #9d4edd;"></i> Efectos:</strong> Cada objeto mejora tus habilidades de pirata</li>
+                    <li><strong><i class="fas fa-shopping-cart" style="color: #06d6a0;"></i> Compras:</strong> Haz click en tu oro para ver tu equipamiento</li>
+                    <li><strong><i class="fas fa-file-pdf" style="color: #ff6b35;"></i> Exportar:</strong> Descarga tu equipamiento en formato PDF</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sección: TODOS LOS EQUIPOS UNIFICADOS -->
+        <section class="section fade-in">
+            <h2 class="section-title"><i class="fas fa-treasure-chest"></i> ARSENAL COMPLETO DEL PIRATA</h2>
+            <div class="info-card card">
+                <p>Explora todo el arsenal disponible: armas legendarias, armaduras místicas, cascos únicos, equipamientos especiales y reliquias ancestrales. ¡Todo en un solo lugar!</p>
+            </div>
+
+            <!-- Buscador por nombre -->
+            <div class="filter-section">
+                <h3 class="section-subtitle"><i class="fas fa-search"></i> Buscar por Nombre:</h3>
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <input type="text" id="searchInput" placeholder="Escribe el nombre del objeto..." style="width: 100%; padding: 12px 20px; font-size: 1rem; border: 2px solid var(--gold); border-radius: 25px; background: rgba(26, 26, 46, 0.8); color: var(--gold); outline: none; transition: all 0.3s;">
+                </div>
+            </div>
+            
+            <!-- Filtros de Categoría -->
+            <div class="filter-section">
+                <h3 class="section-subtitle"><i class="fas fa-tag"></i> Filtrar por Categoría:</h3>
+                <div class="filter-buttons">
+                    <button class="filter-button active" data-filter="all"><i class="fas fa-star"></i> TODOS</button>
+                    <button class="filter-button" data-filter="weapons"><i class="fas fa-sword"></i> ARMAS</button>
+                    <button class="filter-button" data-filter="armor"><i class="fas fa-shield-alt"></i> ARMADURAS</button>
+                    <button class="filter-button" data-filter="equipment"><i class="fas fa-toolbox"></i> EQUIPO</button>
+                    <button class="filter-button" data-filter="relic"><i class="fas fa-gem"></i> RELIQUIAS</button>
+                    <button class="filter-button" data-filter="ship_parts"><i class="fas fa-ship"></i> PIEZAS DEL BARCO</button>
+                </div>
+            </div>
+
+            <!-- Subfiltros dinámicos (armas/armaduras) -->
+            <div class="filter-section" id="subfilterSection" style="display: none;">
+                <h3 class="section-subtitle"><i class="fas fa-filter"></i> Tipo:</h3>
+                <div class="filter-buttons" id="subfilterButtons">
+                    <!-- Se llenan dinámicamente -->
+                </div>
+            </div>
+            
+            <!-- Filtros de Rareza (solo colores) -->
+            <div class="filter-section">
+                <h3 class="section-subtitle"><i class="fas fa-sparkles"></i> Filtrar por Rareza:</h3>
+                <div class="rarity-buttons">
+                    <button class="rarity-button active" data-rarity="all" style="background: linear-gradient(135deg, #ffd700, #ff6b35, #9d4edd, #3a86ff, #06d6a0); color: white; font-weight: bold;">TODAS</button>
+                    <button class="rarity-button" data-rarity="legendary" style="background: #ffd700; color: #1a1a2e; font-weight: bold;">LEGENDARIO</button>
+                    <button class="rarity-button" data-rarity="epic" style="background: #9d4edd; color: white; font-weight: bold;">ÉPICO</button>
+                    <button class="rarity-button" data-rarity="rare" style="background: #3a86ff; color: white; font-weight: bold;">RARO</button>
+                    <button class="rarity-button" data-rarity="uncommon" style="background: #06d6a0; color: #1a1a2e; font-weight: bold;">POCO COMÚN</button>
+                    <button class="rarity-button" data-rarity="common" style="background: #6c757d; color: white; font-weight: bold;">COMÚN</button>
+                </div>
+            </div>
+
+            <!-- Grilla UNIFICADA de todos los equipos -->
+            <div class="equipment-grid" id="unifiedEquipmentGrid">
+                <!-- Se llena dinámicamente con JavaScript -->
+            </div>
+        </section>
+
+        <!-- Botón flotante para ordenar -->
+        <div id="sortButtonContainer" style="position: fixed; bottom: 30px; right: 30px; z-index: 1000;">
+            <button id="sortButton" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #ffcc00); border: 3px solid #1a1a2e; cursor: pointer; box-shadow: 0 4px 20px rgba(212, 175, 55, 0.6); transition: all 0.3s; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #1a1a2e;">
+                <i class="fas fa-sort-amount-down"></i>
+            </button>
+            <div id="sortMenu" style="position: absolute; bottom: 70px; right: 0; background: rgba(26, 26, 46, 0.98); border: 2px solid var(--gold); border-radius: 15px; padding: 10px; display: none; min-width: 200px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);">
+                <button class="sort-option" data-sort="nameAZ" style="width: 100%; padding: 10px 15px; margin: 5px 0; background: rgba(212, 175, 55, 0.2); border: 1px solid var(--gold); border-radius: 8px; color: var(--gold); cursor: pointer; transition: all 0.3s; font-size: 0.95rem; text-align: left;">
+                    <i class="fas fa-sort-alpha-down"></i> Nombre A-Z
+                </button>
+                <button class="sort-option" data-sort="nameZA" style="width: 100%; padding: 10px 15px; margin: 5px 0; background: rgba(212, 175, 55, 0.2); border: 1px solid var(--gold); border-radius: 8px; color: var(--gold); cursor: pointer; transition: all 0.3s; font-size: 0.95rem; text-align: left;">
+                    <i class="fas fa-sort-alpha-up"></i> Nombre Z-A
+                </button>
+                <button class="sort-option" data-sort="priceLowHigh" style="width: 100%; padding: 10px 15px; margin: 5px 0; background: rgba(212, 175, 55, 0.2); border: 1px solid var(--gold); border-radius: 8px; color: var(--gold); cursor: pointer; transition: all 0.3s; font-size: 0.95rem; text-align: left;">
+                    <i class="fas fa-coins"></i> Precio: Bajo → Alto
+                </button>
+                <button class="sort-option" data-sort="priceHighLow" style="width: 100%; padding: 10px 15px; margin: 5px 0; background: rgba(212, 175, 55, 0.2); border: 1px solid var(--gold); border-radius: 8px; color: var(--gold); cursor: pointer; transition: all 0.3s; font-size: 0.95rem; text-align: left;">
+                    <i class="fas fa-coins"></i> Precio: Alto → Bajo
+                </button>
+                <button class="sort-option" data-sort="rarity" style="width: 100%; padding: 10px 15px; margin: 5px 0; background: rgba(212, 175, 55, 0.2); border: 1px solid var(--gold); border-radius: 8px; color: var(--gold); cursor: pointer; transition: all 0.3s; font-size: 0.95rem; text-align: left;">
+                    <i class="fas fa-star"></i> Por Rareza
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+                    <ul>
+                        <li><strong>Orbe de Cristal Marino:</strong> Visión del futuro</li>
+                        <li><strong>Amuleto de Bruja:</strong> Poder mágico marino</li>
+                        <li><strong>Botella del Alma:</strong> Conexión con el más allá</li>
+                    </ul>
+                </div>
+
+                <div class="info-card card">
+                    <h3 class="section-subtitle">🗺️ Para Exploradores</h3>
+                    <ul>
+                        <li><strong>Mapa del Tesoro:</strong> Encuentra riquezas ocultas</li>
+                        <li><strong>Sextante de Navegación:</strong> Nunca te pierdas</li>
+                        <li><strong>Loro Familiar:</strong> Espía desde el aire</li>
+                    </ul>
+                </div>
+
+                <div class="info-card card">
+                    <h3 class="section-subtitle">� Para Cazatesoros</h3>
+                    <ul>
+                        <li><strong>Brújula del Corazón:</strong> Encuentra lo más valioso</li>
+                        <li><strong>Moneda de la Suerte:</strong> Cambia tu destino</li>
+                        <li><strong>Cofre del Muerto:</strong> Riquezas infinitas</li>
+                    </ul>
+                </div>
+
+                <div class="info-card card">
+                    <h3 class="section-subtitle">🌊 Para Señores del Mar</h3>
+                    <ul>
+                        <li><strong>Tridente del Diablo:</strong> Control sobre las aguas</li>
+                        <li><strong>Capa de Tormenta:</strong> Inmunidad climática</li>
+                        <li><strong>Sello del Señor Océano:</strong> Autoridad marina</li>
+                    </ul>
+                </div>
+
+                <div class="info-card card">
+                    <h3 class="section-subtitle">🦜 Para Capitanes Carismáticos</h3>
+                    <ul>
+                        <li><strong>Tricornio:</strong> Estilo clásico pirata</li>
+                        <li><strong>Casaca del Capitán:</strong> Respeto instantáneo</li>
+                        <li><strong>Cuerno de Canciones:</strong> Inspira a tu tripulación</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer fade-in">
+            <div class="footer-title">¡QUE LOS VIENTOS LLENEN TUS VELAS!</div>
+            <div class="footer-emojis"><i class="fas fa-sword"></i> <i class="fas fa-coins"></i> <i class="fas fa-flag-pirate"></i> <i class="fas fa-coins"></i> <i class="fas fa-sword"></i></div>
+            <p>La fortuna favorece a los audaces... y a los bien equipados</p>
+            
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--accent-gold);">
+                <h3 style="color: var(--accent-gold); margin-bottom: 1rem;">🎲 Para el Dungeon Master:</h3>
+                <p style="color: var(--text-muted);">
+                    Este sistema permite a los jugadores personalizar sus barcos antes o durante la aventura. 
+                    Puedes otorgar monedas adicionales como recompensa por completar misiones, 
+                    encontrar tesoros o derrotar enemigos poderosos.
+                </p>
+                <p style="color: var(--text-muted); margin-top: 1rem;">
+                    <strong>Sugerencia:</strong> Permite que cada jugador comience con 1000 monedas, 
+                    pero considera otorgar 200-500 monedas adicionales por logros importantes durante la sesión.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript del sistema de equipos -->
+    <script src="equipos.js"></script>
+</body>
+</html>

@@ -2599,7 +2599,7 @@ const equipmentDatabase = [
 
     // === 2 ITEMS LEGENDARIOS DE BARDO ===
     {
-        id: 'bard_cape_legend',
+        id: 'bard_cape_legends',
         name: '<i class="fas fa-music"></i> Capa del Maestro Trovador',
         price: 1400,
         rarity: 'legendary',

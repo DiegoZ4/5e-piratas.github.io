@@ -1,8 +1,8 @@
 // SISTEMA DE EQUIPOS BALANCEADO PARA NIVEL 20
-// Oro inicial: 2300 po para decisiones estratégicas
+// Oro inicial: 3000 po para decisiones estratégicas
 
 // Variables globales del sistema
-let currentGold = 2300; // Oro inicial balanceado
+let currentGold = 3000; // Oro inicial balanceado
 let purchasedItems = [];
 let currentFilter = 'all';
 let currentRarity = 'all';
@@ -1822,10 +1822,10 @@ const equipmentDatabase = [
         price: 1400,
         rarity: 'legendary',
         description: 'Orbe cristalino que muestra las profundidades marinas.',
-        effect: 'Ver a través del agua hasta 1000 pies, hablar con criaturas marinas, convocar criatura marina gigante 1/semana',
+        effect: 'Ver a través del agua hasta 1000 pies, hablar con criaturas marinas, convocar criatura marina gigante 1/semana (CR máximo 10)',
         category: 'relic',
         objectType: 'Reliquia Legendaria',
-        properties: ['Visión Acuática', 'Hablar Marinos', 'Convocar Criatura']
+        properties: ['Visión Acuática', 'Hablar Marinos', 'Convocar Criatura CR 10']
     },
     {
         id: 'relic_sea_heart',
@@ -2674,11 +2674,11 @@ const equipmentDatabase = [
         price: 1600,
         rarity: 'legendary',
         description: 'Arpa celestial hecha de coral antiguo y cuerdas de sirena. Su música puede calmar tormentas y controlar las mareas.',
-        effect: '+3 Carisma o +3 Sabiduría, calmar tormentas marinas, controlar mareas 1/día, hechizo "Calmar Emociones" ilimitado (con concentración y coldown de 10 minutos), todas las criaturas marinas te obedecen',
+        effect: '+3 Carisma o +3 Sabiduría, calmar tormentas marinas, controlar mareas 1/día, hechizo "Calmar Emociones" ilimitado (con concentración y coldown de 10 minutos), controlar criaturas marinas (TS Sabiduría CD 18)',
         category: 'equipment',
         objectType: 'Instrumento Legendario',
         equipmentType: 'Herramientas',
-        properties: ['+3 CAR/SAB', 'Control Mareas', 'Calmar Tormentas', 'Dominar Marinos']
+        properties: ['+3 CAR/SAB', 'Control Mareas', 'Calmar Tormentas', 'Dominar Marinos CD 18']
     },
     {
         id: 'instrument_accordion_legendary',

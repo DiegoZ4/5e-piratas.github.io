@@ -2690,7 +2690,7 @@ const equipmentDatabase = [
         category: 'equipment',
         objectType: 'Instrumento Legendario',
         equipmentType: 'Herramientas',
-        properties: ['+3 Carisma', 'Aura Heroica', 'Ventaja Grupo', 'Resucitar']
+        properties: ['+3 Carisma','Aura Heroica', 'Ventaja Grupo', 'Resucitar']
     },
 
     // === 1 INSTRUMENTO ÉPICO ===

@@ -3142,7 +3142,7 @@ function removeFromCart(itemId) {
     if (!item) return;
     
     // Devolver el oro
-    playerGold += item.price;
+    currentGold += item.price;
     
     // Eliminar del array de comprados
     const index = purchasedItems.indexOf(itemId);

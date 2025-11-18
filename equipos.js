@@ -3151,7 +3151,7 @@ function removeFromCart(itemId) {
     }
     
     // Actualizar UI
-    updateGoldCounter();
+    updateGoldDisplay();
     updateShoppingCart();
     renderEquipment();
     

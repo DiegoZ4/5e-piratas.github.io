@@ -30,13 +30,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          # Desactiva Jekyll completamente
+          enablement: false
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Sube el repositorio completo
+          # Sube el repositorio completo como HTML estático
           path: "."
+      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

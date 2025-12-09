@@ -1002,6 +1002,398 @@
             </div>
         </section>
 
+        <!-- Sección: CARTAS DE ACCIÓN DE COMBATE NAVAL -->
+        <section class="section fade-in">
+            <h2 class="section-title"><i class="fas fa-scroll"></i> CARTAS DE ACCIÓN DE COMBATE</h2>
+            
+            <div class="card info-card">
+                <p style="text-align: center; font-size: 1.1rem; margin-bottom: 1rem;">
+                    <i class="fas fa-info-circle"></i> Las siguientes cartas definen las acciones de combate naval con sus fórmulas de daño exactas.
+                </p>
+            </div>
+
+            <!-- Carta 1: DISPARO DE ARTILLERÍA -->
+            <div class="ship-card card">
+                <h3 class="section-subtitle" style="text-align: center; color: var(--accent-gold); font-size: 1.6rem;">
+                    <i class="fas fa-crosshairs"></i> DISPARO DE ARTILLERÍA
+                </h3>
+                <div class="attribute-cost" style="text-align: center; margin-bottom: 1.5rem; color: var(--warning);">
+                    ACCIÓN ESTÁNDAR • REQUIERE: 3+ ARTILLERÍA
+                </div>
+
+                <div class="formula" style="background: linear-gradient(135deg, var(--danger), #a71d2a); font-size: 1.2rem;">
+                    DAÑO = 3d10 + (Cantidad de Cañones × 1d6)
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(212, 175, 55, 0.1); border-left: 4px solid var(--accent-gold); border-radius: 8px;">
+                    <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;"><i class="fas fa-calculator"></i> CÁLCULO DE CAÑONES</h4>
+                    <p><strong>Cañones disponibles:</strong> 1 cañón por cada 3 puntos de ARTILLERÍA</p>
+                    <ul style="margin-top: 0.5rem;">
+                        <li><strong>9 ARTILLERÍA:</strong> 3 cañones → Daño = 3d10 + 3d6</li>
+                        <li><strong>15 ARTILLERÍA:</strong> 5 cañones → Daño = 3d10 + 5d6</li>
+                        <li><strong>21 ARTILLERÍA:</strong> 7 cañones → Daño = 3d10 + 7d6</li>
+                        <li><strong>30 ARTILLERÍA:</strong> 10 cañones → Daño = 3d10 + 10d6</li>
+                        <li><strong>45 ARTILLERÍA:</strong> 15 cañones → Daño = 3d10 + 15d6</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0;">
+                    <h4 style="color: var(--accent-silver); margin-bottom: 0.8rem;"><i class="fas fa-bullseye"></i> MECÁNICA DE ATAQUE</h4>
+                    <ul>
+                        <li><strong>Acción:</strong> Acción estándar del barco</li>
+                        <li><strong>Tirada de ataque:</strong> 1d20 + (ARTILLERÍA ÷ 6) + bonificador de competencia</li>
+                        <li><strong>Contra:</strong> CA del barco enemigo</li>
+                        <li><strong>Alcance base:</strong> 300 pies (+50 pies por cada 9 puntos de ARTILLERÍA)</li>
+                        <li><strong>Crítico (20 natural):</strong> Dobla TODOS los dados de daño</li>
+                        <li><strong>Fallo crítico (1 natural):</strong> Un cañón explota, pierde 1d4 cañones</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(255, 193, 7, 0.15); border: 2px solid var(--warning); border-radius: 8px;">
+                    <h4 style="color: var(--warning); margin-bottom: 0.8rem;"><i class="fas fa-layer-group"></i> ANDANADA COMPLETA</h4>
+                    <p><strong>Variante:</strong> Disparo sincronizado de todos los cañones de un lado del barco</p>
+                    <ul>
+                        <li><strong>Acción:</strong> Acción completa (no puede moverse en el turno)</li>
+                        <li><strong>Efecto:</strong> +2d10 daño adicional</li>
+                        <li><strong>Requisito:</strong> 12+ ARTILLERÍA</li>
+                        <li><strong>Recarga:</strong> No puede disparar el siguiente turno</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                    <h4 style="color: var(--info); margin-bottom: 0.8rem;"><i class="fas fa-dice-d20"></i> EJEMPLOS DE DAÑO</h4>
+                    <table style="width: 100%; margin-top: 0.5rem;">
+                        <tr>
+                            <th>Artillería</th>
+                            <th>Cañones</th>
+                            <th>Fórmula</th>
+                            <th>Daño Promedio</th>
+                        </tr>
+                        <tr>
+                            <td>9 puntos</td>
+                            <td>3 cañones</td>
+                            <td>3d10 + 3d6</td>
+                            <td>27 pts</td>
+                        </tr>
+                        <tr>
+                            <td>15 puntos</td>
+                            <td>5 cañones</td>
+                            <td>3d10 + 5d6</td>
+                            <td>34 pts</td>
+                        </tr>
+                        <tr>
+                            <td>30 puntos</td>
+                            <td>10 cañones</td>
+                            <td>3d10 + 10d6</td>
+                            <td>51 pts</td>
+                        </tr>
+                        <tr>
+                            <td>45 puntos</td>
+                            <td>15 cañones</td>
+                            <td>3d10 + 15d6</td>
+                            <td>69 pts</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Carta 2: EMBESTIDA NAVAL -->
+            <div class="warning-card card">
+                <h3 class="section-subtitle" style="text-align: center; color: var(--danger); font-size: 1.6rem;">
+                    <i class="fas fa-ship"></i> EMBESTIDA NAVAL
+                </h3>
+                <div class="attribute-cost" style="text-align: center; margin-bottom: 1.5rem; color: var(--danger);">
+                    ACCIÓN DE MOVIMIENTO • REQUIERE: MOVIMIENTO COMPLETO EN LÍNEA RECTA
+                </div>
+
+                <div class="formula" style="background: linear-gradient(135deg, var(--ocean-blue), #004d6b); font-size: 1.2rem;">
+                    DAÑO = (VELOCIDAD ÷ 4)d8 + (CASCO ÷ 5)d6 + Bonificador de Tamaño
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(220, 53, 69, 0.15); border-left: 4px solid var(--danger); border-radius: 8px;">
+                    <h4 style="color: var(--danger); margin-bottom: 0.5rem;"><i class="fas fa-calculator"></i> COMPONENTES DEL DAÑO</h4>
+                    <ul>
+                        <li><strong>Velocidad:</strong> +1d8 por cada 4 puntos de VELOCIDAD (representa momentum e impacto)</li>
+                        <li><strong>Casco:</strong> +1d6 por cada 5 puntos de CASCO (representa masa y solidez)</li>
+                        <li><strong>Bonificador de Tamaño:</strong> Daño fijo según el tipo de barco</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0;">
+                    <h4 style="color: var(--accent-gold); margin-bottom: 0.8rem;"><i class="fas fa-balance-scale"></i> BONIFICADORES POR TAMAÑO</h4>
+                    <table style="width: 100%; margin-top: 0.5rem;">
+                        <tr>
+                            <th>Tipo de Barco</th>
+                            <th>Bonificador Fijo</th>
+                            <th>Ejemplo</th>
+                        </tr>
+                        <tr>
+                            <td>Bote / Lancha</td>
+                            <td>+2</td>
+                            <td>Esquife, bote de remos</td>
+                        </tr>
+                        <tr>
+                            <td>Bergantín / Balandra</td>
+                            <td>+5</td>
+                            <td>Barcos pequeños rápidos</td>
+                        </tr>
+                        <tr>
+                            <td>Fragata</td>
+                            <td>+8</td>
+                            <td>Barcos medianos</td>
+                        </tr>
+                        <tr>
+                            <td>Galeón</td>
+                            <td>+12</td>
+                            <td>Barcos grandes de guerra</td>
+                        </tr>
+                        <tr>
+                            <td>Buque de Línea</td>
+                            <td>+18</td>
+                            <td>Buques insignia masivos</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                    <h4 style="color: var(--info); margin-bottom: 0.8rem;"><i class="fas fa-dice-d20"></i> EJEMPLOS DE EMBESTIDA</h4>
+                    <ul style="margin-top: 0.5rem;">
+                        <li><strong>Fragata ligera (20 VELOCIDAD, 20 CASCO):</strong>
+                            <br>→ Daño = (20÷4)d8 + (20÷5)d6 + 8 = 5d8 + 4d6 + 8 = <span class="highlight">38 pts promedio</span>
+                        </li>
+                        <li><strong>Galeón veloz (32 VELOCIDAD, 30 CASCO):</strong>
+                            <br>→ Daño = (32÷4)d8 + (30÷5)d6 + 12 = 8d8 + 6d6 + 12 = <span class="highlight">69 pts promedio</span>
+                        </li>
+                        <li><strong>Galeón pesado con Rompehielos (24 VELOCIDAD, 50 CASCO):</strong>
+                            <br>→ Daño = (24÷4)d8 + (50÷5)d6 + 12 = 6d8 + 10d6 + 12 = <span class="danger-text">74 pts promedio - ¡DESTRUCCIÓN!</span>
+                        </li>
+                        <li><strong>Buque insignia masivo (30 VELOCIDAD, 50 CASCO):</strong>
+                            <br>→ Daño = (30÷4)d8 + (50÷5)d6 + 18 = 7d8 + 10d6 + 18 = <span class="danger-text">84 pts promedio - ¡ANIQUILACIÓN!</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0;">
+                    <h4 style="color: var(--accent-silver); margin-bottom: 0.8rem;"><i class="fas fa-cogs"></i> MECÁNICA DE EMBESTIDA</h4>
+                    <ul>
+                        <li><strong>Requisito:</strong> Movimiento completo en línea recta (mínimo 60 pies)</li>
+                        <li><strong>Tirada de ataque:</strong> 1d20 + (NAVEGACIÓN ÷ 4)</li>
+                        <li><strong>Contra:</strong> CA del barco enemigo</li>
+                        <li><strong>Impacto:</strong> Ambos barcos sufren daño (atacante recibe 50% del daño infligido)</li>
+                        <li><strong>Efecto secundario:</strong> Ambos barcos se detienen y deben usar acción para separarse</li>
+                        <li><strong>Ventaja:</strong> +4 al ataque si el enemigo está inmóvil o enganchado</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(220, 53, 69, 0.2); border: 2px solid var(--danger); border-radius: 8px;">
+                    <h4 style="color: var(--danger); margin-bottom: 0.8rem;"><i class="fas fa-skull-crossbones"></i> DESTRUCCIÓN TOTAL</h4>
+                    <p><strong>Si el daño de embestida alcanza o supera 50 puntos:</strong></p>
+                    <ul>
+                        <li><i class="fas fa-arrow-right"></i> El barco objetivo sufre <span class="danger-text">DAÑO CATASTRÓFICO</span></li>
+                        <li><i class="fas fa-arrow-right"></i> Se abre una brecha masiva en el casco</li>
+                        <li><i class="fas fa-arrow-right"></i> Empieza a hundirse en 5 turnos</li>
+                        <li><i class="fas fa-arrow-right"></i> La tripulación debe abandonar el barco o hacer reparaciones de emergencia</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 105, 148, 0.3), rgba(22, 33, 62, 0.3)); border: 3px solid var(--ocean-blue); border-radius: 12px; box-shadow: 0 0 20px rgba(0, 105, 148, 0.4);">
+                    <h4 style="color: var(--ocean-blue); margin-bottom: 1rem; font-size: 1.3rem; text-align: center;">
+                        <i class="fas fa-icicles"></i> EQUIPAMIENTO: ROMPEHIELOS
+                    </h4>
+                    <div style="padding: 1rem; background: rgba(0, 0, 0, 0.3); border-radius: 8px; margin-bottom: 1rem;">
+                        <p style="font-style: italic; color: var(--text-muted); margin-bottom: 1rem;">
+                            Pieza masiva de metal afilada montada en la proa del barco. Diseñada originalmente para romper hielo en mares polares, se ha convertido en el arma de embestida más letal jamás creada.
+                        </p>
+                        <ul>
+                            <li><strong>Requisito absoluto:</strong> CASCO al MÁXIMO (50 puntos) - sin esto, tu barco se destruye al embestir</li>
+                            <li><strong>Peso:</strong> Reduce VELOCIDAD en -5 pies</li>
+                            <li><strong>Apariencia:</strong> Cuchilla de hierro negro de 15 pies que sobresale de la proa</li>
+                        </ul>
+                    </div>
+
+                    <div style="padding: 1.5rem; background: rgba(220, 53, 69, 0.3); border: 3px solid var(--danger); border-radius: 8px;">
+                        <h5 style="color: var(--danger); margin-bottom: 0.8rem; font-size: 1.2rem;">
+                            <i class="fas fa-slash"></i> EFECTO: SECCIONAR BARCO
+                        </h5>
+                        <p style="margin-bottom: 1rem;"><strong>Si tu embestida causa 50+ puntos de daño CON Rompehielos equipado:</strong></p>
+                        <ul style="margin-bottom: 1rem;">
+                            <li><span class="danger-text" style="font-size: 1.1rem;">⚠️ EL BARCO ENEMIGO SE PARTE POR LA MITAD INSTANTÁNEAMENTE</span></li>
+                            <li><i class="fas fa-skull"></i> Ambas mitades se hunden en 2 turnos</li>
+                            <li><i class="fas fa-skull"></i> Todos a bordo caen al agua automáticamente</li>
+                            <li><i class="fas fa-skull"></i> No hay posibilidad de reparación</li>
+                            <li><i class="fas fa-skull"></i> El cargamento se pierde en el océano</li>
+                        </ul>
+                        <div style="padding: 1rem; background: rgba(0, 0, 0, 0.4); border-left: 4px solid var(--accent-gold); border-radius: 6px;">
+                            <p style="color: var(--accent-gold); margin-bottom: 0.5rem;"><strong><i class="fas fa-exclamation-circle"></i> CONTRA-RIESGO:</strong></p>
+                            <p>Tu barco también recibe <strong>50% del daño infligido</strong> por el impacto. Con CASCO 50, puedes sobrevivirlo. Con menos CASCO, es suicidio.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(0, 105, 148, 0.2); border-radius: 8px;">
+                        <h5 style="color: var(--info); margin-bottom: 0.8rem;"><i class="fas fa-calculator"></i> EJEMPLO DE SECCIONAR</h5>
+                        <p><strong>Galeón pesado "El Martillo de Hierro":</strong></p>
+                        <ul>
+                            <li>CASCO: 50 (máximo) ✓</li>
+                            <li>VELOCIDAD: 24 (después de -5 por Rompehielos)</li>
+                            <li>Equipamiento: Rompehielos instalado ✓</li>
+                            <li>Tipo: Galeón (Bonificador +12)</li>
+                        </ul>
+                        <p style="margin: 1rem 0; padding: 0.8rem; background: rgba(212, 175, 55, 0.2); border-radius: 6px;">
+                            <strong>Daño de embestida:</strong><br>
+                            (24÷4)d8 + (50÷5)d6 + 12 = <strong>6d8 + 10d6 + 12</strong><br>
+                            <span class="danger-text" style="font-size: 1.1rem;">= 74 puntos promedio</span>
+                        </p>
+                        <p style="color: var(--danger); font-weight: bold;">
+                            <i class="fas fa-check-circle"></i> ¡74 daño supera el umbral de 50!<br>
+                            <i class="fas fa-slash"></i> El enemigo se PARTE POR LA MITAD
+                        </p>
+                        <p style="margin-top: 0.8rem; color: var(--warning);">
+                            <i class="fas fa-shield-alt"></i> Tu barco recibe: 74 × 50% = 37 daño (sobrevivible con 500 HP)
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carta 3: MUNICIÓN ESPECIAL -->
+            <div class="success-card card">
+                <h3 class="section-subtitle" style="text-align: center; color: var(--success); font-size: 1.6rem;">
+                    <i class="fas fa-star"></i> MUNICIÓN ESPECIAL AVANZADA
+                </h3>
+                <div class="attribute-cost" style="text-align: center; margin-bottom: 1.5rem; color: var(--success);">
+                    REQUIERE: 15+ ARTILLERÍA • SOLO DISPONIBLE PARA CAÑONES
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(40, 167, 69, 0.15); border-left: 4px solid var(--success); border-radius: 8px;">
+                    <h4 style="color: var(--success); margin-bottom: 0.5rem;"><i class="fas fa-unlock"></i> DESBLOQUEO PROGRESIVO</h4>
+                    <p>A medida que aumenta tu puntuación de ARTILLERÍA, desbloqueas tipos de munición más poderosos:</p>
+                    <ul style="margin-top: 0.5rem;">
+                        <li><strong>15+ ARTILLERÍA:</strong> Munición táctica especial (Metralla, Cadenas)</li>
+                        <li><strong>39+ ARTILLERÍA:</strong> Munición mítica (Bala de Juicio Divino)</li>
+                    </ul>
+                </div>
+
+                <!-- Munición Nivel 1: 15+ Artillería -->
+                <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(0, 0, 0, 0.2); border: 2px solid var(--accent-silver); border-radius: 12px;">
+                    <h4 style="color: var(--accent-gold); margin-bottom: 1rem; font-size: 1.3rem;">
+                        <i class="fas fa-crosshairs"></i> MUNICIÓN TÁCTICA ESPECIAL (15+ ARTILLERÍA)
+                    </h4>
+
+                    <div style="margin: 1rem 0; padding: 1rem; background: rgba(212, 175, 55, 0.1); border-left: 3px solid var(--accent-gold); border-radius: 8px;">
+                        <h5 style="color: var(--accent-gold); margin-bottom: 0.5rem;"><i class="fas fa-users-slash"></i> METRALLA</h5>
+                        <ul>
+                            <li><strong>Efecto:</strong> Ataque de área contra la tripulación enemiga</li>
+                            <li><strong>Daño al barco:</strong> Reducido a 50% del normal</li>
+                            <li><strong>Daño a tripulación:</strong> 4d6 perforante en área de 20 pies</li>
+                            <li><strong>Salvación:</strong> Destreza CD 14 para mitad de daño</li>
+                            <li><strong>Uso táctico:</strong> Ideal para diezmar la tripulación antes de abordar</li>
+                            <li><strong>Costo:</strong> 15 po por disparo</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin: 1rem 0; padding: 1rem; background: rgba(192, 192, 192, 0.1); border-left: 3px solid var(--accent-silver); border-radius: 8px;">
+                        <h5 style="color: var(--accent-silver); margin-bottom: 0.5rem;"><i class="fas fa-link"></i> CADENAS</h5>
+                        <ul>
+                            <li><strong>Efecto:</strong> Destruye velas y aparejos</li>
+                            <li><strong>Daño al casco:</strong> Reducido a 25% del normal</li>
+                            <li><strong>Daño a velas:</strong> Reduce VELOCIDAD del enemigo en -2d8 pies</li>
+                            <li><strong>Duración:</strong> Permanente hasta reparación (requiere acción de Ingeniería CD 15)</li>
+                            <li><strong>Crítico (20 natural):</strong> Derriba un mástil completo (-50% velocidad)</li>
+                            <li><strong>Uso táctico:</strong> Inmovilizar al enemigo para huida o persecución</li>
+                            <li><strong>Costo:</strong> 20 po por disparo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Munición Mítica: 39+ Artillería -->
+                <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(0, 0, 0, 0.3); border: 3px solid var(--accent-gold); border-radius: 12px; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);">
+                    <h4 style="color: var(--accent-gold); margin-bottom: 1rem; font-size: 1.4rem; text-align: center;">
+                        <i class="fas fa-crown"></i> MUNICIÓN MÍTICA (39+ ARTILLERÍA)
+                    </h4>
+
+                    <div style="margin: 1rem 0; padding: 1.5rem; background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(139, 69, 19, 0.2)); border: 2px solid var(--accent-gold); border-radius: 8px;">
+                        <h5 style="color: var(--accent-gold); margin-bottom: 0.8rem; font-size: 1.2rem;">
+                            <i class="fas fa-meteor"></i> BALA DE JUICIO DIVINO
+                        </h5>
+                        <p style="font-style: italic; color: var(--text-muted); margin-bottom: 1rem;">
+                            La munición más devastadora jamás creada. Solo los maestros artilleros pueden cargarla sin destruir el cañón.
+                        </p>
+                        <ul>
+                            <li><strong>Daño base:</strong> Daño normal del cañón × 2</li>
+                            <li><strong>Fuego divino:</strong> +4d6 fuego inicial + 3d6 fuego persistente por 3 turnos</li>
+                            <li><strong>Explosión devastadora:</strong> +5d6 contundente en radio de 20 pies</li>
+                            <li><strong>Radiante sagrado:</strong> +6d6 radiante (triple vs no-muertos y criaturas malignas)</li>
+                            <li><strong>Onda de choque:</strong> Reduce velocidad enemiga -4d10 pies permanentemente</li>
+                            <li><strong>Tripulación:</strong> Salvación de Destreza CD 22 o 8d6 daño radiante</li>
+                            <li><strong>Efecto visual:</strong> Rayo de luz dorada atraviesa el cielo, visible a 10 millas</li>
+                            <li><strong>Efecto narrativo:</strong> El trueno del impacto resuena como campanas de catedral</li>
+                        </ul>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(220, 53, 69, 0.2); border-left: 4px solid var(--danger); border-radius: 6px;">
+                            <h6 style="color: var(--danger); margin-bottom: 0.5rem;"><i class="fas fa-exclamation-circle"></i> LIMITACIONES</h6>
+                            <ul style="margin-top: 0.5rem;">
+                                <li><strong>Solo 1 disparo por combate</strong> - El cañón necesita enfriarse</li>
+                                <li><strong>Requiere acción completa</strong> - No puedes moverte en el turno</li>
+                                <li><strong>Fallo crítico (1 natural):</strong> El cañón explota, 6d10 daño al barco</li>
+                                <li><strong>Extremadamente rara:</strong> Solo Gabiota la vende, stock limitado</li>
+                            </ul>
+                        </div>
+                        <div style="margin-top: 1rem; padding: 0.8rem; background: rgba(212, 175, 55, 0.3); border-radius: 6px; text-align: center;">
+                            <strong style="color: var(--accent-gold); font-size: 1.1rem;">
+                                <i class="fas fa-coins"></i> COSTO: 500 po por disparo
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabla resumen de costos -->
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: var(--accent-silver); margin-bottom: 1rem; text-align: center;">
+                        <i class="fas fa-coins"></i> RESUMEN DE MUNICIÓN ESPECIAL
+                    </h4>
+                    <table style="width: 100%; margin-top: 0.5rem;">
+                        <tr>
+                            <th>Munición</th>
+                            <th>Artillería Requerida</th>
+                            <th>Costo por Disparo</th>
+                            <th>Efecto Principal</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Metralla</strong></td>
+                            <td>15+</td>
+                            <td>15 po</td>
+                            <td>Daño masivo a tripulación (4d6)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cadenas</strong></td>
+                            <td>15+</td>
+                            <td>20 po</td>
+                            <td>Destruye velas y reduce velocidad</td>
+                        </tr>
+                        <tr style="background: rgba(212, 175, 55, 0.2);">
+                            <td><strong style="color: var(--accent-gold);">Juicio Divino</strong></td>
+                            <td>39+</td>
+                            <td>500 po</td>
+                            <td>Devastación total combinada</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(40, 167, 69, 0.2); border: 2px solid var(--success); border-radius: 8px;">
+                    <h4 style="color: var(--success); margin-bottom: 0.8rem;"><i class="fas fa-lightbulb"></i> NOTAS TÁCTICAS</h4>
+                    <ul>
+                        <li><i class="fas fa-arrow-right"></i> Toda la munición especial se compra de <strong>Gabiota</strong> en el puerto (ver vendedores_puerto.txt)</li>
+                        <li><i class="fas fa-arrow-right"></i> Cambiar entre tipos de munición requiere <strong>1 acción completa</strong></li>
+                        <li><i class="fas fa-arrow-right"></i> Cada cañón puede tener cargado un tipo diferente de munición</li>
+                        <li><i class="fas fa-arrow-right"></i> Capacidad de almacenaje: 50 disparos de Metralla, 50 de Cadenas, 3 de Juicio Divino</li>
+                        <li><i class="fas fa-arrow-right"></i> Los efectos de munición especial NO se combinan con Andanada Completa</li>
+                        <li><i class="fas fa-arrow-right"></i> <strong>Metralla:</strong> Úsala antes de abordar para debilitar la defensa</li>
+                        <li><i class="fas fa-arrow-right"></i> <strong>Cadenas:</strong> Úsalas para huir o atrapar barcos más rápidos</li>
+                        <li><i class="fas fa-arrow-right"></i> <strong>Juicio Divino:</strong> Guárdala para el barco insignia enemigo o momento crítico</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
         <!-- Footer -->
         <footer class="footer fade-in">
             <div class="footer-title">¡A NAVEGAR!</div>

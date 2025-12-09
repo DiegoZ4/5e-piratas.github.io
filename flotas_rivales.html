@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flotas Rivales - El Cáliz del Deseo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e27;
+            --bg-card: #1a1f3a;
+            --gold: #ffd700;
+            --silver: #c0c0c0;
+            --red: #dc3545;
+            --blue: #0066cc;
+            --green: #28a745;
+            --purple: #9d4edd;
+            --orange: #ff8800;
+            --text-light: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.4), rgba(255, 215, 0, 0.3));
+            padding: 3rem;
+            border-radius: 15px;
+            border: 3px solid var(--gold);
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--silver);
+            font-style: italic;
+        }
+
+        .section {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* TABLA DE FLOTAS */
+        .fleet-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        .fleet-table th {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.1));
+            color: var(--gold);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            border: 2px solid var(--gold);
+            font-size: 1.1rem;
+        }
+
+        .fleet-table td {
+            padding: 1rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .fleet-table tr:hover td {
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        .fleet-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .fleet-hierro { color: #8b8b8b; }
+        .fleet-dorada { color: var(--gold); }
+        .fleet-imperio { color: var(--blue); }
+
+        /* GRILLAS DE BARCOS */
+        .ships-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ship-box {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid;
+        }
+
+        .ship-box.hierro { border-color: #666; }
+        .ship-box.dorada { border-color: var(--gold); }
+        .ship-box.imperio { border-color: var(--blue); }
+
+        .ship-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .ship-grid {
+            display: grid;
+            gap: 2px;
+            margin: 1.5rem auto;
+            width: fit-content;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        /* TIPOS DE BARCOS - DIFERENTES TAMAÑOS */
+        .galeon-grid { grid-template-columns: repeat(8, 20px); grid-template-rows: repeat(16, 20px); }
+        .fragata-grid { grid-template-columns: repeat(6, 20px); grid-template-rows: repeat(12, 20px); }
+        .buque-grid { grid-template-columns: repeat(10, 20px); grid-template-rows: repeat(20, 20px); }
+
+        .ship-cell {
+            width: 20px;
+            height: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* PARTES DEL BARCO */
+        .proa { background: linear-gradient(135deg, #654321, #8b4513); }
+        .popa { background: linear-gradient(135deg, #8b4513, #654321); }
+        .casco { background: linear-gradient(135deg, #3a2616, #654321); }
+        .cubierta { background: linear-gradient(135deg, #d2691e, #8b4513); }
+        .mastil { background: linear-gradient(135deg, #8b4513, #654321); }
+        .vela { background: linear-gradient(135deg, #f5f5dc, #dcdcdc); }
+        .canon { background: linear-gradient(135deg, #2f4f4f, #1c1c1c); }
+        .agua { background: linear-gradient(135deg, #006994, #004d6d); }
+
+        /* COLORES POR FACCIÓN */
+        .hierro .vela { background: linear-gradient(135deg, #4a4a4a, #2a2a2a); }
+        .dorada .vela { background: linear-gradient(135deg, #ffd700, #ffed4e); }
+        .imperio .vela { background: linear-gradient(135deg, #4169e1, #1e3a8a); }
+
+        .stats-mini {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-mini {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.5rem;
+            border-radius: 5px;
+            border-left: 3px solid var(--gold);
+        }
+
+        .stat-mini strong {
+            color: var(--gold);
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            border: 2px solid var(--gold);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-color {
+            width: 25px;
+            height: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .badge-danger { background: var(--red); color: white; }
+        .badge-warning { background: var(--orange); color: white; }
+        .badge-info { background: var(--blue); color: white; }
+
+        /* COMPARACIÓN RÁPIDA */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .comparison-card {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid;
+            text-align: center;
+        }
+
+        .comparison-card.hierro { border-color: #666; }
+        .comparison-card.dorada { border-color: var(--gold); }
+        .comparison-card.imperio { border-color: var(--blue); }
+
+        .comparison-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .ships-container { flex-direction: column; }
+            .ship-grid { transform: scale(0.8); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1><i class="fas fa-ship"></i> FLOTAS RIVALES <i class="fas fa-ship"></i></h1>
+            <p>"Tres armadas. Un destino. Ninguna piedad."</p>
+        </div>
+
+        <!-- RESUMEN COMPARATIVO -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-balance-scale"></i> COMPARACIÓN RÁPIDA</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card hierro">
+                    <div class="comparison-title fleet-hierro">FLOTA HIERRO NEGRO</div>
+                    <div class="comparison-stat">
+                        <span>Barcos:</span>
+                        <span class="stat-value">5</span>
+                    </div>
+                    <div class="comparison-stat">
+                        <span>Tipo:</span>
+                        <span>Galeones</span>
+                    </div>
+                    <div class="comparison-stat">
+                        <span>Especialidad:</span>
+                        <span>PODER</span>
+                    </div>
+                    <div class="comparison-stat">
+                        <span>Amenaza:</span>
+                        <span class="badge badge-danger">EXTREMA</span>
+                    </div>
+                </div>
+
+                <div class="comparison-card dorada">
+                    <div class="comparison-title fleet-dorada">FLOTA VELA DORADA</div>
+                    <div class="comparison-stat">
+                        <span>Barcos:</span>
+                        <span class="stat-value">4</span>
+                    </div>
+                    <div class="comparison-stat">
+                        <span>Tipo:</span>
+                        <span>Fragatas</span>
+                    </div>
+                    <div class="comparison-stat">
+                        <span>Especialidad:</span>
+                        <span>VELOCIDAD</span>
+                    </div>
+                    <div class="comparison-stat">
+                        <span>Amenaza:</span>
+                        <span class="badge badge-warning">ALTA</span>
+                    </div>
+                </div>
+
+                <div class="comparison-card imperio">
+                    <div class="comparison-title fleet-imperio">FLOTA IMPERIAL</div>
+                    <div class="comparison-stat">
+                        <span>Barcos:</span>
+                        <span class="stat-value">1</span>
+                    </div>
+                    <div class="comparison-stat">
+                        <span>Tipo:</span>
+                        <span>Buque Insignia</span>
+                    </div>
+                    <div class="comparison-stat">
+                        <span>Especialidad:</span>
+                        <span>ÉLITE</span>
+                    </div>
+                    <div class="comparison-stat">
+                        <span>Amenaza:</span>
+                        <span class="badge badge-danger">CRÍTICA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLA DETALLADA -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-table"></i> ESTADÍSTICAS COMPLETAS</h2>
+            
+            <table class="fleet-table">
+                <thead>
+                    <tr>
+                        <th>Flota</th>
+                        <th>Líder</th>
+                        <th>Barcos</th>
+                        <th>Tripulación Total</th>
+                        <th>Cañones</th>
+                        <th>Especialidad</th>
+                        <th>Motivación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="fleet-name fleet-hierro"><i class="fas fa-anchor"></i> HIERRO NEGRO</div>
+                        </td>
+                        <td>
+                            <strong>Capitán Kael</strong><br>
+                            <span style="font-size: 0.9rem; color: #999;">"Martillo de Hierro"</span>
+                        </td>
+                        <td class="stat-value">5 Galeones</td>
+                        <td class="stat-value">~800 marineros</td>
+                        <td class="stat-value">300 (60/barco)</td>
+                        <td>
+                            <strong style="color: var(--red);">Poder de Fuego</strong><br>
+                            <span style="font-size: 0.9rem;">Andanadas devastadoras</span>
+                        </td>
+                        <td>Destruir todos los imperios y gobiernos del mundo</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="fleet-name fleet-dorada"><i class="fas fa-crown"></i> VELA DORADA</div>
+                        </td>
+                        <td>
+                            <strong>Capitana Seraphine</strong><br>
+                            <span style="font-size: 0.9rem; color: #999;">"La Emperatriz"</span>
+                        </td>
+                        <td class="stat-value">4 Fragatas</td>
+                        <td class="stat-value">~480 marineros</td>
+                        <td class="stat-value">120 (30/barco)</td>
+                        <td>
+                            <strong style="color: var(--gold);">Velocidad Extrema</strong><br>
+                            <span style="font-size: 0.9rem;">Puede perseguir cualquier barco</span>
+                        </td>
+                        <td>Crear un imperio pirata inmortal y gobernar el mundo</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="fleet-name fleet-imperio"><i class="fas fa-flag"></i> IMPERIO</div>
+                        </td>
+                        <td>
+                            <strong>Comandante Thaddeus Ironheart</strong><br>
+                            <span style="font-size: 0.9rem; color: #999;">Paladín de la Corona (CR 21)</span>
+                        </td>
+                        <td class="stat-value">1 Buque Insignia</td>
+                        <td class="stat-value">200 soldados élite</td>
+                        <td class="stat-value">40 (pesados)</td>
+                        <td>
+                            <strong style="color: var(--blue);">Poder Divino</strong><br>
+                            <span style="font-size: 0.9rem;">Magia + tecnología superior</span>
+                        </td>
+                        <td>Asegurar el cáliz para el Emperador y traer paz al mundo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- REPRESENTACIÓN VISUAL DE LOS BARCOS -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-ship"></i> REPRESENTACIÓN VISUAL DE LAS FLOTAS</h2>
+
+            <!-- FLOTA HIERRO NEGRO -->
+            <div style="margin-bottom: 3rem;">
+                <h3 style="color: #8b8b8b; font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1.5rem;">
+                    <i class="fas fa-anchor"></i> FLOTA HIERRO NEGRO
+                </h3>
+                <div class="ships-container">
+                    <!-- Galeón 1 -->
+                    <div class="ship-box hierro">
+                        <div class="ship-title" style="color: #8b8b8b;">El Martillo de Hierro</div>
+                        <div class="ship-grid galeon-grid hierro">
+                            <!-- Fila 1-3: Proa -->
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell proa"></div>
+                            <div class="ship-cell proa"></div>
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div>
+
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell proa"></div>
+                            <div class="ship-cell proa"></div>
+                            <div class="ship-cell proa"></div>
+                            <div class="ship-cell proa"></div>
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div>
+
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell proa"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell proa"></div>
+                            <div class="ship-cell agua"></div>
+
+                            <!-- Fila 4-6: Casco delantero con cañones -->
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell canon"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell canon"></div>
+                            <div class="ship-cell agua"></div>
+
+                            <div class="ship-cell canon"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell canon"></div>
+
+                            <div class="ship-cell canon"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell mastil"></div>
+                            <div class="ship-cell mastil"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell canon"></div>
+
+                            <!-- Fila 7-9: Velas principales -->
+                            <div class="ship-cell canon"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell vela"></div>
+                            <div class="ship-cell vela"></div>
+                            <div class="ship-cell vela"></div>
+                            <div class="ship-cell vela"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell canon"></div>
+
+                            <div class="ship-cell canon"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell vela"></div>
+                            <div class="ship-cell vela"></div>
+                            <div class="ship-cell vela"></div>
+                            <div class="ship-cell vela"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell canon"></div>
+
+                            <div class="ship-cell canon"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell vela"></div>
+                            <div class="ship-cell vela"></div>
+                            <div class="ship-cell vela"></div>
+                            <div class="ship-cell vela"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell canon"></div>
+
+                            <!-- Fila 10-12: Más velas y casco -->
+                            <div class="ship-cell canon"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell mastil"></div>
+                            <div class="ship-cell mastil"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell canon"></div>
+
+                            <div class="ship-cell canon"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell canon"></div>
+
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell canon"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell cubierta"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell canon"></div>
+                            <div class="ship-cell agua"></div>
+
+                            <!-- Fila 13-15: Popa -->
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell popa"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell casco"></div>
+                            <div class="ship-cell popa"></div>
+                            <div class="ship-cell agua"></div>
+
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell popa"></div>
+                            <div class="ship-cell popa"></div>
+                            <div class="ship-cell popa"></div>
+                            <div class="ship-cell popa"></div>
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div>
+
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell popa"></div>
+                            <div class="ship-cell popa"></div>
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div>
+                        </div>
+                        <div class="stats-mini">
+                            <div class="stat-mini"><strong>Casco:</strong> 500 HP</div>
+                            <div class="stat-mini"><strong>Velocidad:</strong> 40 pies</div>
+                            <div class="stat-mini"><strong>CA:</strong> 18</div>
+                            <div class="stat-mini"><strong>Cañones:</strong> 60</div>
+                            <div class="stat-mini"><strong>Tripulación:</strong> 160</div>
+                            <div class="stat-mini"><strong>Especial:</strong> Rompehielos</div>
+                        </div>
+                    </div>
+
+                    <!-- Galeón 2 (simplificado) -->
+                    <div class="ship-box hierro">
+                        <div class="ship-title" style="color: #8b8b8b;">El Yunque Negro</div>
+                        <div class="ship-grid galeon-grid hierro">
+                            <!-- Mismo patrón que arriba -->
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                        </div>
+                        <div class="stats-mini">
+                            <div class="stat-mini"><strong>Casco:</strong> 500 HP</div>
+                            <div class="stat-mini"><strong>Velocidad:</strong> 40 pies</div>
+                            <div class="stat-mini"><strong>CA:</strong> 18</div>
+                            <div class="stat-mini"><strong>Cañones:</strong> 60</div>
+                            <div class="stat-mini"><strong>Tripulación:</strong> 160</div>
+                            <div class="stat-mini"><strong>Especial:</strong> Blindaje reforzado</div>
+                        </div>
+                    </div>
+
+                    <!-- Galeón 3 -->
+                    <div class="ship-box hierro">
+                        <div class="ship-title" style="color: #8b8b8b;">El Puño de Acero</div>
+                        <div class="ship-grid galeon-grid hierro">
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                        </div>
+                        <div class="stats-mini">
+                            <div class="stat-mini"><strong>Casco:</strong> 500 HP</div>
+                            <div class="stat-mini"><strong>Velocidad:</strong> 40 pies</div>
+                            <div class="stat-mini"><strong>CA:</strong> 18</div>
+                            <div class="stat-mini"><strong>Cañones:</strong> 60</div>
+                            <div class="stat-mini"><strong>Tripulación:</strong> 160</div>
+                            <div class="stat-mini"><strong>Especial:</strong> Arpones pesados</div>
+                        </div>
+                    </div>
+
+                    <!-- Galeón 4 -->
+                    <div class="ship-box hierro">
+                        <div class="ship-title" style="color: #8b8b8b;">La Cadena Rota</div>
+                        <div class="ship-grid galeon-grid hierro">
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                        </div>
+                        <div class="stats-mini">
+                            <div class="stat-mini"><strong>Casco:</strong> 500 HP</div>
+                            <div class="stat-mini"><strong>Velocidad:</strong> 40 pies</div>
+                            <div class="stat-mini"><strong>CA:</strong> 18</div>
+                            <div class="stat-mini"><strong>Cañones:</strong> 60</div>
+                            <div class="stat-mini"><strong>Tripulación:</strong> 160</div>
+                            <div class="stat-mini"><strong>Especial:</strong> Ariete reforzado</div>
+                        </div>
+                    </div>
+
+                    <!-- Galeón 5 -->
+                    <div class="ship-box hierro">
+                        <div class="ship-title" style="color: #8b8b8b;">El Cráneo Negro</div>
+                        <div class="ship-grid galeon-grid hierro">
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                        </div>
+                        <div class="stats-mini">
+                            <div class="stat-mini"><strong>Casco:</strong> 500 HP</div>
+                            <div class="stat-mini"><strong>Velocidad:</strong> 40 pies</div>
+                            <div class="stat-mini"><strong>CA:</strong> 18</div>
+                            <div class="stat-mini"><strong>Cañones:</strong> 60</div>
+                            <div class="stat-mini"><strong>Tripulación:</strong> 160</div>
+                            <div class="stat-mini"><strong>Especial:</strong> Balistas gigantes</div>
+                        </div>
+                    </div>
+
+                    <!-- RESUMEN FLOTA -->
+                    <div class="ship-box hierro" style="min-width: 100%; text-align: center; padding: 2rem;">
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(139, 0, 0, 0.2); border-radius: 8px;">
+                            <strong style="color: var(--red);">TOTAL FLOTA HIERRO NEGRO:</strong><br>
+                            2,500 HP combinados | 300 cañones | 800 marineros veteranos
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FLOTA VELA DORADA -->
+            <div style="margin-bottom: 3rem;">
+                <h3 style="color: var(--gold); font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1.5rem;">
+                    <i class="fas fa-crown"></i> FLOTA VELA DORADA
+                </h3>
+                <div class="ships-container">
+                    <!-- Fragata 1 -->
+                    <div class="ship-box dorada">
+                        <div class="ship-title" style="color: var(--gold);">La Emperatriz Dorada</div>
+                        <div class="ship-grid fragata-grid dorada">
+                            <!-- Proa -->
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div>
+                            <!-- Casco y cañones -->
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <!-- Velas -->
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <!-- Popa -->
+                            <div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                        </div>
+                        <div class="stats-mini">
+                            <div class="stat-mini"><strong>Casco:</strong> 300 HP</div>
+                            <div class="stat-mini"><strong>Velocidad:</strong> 70 pies</div>
+                            <div class="stat-mini"><strong>CA:</strong> 16</div>
+                            <div class="stat-mini"><strong>Cañones:</strong> 30</div>
+                            <div class="stat-mini"><strong>Tripulación:</strong> 120</div>
+                            <div class="stat-mini"><strong>Especial:</strong> Velocidad extrema</div>
+                        </div>
+                    </div>
+
+                    <!-- Fragata 2 -->
+                    <div class="ship-box dorada">
+                        <div class="ship-title" style="color: var(--gold);">El Tesoro Brillante</div>
+                        <div class="ship-grid fragata-grid dorada">
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                        </div>
+                        <div class="stats-mini">
+                            <div class="stat-mini"><strong>Casco:</strong> 300 HP</div>
+                            <div class="stat-mini"><strong>Velocidad:</strong> 70 pies</div>
+                            <div class="stat-mini"><strong>CA:</strong> 16</div>
+                            <div class="stat-mini"><strong>Cañones:</strong> 30</div>
+                            <div class="stat-mini"><strong>Tripulación:</strong> 120</div>
+                            <div class="stat-mini"><strong>Especial:</strong> Velas reforzadas</div>
+                        </div>
+                    </div>
+
+                    <!-- Fragata 3 -->
+                    <div class="ship-box dorada">
+                        <div class="ship-title" style="color: var(--gold);">La Joya del Mar</div>
+                        <div class="ship-grid fragata-grid dorada">
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                        </div>
+                        <div class="stats-mini">
+                            <div class="stat-mini"><strong>Casco:</strong> 300 HP</div>
+                            <div class="stat-mini"><strong>Velocidad:</strong> 70 pies</div>
+                            <div class="stat-mini"><strong>CA:</strong> 16</div>
+                            <div class="stat-mini"><strong>Cañones:</strong> 30</div>
+                            <div class="stat-mini"><strong>Tripulación:</strong> 120</div>
+                            <div class="stat-mini"><strong>Especial:</strong> Timón mejorado</div>
+                        </div>
+                    </div>
+
+                    <!-- Fragata 4 -->
+                    <div class="ship-box dorada">
+                        <div class="ship-title" style="color: var(--gold);">El Ámbar Veloz</div>
+                        <div class="ship-grid fragata-grid dorada">
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                        </div>
+                        <div class="stats-mini">
+                            <div class="stat-mini"><strong>Casco:</strong> 300 HP</div>
+                            <div class="stat-mini"><strong>Velocidad:</strong> 70 pies</div>
+                            <div class="stat-mini"><strong>CA:</strong> 16</div>
+                            <div class="stat-mini"><strong>Cañones:</strong> 30</div>
+                            <div class="stat-mini"><strong>Tripulación:</strong> 120</div>
+                            <div class="stat-mini"><strong>Especial:</strong> Casco ligero</div>
+                        </div>
+                    </div>
+
+                    <!-- RESUMEN FLOTA -->
+                    <div class="ship-box dorada" style="min-width: 100%; text-align: center; padding: 2rem;">
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 215, 0, 0.2); border-radius: 8px;">
+                            <strong style="color: var(--gold);">TOTAL FLOTA VELA DORADA:</strong><br>
+                            1,200 HP combinados | 120 cañones | 480 marineros élite en abordaje
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FLOTA IMPERIAL -->
+            <div style="margin-bottom: 3rem;">
+                <h3 style="color: var(--blue); font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1.5rem;">
+                    <i class="fas fa-flag"></i> FLOTA IMPERIAL - BUQUE INSIGNIA
+                </h3>
+                <div class="ships-container">
+                    <!-- Buque Insignia -->
+                    <div class="ship-box imperio" style="min-width: 100%;">
+                        <div class="ship-title" style="color: var(--blue);">LA GLORIA ETERNA</div>
+                        <div class="ship-grid buque-grid imperio">
+                            <!-- Fila 1-3: Proa imperial -->
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell proa"></div><div class="ship-cell proa"></div><div class="ship-cell agua"></div>
+                            <!-- Fila 5-8: Casco delantero con cañones pesados -->
+                            <div class="ship-cell agua"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell canon"></div>
+                            <!-- Fila 9-12: Velas imperiales -->
+                            <div class="ship-cell canon"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell vela"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell canon"></div>
+                            <!-- Fila 13-16: Más casco y mastiles -->
+                            <div class="ship-cell canon"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell mastil"></div><div class="ship-cell mastil"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell canon"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell canon"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell canon"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell cubierta"></div><div class="ship-cell cubierta"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell canon"></div><div class="ship-cell agua"></div>
+                            <!-- Fila 17-20: Popa -->
+                            <div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell casco"></div><div class="ship-cell casco"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                            <div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell popa"></div><div class="ship-cell popa"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div><div class="ship-cell agua"></div>
+                        </div>
+                        <div class="stats-mini">
+                            <div class="stat-mini"><strong>Casco:</strong> 800 HP (reforzado mágicamente)</div>
+                            <div class="stat-mini"><strong>Velocidad:</strong> 50 pies</div>
+                            <div class="stat-mini"><strong>CA:</strong> 20 (+2 bendición divina)</div>
+                            <div class="stat-mini"><strong>Cañones:</strong> 40 (pesados)</div>
+                            <div class="stat-mini"><strong>Tripulación:</strong> 200 soldados élite</div>
+                            <div class="stat-mini"><strong>Líder:</strong> Comandante Thaddeus (CR 21)</div>
+                            <div class="stat-mini"><strong>Especial:</strong> Aura de Protección (+6 salvaciones)</div>
+                            <div class="stat-mini"><strong>Apoyo:</strong> 4 clérigos de batalla a bordo</div>
+                        </div>
+                        <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(0, 102, 204, 0.3); border-radius: 8px; border: 2px solid var(--blue);">
+                            <h4 style="color: var(--blue); font-family: 'Cinzel', serif; margin-bottom: 0.5rem;">COMANDANTE THADDEUS IRONHEART</h4>
+                            <p><strong>Paladín de la Corona - CR 21</strong></p>
+                            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                <li>320 HP | CA 22</li>
+                                <li>Espada Sagrada +3 (2d8+8 radiante)</li>
+                                <li>Divine Smite: 5d8 adicional (6 usos)</li>
+                                <li>Aura de Protección: +6 salvaciones 30 pies</li>
+                                <li>Lay on Hands: 100 HP curación</li>
+                                <li>2 Acciones Legendarias por ronda</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEYENDA -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-palette"></i> LEYENDA DE COLORES</h2>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color proa"></div>
+                    <span>Proa</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color popa"></div>
+                    <span>Popa</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color casco"></div>
+                    <span>Casco</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color cubierta"></div>
+                    <span>Cubierta</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color mastil"></div>
+                    <span>Mástil</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color vela"></div>
+                    <span>Vela</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color canon"></div>
+                    <span>Cañones</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color agua"></div>
+                    <span>Agua</span>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; font-style: italic; color: #999;">
+                Las velas cambian de color según la facción: Hierro Negro (gris oscuro), Vela Dorada (dorado brillante), Imperio (azul real)
+            </p>
+        </div>
+
+        <!-- TÁCTICAS DE COMBATE -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-chess"></i> TÁCTICAS DE COMBATE POR FLOTA</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                <div style="background: rgba(139, 139, 139, 0.2); padding: 1.5rem; border-radius: 10px; border: 2px solid #666;">
+                    <h3 style="color: #8b8b8b; font-family: 'Cinzel', serif; margin-bottom: 1rem;">HIERRO NEGRO</h3>
+                    <ul style="padding-left: 1.5rem;">
+                        <li><strong>Formación:</strong> Línea de batalla en V</li>
+                        <li><strong>Estrategia:</strong> Andanadas simultáneas devastadoras</li>
+                        <li><strong>Objetivo:</strong> Hundir al buque imperial primero</li>
+                        <li><strong>Debilidad:</strong> Velocidad baja - vulnerable a fragatas rápidas</li>
+                        <li><strong>Estilo:</strong> Combate frontal suicida sin rendición</li>
+                    </ul>
+                </div>
+
+                <div style="background: rgba(255, 215, 0, 0.2); padding: 1.5rem; border-radius: 10px; border: 2px solid var(--gold);">
+                    <h3 style="color: var(--gold); font-family: 'Cinzel', serif; margin-bottom: 1rem;">VELA DORADA</h3>
+                    <ul style="padding-left: 1.5rem;">
+                        <li><strong>Formación:</strong> Dispersa y móvil</li>
+                        <li><strong>Estrategia:</strong> Hit & Run - disparar y huir</li>
+                        <li><strong>Objetivo:</strong> Llegar a la cripta primero</li>
+                        <li><strong>Debilidad:</strong> Casco frágil - no aguantan andanadas</li>
+                        <li><strong>Estilo:</strong> Emboscadas, abordajes rápidos, traiciones</li>
+                    </ul>
+                </div>
+
+                <div style="background: rgba(0, 102, 204, 0.2); padding: 1.5rem; border-radius: 10px; border: 2px solid var(--blue);">
+                    <h3 style="color: var(--blue); font-family: 'Cinzel', serif; margin-bottom: 1rem;">IMPERIO</h3>
+                    <ul style="padding-left: 1.5rem;">
+                        <li><strong>Formación:</strong> Posición central dominante</li>
+                        <li><strong>Estrategia:</strong> Superioridad de fuego desde el centro</li>
+                        <li><strong>Objetivo:</strong> Eliminar todas las amenazas</li>
+                        <li><strong>Debilidad:</strong> Solo 1 barco - si cae, el Imperio pierde</li>
+                        <li><strong>Estilo:</strong> Disciplina militar + magia divina</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

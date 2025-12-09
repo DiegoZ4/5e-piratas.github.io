@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paladín de la Corona Supremo - CD 30</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --dark-bg: #0a0e27;
+            --card-bg: #1a1f3a;
+            --accent-red: #ff3333;
+            --text-light: #e0e0e0;
+            --border-gold: #ffd700;
+            --legendary: linear-gradient(135deg, #ff6b35, #f7931e, #ffd700);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            padding: 2rem;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 51, 51, 0.1) 0%, transparent 50%);
+        }
+
+        .character-sheet {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 3px solid var(--border-gold);
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--legendary);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid var(--border-gold);
+        }
+
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            margin-bottom: 0.5rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: #fff;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        .challenge-rating {
+            display: inline-block;
+            background: var(--accent-red);
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(255, 51, 51, 0.5);
+        }
+
+        .main-content {
+            padding: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(255, 215, 0, 0.05));
+            border: 2px solid var(--primary-gold);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--primary-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .stat-modifier {
+            font-size: 1rem;
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+
+        .section {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--border-gold);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-gold);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ability {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 3px solid var(--primary-gold);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .ability-name {
+            font-weight: 700;
+            color: var(--border-gold);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ability-desc {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .legendary-actions {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 215, 0, 0.1));
+            border: 2px solid var(--accent-red);
+        }
+
+        .damage-type {
+            display: inline-block;
+            background: var(--accent-red);
+            color: #fff;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0 0.2rem;
+        }
+
+        .cd-highlight {
+            color: var(--accent-red);
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        .info-label {
+            color: var(--primary-gold);
+            font-weight: 600;
+        }
+
+        .attack-block {
+            background: rgba(255, 51, 51, 0.1);
+            border: 1px solid var(--accent-red);
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 6px;
+        }
+
+        .attack-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .tactics-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(212, 175, 55, 0.1));
+            border: 2px dashed var(--primary-gold);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .tactics-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--border-gold);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .tactic-item {
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid var(--accent-red);
+            border-radius: 4px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .character-sheet {
+                border: 2px solid black;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="character-sheet">
+        <div class="header">
+            <h1><i class="fas fa-crown"></i> LORD AURELIUS IRONHEART</h1>
+            <div class="subtitle">Paladín de la Corona Supremo - El Juez Implacable</div>
+            <div class="challenge-rating">
+                <i class="fas fa-skull-crossbones"></i> CD 30 | 50,000 PX
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- INFORMACIÓN BÁSICA -->
+            <div class="section">
+                <div class="info-row">
+                    <span class="info-label"><i class="fas fa-shield"></i> Clase de Armadura:</span>
+                    <span><strong>25</strong> (Armadura completa legendaria +3, Escudo +3)</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label"><i class="fas fa-heart"></i> Puntos de Golpe:</span>
+                    <span><strong>550</strong> (40d10 + 280)</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label"><i class="fas fa-running"></i> Velocidad:</span>
+                    <span>40 pies, volar 60 pies (alas divinas)</span>
+                </div>
+            </div>
+
+            <!-- ATRIBUTOS -->
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">FUE</div>
+                    <div class="stat-value">28</div>
+                    <div class="stat-modifier">(+9)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">DES</div>
+                    <div class="stat-value">18</div>
+                    <div class="stat-modifier">(+4)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">CON</div>
+                    <div class="stat-value">26</div>
+                    <div class="stat-modifier">(+8)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">INT</div>
+                    <div class="stat-value">16</div>
+                    <div class="stat-modifier">(+3)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">SAB</div>
+                    <div class="stat-value">22</div>
+                    <div class="stat-modifier">(+6)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">CAR</div>
+                    <div class="stat-value">30</div>
+                    <div class="stat-modifier">(+10)</div>
+                </div>
+            </div>
+
+            <!-- SALVACIONES Y HABILIDADES -->
+            <div class="section">
+                <div class="section-title"><i class="fas fa-dice-d20"></i> Salvaciones y Habilidades</div>
+                <div class="info-row">
+                    <span class="info-label">Salvaciones:</span>
+                    <span>SAB +15, CAR +19, CON +17</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Habilidades:</span>
+                    <span>Atletismo +18, Intimidación +19, Percepción +15, Persuasión +19, Religión +12</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Resistencias:</span>
+                    <span>Daño radiante; contundente, cortante y perforante de ataques no mágicos</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Inmunidades:</span>
+                    <span>Veneno, hechizado, asustado, paralizado</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Sentidos:</span>
+                    <span>Visión verdadera 120 pies, Percepción pasiva 25</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Idiomas:</span>
+                    <span>Común, Celestial, Dracónico, todos los idiomas mediante Lenguas</span>
+                </div>
+            </div>
+
+            <!-- RASGOS -->
+            <div class="section">
+                <div class="section-title"><i class="fas fa-star"></i> Rasgos Especiales</div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-shield-alt"></i> Aura de Protección Suprema</div>
+                    <div class="ability-desc">
+                        Aurelius y todos los aliados dentro de 30 pies obtienen un bonificador de <strong>+10</strong> a todas las tiradas de salvación mientras Aurelius esté consciente.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-fist-raised"></i> Golpes Divinos Devastadores</div>
+                    <div class="ability-desc">
+                        Todos los ataques con arma cuerpo a cuerpo de Aurelius infligen <span class="damage-type">6d8 daño radiante</span> adicional. Los no-muertos y demonios tienen desventaja en salvaciones contra sus efectos.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-heart-broken"></i> Resistencia Legendaria (3/Día)</div>
+                    <div class="ability-desc">
+                        Si Aurelius falla una tirada de salvación, puede elegir tener éxito en su lugar.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-sync-alt"></i> Regeneración Divina</div>
+                    <div class="ability-desc">
+                        Al inicio de su turno, Aurelius recupera <strong>30 puntos de golpe</strong> si tiene al menos 1 PG. Este efecto termina si recibe daño necrótico.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-bolt"></i> Contratacar Sagrado</div>
+                    <div class="ability-desc">
+                        Cuando una criatura golpea a Aurelius con un ataque cuerpo a cuerpo, el atacante recibe <span class="damage-type">4d10 daño radiante</span> automático.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-magic"></i> CD de Conjuros</div>
+                    <div class="ability-desc">
+                        <span class="cd-highlight">CD 30</span> (basada en Carisma), bonificador de ataque con conjuro +19
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCIONES -->
+            <div class="section">
+                <div class="section-title"><i class="fas fa-sword"></i> Acciones</div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-hand-rock"></i> Ataque Múltiple</div>
+                    <div class="ability-desc">
+                        Aurelius realiza <strong>cuatro</strong> ataques con su Espada Sagrada y puede usar Orden de Mantener o Castigo Divino.
+                    </div>
+                </div>
+
+                <div class="attack-block">
+                    <div class="attack-name">⚔️ Espada Sagrada Suprema +3</div>
+                    <div class="ability-desc">
+                        <strong>Ataque con arma cuerpo a cuerpo:</strong> +21 al ataque, alcance 5 pies, una criatura.<br>
+                        <strong>Impacto:</strong> 2d8 + 12 daño cortante + 6d8 daño radiante + 5d8 adicional si usa Divine Smite (ranura nivel 5).<br>
+                        <strong>Crítico (19-20):</strong> Todo el daño se duplica.
+                    </div>
+                </div>
+
+                <div class="attack-block">
+                    <div class="attack-name">🛡️ Golpe con Escudo Demoledor</div>
+                    <div class="ability-desc">
+                        <strong>Ataque con arma cuerpo a cuerpo:</strong> +21 al ataque, alcance 5 pies, una criatura.<br>
+                        <strong>Impacto:</strong> 2d6 + 12 daño contundente + 6d8 daño radiante. El objetivo debe superar CD 30 de FUE o ser empujado 20 pies y derribado.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-hand-paper"></i> Orden de Mantener (Recarga 5-6)</div>
+                    <div class="ability-desc">
+                        Aurelius ordena a hasta 3 criaturas que pueda ver dentro de 60 pies. Cada objetivo debe superar <span class="cd-highlight">CD 30 de Sabiduría</span> o quedar paralizado hasta el final del siguiente turno de Aurelius.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-sun"></i> Ira Radiante (Recarga 5-6)</div>
+                    <div class="ability-desc">
+                        Aurelius libera una explosión de luz divina en un radio de 60 pies. Todas las criaturas hostiles en el área deben hacer <span class="cd-highlight">CD 30 de Constitución</span> o recibir <span class="damage-type">12d10 daño radiante</span> (mitad si tienen éxito) y quedan cegadas durante 1 minuto.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-circle-notch"></i> Conjurar Hechizo</div>
+                    <div class="ability-desc">
+                        Aurelius puede lanzar los siguientes conjuros sin componentes materiales:<br>
+                        <strong>A voluntad:</strong> Orden, Detectar el bien y el mal, Zona de verdad<br>
+                        <strong>3/día:</strong> Revivir, Restauración mayor, Palabra divina, Invocar celestial<br>
+                        <strong>1/día:</strong> Tormenta de fuego (12d10), Terremoto, Cadena de relámpagos (14d8)
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCIONES DE BONIFICACIÓN -->
+            <div class="section">
+                <div class="section-title"><i class="fas fa-bolt"></i> Acciones de Bonificación</div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-hand-sparkles"></i> Imposición de Manos Suprema</div>
+                    <div class="ability-desc">
+                        Aurelius restaura <strong>200 puntos de golpe</strong> (reserva total) a una criatura que toque. Puede gastar 5 puntos para curar una enfermedad o veneno.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-users"></i> Espíritu Guardián</div>
+                    <div class="ability-desc">
+                        Invoca un aura de 15 pies que dura 10 minutos. Enemigos en el aura tienen velocidad reducida a la mitad y reciben <span class="damage-type">3d8 daño radiante</span> al entrar o empezar su turno allí (<span class="cd-highlight">CD 30 SAB</span> mitad).
+                    </div>
+                </div>
+            </div>
+
+            <!-- REACCIONES -->
+            <div class="section">
+                <div class="section-title"><i class="fas fa-shield-virus"></i> Reacciones</div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-hands-helping"></i> Interposición Divina</div>
+                    <div class="ability-desc">
+                        Cuando una criatura aliada dentro de 30 pies es golpeada por un ataque, Aurelius puede teletransportarse al espacio adyacente y recibir el ataque en su lugar. Luego gana resistencia al daño de ese ataque.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name"><i class="fas fa-ban"></i> Disipar Supremo</div>
+                    <div class="ability-desc">
+                        Como reacción cuando ve un conjuro lanzado dentro de 120 pies, Aurelius puede disiparlo automáticamente si es de nivel 5 o inferior. Para niveles superiores, debe superar una prueba de Carisma CD 10 + nivel del conjuro (bonificador +19).
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCIONES LEGENDARIAS -->
+            <div class="section legendary-actions">
+                <div class="section-title"><i class="fas fa-crown"></i> Acciones Legendarias (3/Turno)</div>
+                <p style="margin-bottom: 1rem; font-style: italic;">Aurelius puede realizar 3 acciones legendarias, eligiendo entre las siguientes opciones. Solo puede usar una opción legendaria a la vez y solo al final del turno de otra criatura. Recupera las acciones legendarias gastadas al inicio de su turno.</p>
+
+                <div class="ability">
+                    <div class="ability-name">Detectar</div>
+                    <div class="ability-desc">
+                        Aurelius hace una prueba de Percepción o conoce la ubicación de todas las criaturas invisibles dentro de 60 pies.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name">Ataque (Cuesta 2 Acciones)</div>
+                    <div class="ability-desc">
+                        Aurelius realiza un ataque con su Espada Sagrada o Golpe con Escudo.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name">Castigo Divino (Cuesta 2 Acciones)</div>
+                    <div class="ability-desc">
+                        Elige una criatura dentro de 60 pies. Debe hacer <span class="cd-highlight">CD 30 de Carisma</span> o recibir <span class="damage-type">8d10 daño radiante</span> y ser empujada 30 pies hacia atrás. Si ya ha sido golpeada por Aurelius este turno, tiene desventaja.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name">Curación Divina (Cuesta 3 Acciones)</div>
+                    <div class="ability-desc">
+                        Aurelius y todos los aliados dentro de 30 pies recuperan <strong>50 puntos de golpe</strong> y terminan un efecto que los esté asustando o hechizando.
+                    </div>
+                </div>
+            </div>
+
+            <!-- TÁCTICAS DE COMBATE -->
+            <div class="tactics-box">
+                <div class="tactics-title"><i class="fas fa-chess-knight"></i> TÁCTICAS DE COMBATE - PARA EL DM</div>
+                
+                <div class="tactic-item">
+                    <strong>Ronda 1:</strong> Usa Espíritu Guardián (acción bonus) + Ira Radiante para establecer control del campo de batalla. Prioriza conjuradores enemigos.
+                </div>
+
+                <div class="tactic-item">
+                    <strong>Ronda 2-3:</strong> Ataque Múltiple enfocado en el enemigo más peligroso. Usa Orden de Mantener si hay 3+ enemigos agrupados. Aprovecha Divine Smite en golpes críticos (19-20).
+                </div>
+
+                <div class="tactic-item">
+                    <strong>Cuando está bajo 275 PG:</strong> Activa Curación Divina (acción legendaria). Usa Interposición Divina para proteger aliados clave.
+                </div>
+
+                <div class="tactic-item">
+                    <strong>Cuando está bajo 140 PG:</strong> Usa Revivir en sí mismo si muere (preparado con Contingencia). Combina Terremoto + vuelo para controlar posicionamiento.
+                </div>
+
+                <div class="tactic-item">
+                    <strong>Acciones Legendarias:</strong> Usa Detectar si hay invisibles. Usa Castigo Divino para eliminar enemigos débiles. Reserva Curación Divina para emergencias.
+                </div>
+
+                <div class="tactic-item">
+                    <strong>Objetivo Principal:</strong> Derribar al sanador/soporte primero, luego focus en DPS, finalmente tanques. Nunca dejar que descansen - usa Palabra Divina para desterrar si es necesario.
+                </div>
+            </div>
+
+            <!-- EQUIPAMIENTO -->
+            <div class="section">
+                <div class="section-title"><i class="fas fa-gem"></i> Equipamiento Legendario</div>
+
+                <div class="ability">
+                    <div class="ability-name">⚔️ Luz de la Corona (Espada larga legendaria +3)</div>
+                    <div class="ability-desc">
+                        Esta arma brilla con luz solar en un radio de 60 pies. Inflige 2d8 daño radiante adicional. Crítico en 19-20. Puede lanzar Luz del día 3/día.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name">🛡️ Baluarte Irrompible (Escudo legendario +3)</div>
+                    <div class="ability-desc">
+                        Otorga +3 a CA. Como reacción 3/día, puede otorgar cobertura total contra un ataque a distancia. Inmunidad a Desarmar.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name">🦁 Armadura de la Corona Eterna (Armadura completa legendaria +3)</div>
+                    <div class="ability-desc">
+                        CA base 18 + 3 = 21. Resistencia a daño mágico. Ventaja en salvaciones contra ser derribado. Otorga las alas divinas para volar.
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <div class="ability-name">💍 Anillo de Tres Deseos</div>
+                    <div class="ability-desc">
+                        <strong>3 cargas restantes.</strong> No te olvides que las tiene - puede cambiar el combate completamente.
+                    </div>
+                </div>
+            </div>
+
+            <!-- HISTORIA -->
+            <div class="section">
+                <div class="section-title"><i class="fas fa-book"></i> Trasfondo y Motivación</div>
+                <div class="ability-desc" style="padding: 1rem;">
+                    <p style="margin-bottom: 1rem;">
+                        Lord Aurelius Ironheart fue el Gran Mariscal de la Corona hace 300 años. Juró proteger el reino hasta su último aliento... y lo cumplió literalmente. Murió defendiendo al rey, pero su devoción era tal que los dioses le devolvieron la vida como un campeón eterno.
+                    </p>
+                    <p style="margin-bottom: 1rem;">
+                        Ahora existe en un estado entre la vida y la muerte, mantenido por pura fuerza de voluntad y fe divina. No siente dolor, no necesita comer ni dormir. Solo existe para cumplir su juramento sagrado: proteger la Corona a cualquier costo.
+                    </p>
+                    <p style="margin-bottom: 1rem;">
+                        <strong style="color: var(--accent-red);">¿Por qué está aquí?</strong> Los jugadores amenazaron algo relacionado con la corona/reino/orden establecido. Aurelius fue activado como último recurso. No negocia, no descansa, no perdona. Es implacable.
+                    </p>
+                    <p>
+                        <strong style="color: var(--accent-red);">Frase característica:</strong> <em>"Por la Corona, daré mi vida mil veces más. ¿Estáis dispuestos a dar la vuestra una sola vez?"</em>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

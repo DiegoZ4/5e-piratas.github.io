@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Combate Naval - Piratas D&D 5E</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Remix Icons (alternativa moderna) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a1a2e;
+            --secondary-dark: #16213e;
+            --accent-gold: #d4af37;
+            --accent-silver: #c0c0c0;
+            --text-light: #f5f5f5;
+            --text-muted: #b8b8b8;
+            --danger: #dc3545;
+            --success: #28a745;
+            --warning: #ffc107;
+            --info: #17a2b8;
+            --wood-brown: #8b4513;
+            --ocean-blue: #006994;
+            --parchment: #f4f1e8;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--ocean-blue) 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Navegación */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid var(--accent-gold);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem 2rem;
+        }
+
+        /* Header principal */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(22, 33, 62, 0.3));
+            padding: 3rem;
+            border-radius: 20px;
+            border: 3px solid var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Secciones */
+        .section {
+            margin-bottom: 3rem;
+            background: rgba(22, 33, 62, 0.4);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--accent-gold);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.4rem;
+            color: var(--accent-silver);
+            margin: 1.5rem 0 1rem 0;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Cards especiales */
+        .card {
+            background: rgba(244, 241, 232, 0.08);
+            border: 2px solid var(--accent-silver);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+            border-color: var(--accent-gold);
+        }
+
+        .warning-card {
+            border-color: var(--danger);
+            background: rgba(220, 53, 69, 0.1);
+        }
+
+        .info-card {
+            border-color: var(--info);
+            background: rgba(23, 162, 184, 0.1);
+        }
+
+        .success-card {
+            border-color: var(--success);
+            background: rgba(40, 167, 69, 0.1);
+        }
+
+        .ship-card {
+            border-color: var(--ocean-blue);
+            background: rgba(0, 105, 148, 0.1);
+            margin: 1.5rem 0;
+        }
+
+        /* Atributos */
+        .attribute-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .attribute {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(22, 33, 62, 0.2));
+            border: 2px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .attribute:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .attribute-title {
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .attribute-cost {
+            color: var(--warning);
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Fórmulas */
+        .formula {
+            background: linear-gradient(135deg, var(--success), #1e7e34);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Listas mejoradas */
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .enhanced-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .enhanced-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .enhanced-list li::before {
+            content: '⚓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        /* Ejemplos de barcos */
+        .ships-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .ship-example {
+            background: linear-gradient(135deg, rgba(0, 105, 148, 0.1), rgba(22, 33, 62, 0.2));
+            border: 2px solid var(--ocean-blue);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .ship-example:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 105, 148, 0.2);
+        }
+
+        .ship-title {
+            color: var(--accent-gold);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Tabla mejorada */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            border: 2px solid var(--accent-silver);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(22, 33, 62, 0.6);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--accent-gold), #b8860b);
+            color: var(--primary-dark);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+        }
+
+        td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        tr:nth-child(even) {
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        tr:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Elementos destacados */
+        .highlight {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .danger-text {
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .success-text {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        /* Secciones de navegación */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(22, 33, 62, 0.3));
+            border-radius: 15px;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .footer-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-emojis {
+            font-size: 2rem;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 6rem 1rem 2rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            .attribute-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .ships-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animaciones */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Estilos para las cuadrículas de tamaños de barcos */
+        .ship-size-section {
+            margin-top: 2rem;
+        }
+
+        .size-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .size-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(22, 33, 62, 0.2));
+            border: 2px solid var(--accent-gold);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .size-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3);
+            border-color: var(--accent-silver);
+        }
+
+        .size-title {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .ship-visual {
+            display: grid;
+            gap: 1px;
+            margin: 1rem auto;
+            padding: 8px;
+            background: var(--ocean-blue);
+            border: 2px solid var(--accent-gold);
+            border-radius: 8px;
+            max-width: fit-content;
+        }
+
+        .ship-2x4 { grid-template-columns: repeat(2, 20px); grid-template-rows: repeat(4, 20px); }
+        .ship-2x5 { grid-template-columns: repeat(2, 20px); grid-template-rows: repeat(5, 20px); }
+        .ship-3x4 { grid-template-columns: repeat(3, 18px); grid-template-rows: repeat(4, 18px); }
+        .ship-3x5 { grid-template-columns: repeat(3, 18px); grid-template-rows: repeat(5, 18px); }
+        .ship-3x10 { grid-template-columns: repeat(3, 16px); grid-template-rows: repeat(10, 16px); }
+        .ship-4x6 { grid-template-columns: repeat(4, 16px); grid-template-rows: repeat(6, 16px); }
+        .ship-5x10 { grid-template-columns: repeat(5, 14px); grid-template-rows: repeat(10, 14px); }
+
+        .section-cell {
+            background: linear-gradient(135deg, var(--accent-gold), #b8860b);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .section-cell:hover {
+            background: linear-gradient(135deg, var(--accent-silver), #a0a0a0);
+            transform: scale(1.1);
+        }
+
+        /* Divisores de sección - líneas rojas para mostrar secciones */
+        .section-divider {
+            background: var(--danger) !important;
+            border: 2px solid var(--danger) !important;
+        }
+
+        .size-card p {
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Responsive para las cuadrículas */
+        @media (max-width: 768px) {
+            .size-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .ship-visual {
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación fija -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-title"><i class="fas fa-anchor"></i> Sistema de Combate Naval <i class="fas fa-anchor"></i></div>
+            <a href="equipos.html" class="nav-link" style="color: var(--text-light); text-decoration: none; padding: 10px 20px; border: 2px solid var(--accent-gold); border-radius: 25px; transition: all 0.3s ease; font-weight: 600;"><i class="fas fa-flag-pirate"></i> Tienda del Pirata</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero section -->
+        <header class="hero fade-in">
+            <h1 class="hero-title"><i class="fas fa-flag-pirate"></i> SISTEMA DE COMBATE NAVAL <i class="fas fa-flag-pirate"></i></h1>
+            <p class="hero-subtitle">PIRATAS NIVEL 20 - DUNGEONS & DRAGONS 5E</p>
+        </header>
+
+        <!-- Sección: Combate Naval -->
+
+        <!-- Sección: Concepto básico -->
+        <section class="section fade-in">
+            <h2 class="section-title"><i class="fas fa-flag-pirate"></i> SISTEMA DE SECCIONES</h2>
+            <div class="info-card card">
+                <p>El barco funciona como en <span class="highlight">Battleship</span> - se divide en secciones según su tamaño. Solo se hunde cuando <strong>TODAS</strong> las secciones son destruidas.</p>
+            </div>
+        </section>
+
+        <!-- Sección: Sistema de puntos (MOVIDO AQUÍ) -->
+        <section class="section fade-in">
+            <h2 class="section-title"><i class="fas fa-chart-bar"></i> SISTEMA DE PUNTOS</h2>
+            <div class="card center-text">
+                <h3 class="highlight">TODO EL BARCO: 100 PUNTOS</h3>
+                <p>Para distribuir entre los 6 atributos del barco</p>
+                <p>El <strong>CASCO</strong> determina el tamaño del barco, mientras que los otros atributos mejoran sus capacidades</p>
+            </div>
+
+            <div class="success-card card">
+                <h3 class="section-subtitle"><i class="fas fa-gift"></i> EQUIPAMIENTO BASE (GRATIS)</h3>
+                <p>Todo barco comienza con estas características <strong>SIN GASTAR PUNTOS:</strong></p>
+                <ul class="enhanced-list">
+                    <li><strong>Velocidad base:</strong> 20 pies de movimiento</li>
+                    <li><strong>+1 Punto de Casco</strong> (incluido en tu total de tamaño)</li>
+                    <li><strong>1 Cañón</strong> básico</li>
+                    <li><strong>1 Maniobra</strong> especial por combate</li>
+                    <li><strong>1 Arpón</strong> de combate</li>
+                    <li><strong>1 Tripulante</strong> experto</li>
+                </ul>
+                <p style="color: var(--accent-gold); font-weight: bold; margin-top: 1rem;">Los 100 puntos son para MEJORAR tu barco - invierte en Velocidad para ir más rápido que 20 pies!</p>
+            </div>
+        </section>
+
+        <!-- Sección: Atributos del barco (MOVIDO AQUÍ) -->
+        <section class="section fade-in">
+            <h2 class="section-title"><i class="fas fa-anchor"></i> ATRIBUTOS DEL BARCO</h2>
+            
+            <div class="attribute-grid">
+                <div class="attribute">
+                    <div class="attribute-title"><i class="fas fa-shield-alt"></i> CASCO</div>
+                    <div class="attribute-cost">COSTO: 1 punto = +1 al Casco</div>
+                    <p><strong>Resistencia, Vida y Tamaño</strong></p>
+                    <ul>
+                        <li><strong>Determina el tamaño del barco</strong> (ancho y largo)</li>
+                        <li><strong>Vida por sección:</strong> 25 + (Puntos de Casco ÷ 2)</li>
+                        <li><strong>Clase de Armadura:</strong> +1 CA por cada 5 puntos</li>
+                        <li><strong>Resistencia a embestidas:</strong> -1 daño por cada 10 puntos</li>
+                    </ul>
+                    <p><strong>LÍMITE:</strong> Máximo 50 puntos</p>
+                </div>
+
+                <div class="attribute">
+                    <div class="attribute-title"><i class="fas fa-bolt"></i> VELOCIDAD</div>
+                    <div class="attribute-cost">COSTO: 1 punto = +2 pies</div>
+                    <p><strong>Movimiento y Evasión</strong></p>
+                    <ul>
+                        <li><strong>Velocidad base:</strong> 20 pies (todos los barcos)</li>
+                        <li><strong>Velocidad mejorada:</strong> +2 pies de movimiento por punto invertido</li>
+                        <li><strong>Clase de Armadura:</strong> +1 CA por cada 8 puntos de VELOCIDAD</li>
+                        <li><strong>Daño de embestida:</strong> +1d8 por cada 4 puntos de VELOCIDAD</li>
+                        <li><strong>Ventaja en persecuciones</strong> si tienes 20+ puntos de VELOCIDAD</li>
+                    </ul>
+                    <p><strong>Ejemplo:</strong> 0 puntos = 20 pies | 10 puntos = 40 pies | 20 puntos = 60 pies | 40 puntos = 100 pies</p>
+                    <p><strong>LÍMITE:</strong> Máximo 40 puntos</p>
+                </div>
+
+                <div class="attribute">
+                    <div class="attribute-title"><i class="fas fa-crosshairs"></i> ARTILLERÍA</div>
+                    <div class="attribute-cost">COSTO: 3 puntos = +1 cañón</div>
+                    <p><strong>Armamento y Potencia de Fuego</strong></p>
+                    <ul>
+                        <li><strong>Cañones:</strong> +1 cañón por cada 3 puntos</li>
+                        <li><strong>Daño mejorado:</strong> +1d6 a partir de 6 puntos, +1d6 adicional a partir de 40 puntos</li>
+                        <li><strong>Alcance:</strong> +50 pies por cada 9 puntos</li>
+                        <li><strong>Munición especial</strong> disponible (15+ puntos)</li>
+                    </ul>
+                    <p><strong>Ejemplo de daño:</strong> 0-5 puntos = 0 bonus | 6-39 puntos = +1d6 | 40-45 puntos = +2d6</p>
+                    <p><strong>LÍMITE:</strong> Máximo 45 puntos</p>
+                </div>
+
+                <div class="attribute">
+                    <div class="attribute-title"><i class="fas fa-waves"></i> NAVEGACIÓN</div>
+                    <div class="attribute-cost">COSTO: 2 puntos = +1 maniobra</div>
+                    <p><strong>Maniobras y Control</strong></p>
+                    <ul>
+                        <li><strong>Maniobras especiales:</strong> +1 por combate por cada 2 puntos</li>
+                        <li><strong>Terreno difícil:</strong> Navegar en arrecifes sin ralentizar (10+ puntos)</li>
+                        <li><strong>Aguas peligrosas:</strong> Maelstroms y tormentas sin penalización (20+ puntos)</li>
+                        <li><strong>Giros cerrados:</strong> Cambiar dirección 180° sin perder velocidad (15+ puntos)</li>
+                    </ul>
+                    <p><strong>Maniobras disponibles:</strong> Esquivar (+4 CA), Embestida (+2d8 daño), Corriente Favorable (doble velocidad)</p>
+                    <p><strong>LÍMITE:</strong> Máximo 30 puntos</p>
+                </div>
+
+                <div class="attribute">
+                    <div class="attribute-title"><i class="fas fa-cogs"></i> INGENIERÍA</div>
+                    <div class="attribute-cost">COSTO: 3 puntos = +1 arpón</div>
+                    <p><strong>Arpones y Sistemas Especiales</strong></p>
+                    <ul>
+                        <li><strong>Reparación automática:</strong> +1 PV por turno (10+ puntos)</li>
+                        <li><strong>Sistemas reforzados:</strong> Inmunidad a efectos críticos (15+ puntos)</li>
+                        <li><strong>Blindaje adaptativo:</strong> Cambiar resistencia a fuego/frío/eléctrico cada turno (20+ puntos)</li>
+                        <li><strong>Motor mejorado:</strong> +25% velocidad (25+ puntos)</li>
+                    </ul>
+                    <p><strong>LÍMITE:</strong> Máximo 30 puntos (10 arpones máximo)</p>
+                </div>
+
+                <div class="attribute">
+                    <div class="attribute-title"><i class="fas fa-users"></i> TRIPULACIÓN</div>
+                    <div class="attribute-cost">COSTO: 2 puntos = +1 tripulante</div>
+                    <p><strong>Habilidades de la Tripulación</strong></p>
+                    <ul>
+                        <li><strong>Tripulantes expertos:</strong> +1 por cada 2 puntos</li>
+                        <li><strong>Eficiencia mejorada:</strong> +1 a todas las tiradas (10+ puntos)</li>
+                        <li><strong>Recargas rápidas:</strong> Disparar 2 veces por turno (15+ puntos)</li>
+                        <li><strong>Abordajes expertos:</strong> +3 en combate cuerpo a cuerpo (20+ puntos)</li>
+                    </ul>
+                    <p><strong>LÍMITE:</strong> Máximo 25 puntos</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Tamaño del barco -->
+        <section class="section fade-in">
+            <h2 class="section-title"><i class="fas fa-ruler"></i> TAMAÑO DEL BARCO</h2>
+            
+            <div class="success-card card">
+                <h3 class="section-subtitle">Personalización del Tamaño</h3>
+                <ul class="enhanced-list">
+                    <li>Los jugadores pueden <strong>DISTRIBUIR</strong> sus puntos de CASCO entre Ancho y Largo</li>
+                    <li><strong>Puntos Totales de Casco</strong> = Puntos de Ancho + Puntos de Largo</li>
+                    <li><strong>Ancho</strong> = Puntos de Ancho ÷ 5 (mínimo 2, máximo 8)</li>
+                    <li><strong>Largo</strong> = Puntos de Largo ÷ 5 (mínimo 2, máximo 15)</li>
+                </ul>
+            </div>
+
+            <div class="warning-card card">
+                <h3 class="section-subtitle"><i class="fas fa-exclamation-triangle"></i> REGLA OBLIGATORIA - REALISMO</h3>
+                <ul>
+                    <li><strong class="danger-text">EL LARGO SIEMPRE DEBE SER ≥ AL ANCHO</strong></li>
+                    <li>Los barcos no pueden ser más anchos que largos (eso sería una balsa)</li>
+                    <li><span class="success-text"><i class="fas fa-check"></i> VÁLIDO:</span> 3x4, 2x6, 4x4 (cuadrado mínimo)</li>
+                    <li><span class="danger-text"><i class="fas fa-times"></i> INVÁLIDO:</span> 4x3, 5x2 (demasiado anchos)</li>
+                </ul>
+            </div>
+
+                <div class="card">
+                <h3 class="section-subtitle"><i class="fas fa-crosshairs"></i> Ejemplos de Distribución (30 puntos)</h3>
+                <ul>
+                    <li><strong>15 Ancho + 15 Largo</strong> = Barco 3x3 (compacto y cuadrado)</li>
+                    <li><strong>10 Ancho + 20 Largo</strong> = Barco 2x4 (delgado y rápido)</li>
+                    <li><strong>12 Ancho + 18 Largo</strong> = Barco 2x3 (balanceado)</li>
+                </ul>
+            </div>
+
+            <!-- Tabla visual de tamaños de barcos -->
+            <div class="ship-size-section">
+                <h3 class="section-subtitle"><i class="fas fa-ship"></i> TABLA VISUAL DE TAMAÑOS</h3>
+                <div class="size-grid">
+                    <div class="size-card">
+                        <div class="size-title"><i class="fas fa-ship"></i> BOTE (20 pts)</div>
+                        <div class="ship-visual ship-2x4">
+                            <div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell section-divider"></div><div class="section-cell section-divider"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div>
+                        </div>
+                        <p><strong>2x4</strong> • 2 secciones • ~30 PV cada una</p>
+                    </div>
+
+                    <div class="size-card">
+                        <div class="size-title"><i class="fas fa-sailboat"></i> BALANDRA (25 pts)</div>
+                        <div class="ship-visual ship-2x5">
+                            <div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell section-divider"></div><div class="section-cell section-divider"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div>
+                        </div>
+                        <p><strong>2x5</strong> • 3 secciones • ~31 PV cada una</p>
+                    </div>
+
+                    <div class="size-card">
+                        <div class="size-title"><i class="fas fa-ship"></i> CORBETA (30 pts)</div>
+                        <div class="ship-visual ship-3x4">
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell section-divider"></div><div class="section-cell section-divider"></div><div class="section-cell section-divider"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                        </div>
+                        <p><strong>3x4</strong> • 2 secciones • ~32 PV cada una</p>
+                    </div>
+
+                    <div class="size-card">
+                        <div class="size-title"><i class="fas fa-flag-pirate"></i> FRAGATA (35 pts)</div>
+                        <div class="ship-visual ship-3x5">
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell section-divider"></div><div class="section-cell section-divider"></div><div class="section-cell section-divider"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                        </div>
+                        <p><strong>3x5</strong> • 2 secciones • ~34 PV cada una</p>
+                    </div>
+
+                    <div class="size-card">
+                        <div class="size-title"><i class="fas fa-sword"></i> DEMO 3x10</div>
+                        <div class="ship-visual ship-3x10">
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell section-divider"></div><div class="section-cell section-divider"></div><div class="section-cell section-divider"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell section-divider"></div><div class="section-cell section-divider"></div><div class="section-cell section-divider"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                        </div>
+                        <p><strong>3x10</strong> • 3 secciones • Ejemplo de divisiones</p>
+                    </div>
+
+                    <div class="size-card">
+                        <div class="size-title"><i class="fas fa-anchor"></i> GALEÓN (40 pts)</div>
+                        <div class="ship-visual ship-4x6">
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell section-divider"></div><div class="section-cell section-divider"></div><div class="section-cell section-divider"></div><div class="section-cell section-divider"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                        </div>
+                        <p><strong>4x6</strong> • 2 secciones • ~35 PV cada una</p>
+                    </div>
+
+                    <div class="size-card">
+                        <div class="size-title"><i class="fas fa-fortress"></i> NAVÍO (50 pts)</div>
+                        <div class="ship-visual ship-5x10">
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell section-divider"></div><div class="section-cell section-divider"></div><div class="section-cell section-divider"></div><div class="section-cell section-divider"></div><div class="section-cell section-divider"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                            <div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div><div class="section-cell"></div>
+                        </div>
+                        <p><strong>5x10</strong> • 2 secciones • ~37 PV cada una</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Sistema de vida -->
+        <section class="section fade-in">
+            <h2 class="section-title"><i class="fas fa-heart"></i> SISTEMA DE VIDA</h2>
+            
+            <div class="formula">
+                VIDA POR SECCIÓN = 25 + (PUNTOS TOTALES DE CASCO ÷ 2)
+            </div>
+
+            <div class="success-card card">
+                <h3 class="section-subtitle"><i class="fas fa-crosshairs"></i> Secciones de Vida</h3>
+                <ul>
+                    <li>El barco se divide en <strong>secciones de 2x2</strong> casillas</li>
+                    <li><strong>Número de secciones</strong> = (Ancho × Largo) ÷ 4</li>
+                    <li><strong>TODAS</strong> las secciones tienen la misma vida</li>
+                    <li>Esto evita exploits de formas raras</li>
+                </ul>
+            </div>
+
+            <div class="info-card card">
+                <h3 class="section-subtitle"><i class="fas fa-chart-bar"></i> Ventajas por Forma</h3>
+                <ul>
+                    <li><strong>Barcos Largos</strong> (largo >> ancho): <span class="success-text">+2 Velocidad</span>, <span class="danger-text">-1 Maniobras</span></li>
+                    <li><strong>Barcos Medianos</strong> (largo > ancho): <span class="success-text">+1 Velocidad</span></li>
+                    <li><strong>Barcos Cuadrados</strong> (ancho = largo): Balanceado</li>
+                </ul>
+            </div>
+
+            <div class="warning-card card">
+                <h3 class="section-subtitle"><i class="fas fa-ship"></i> Funcionamiento</h3>
+                <ul>
+                    <li>Cada sección puede ser <strong>atacada independientemente</strong></li>
+                    <li>Sección destruida = esa parte está "agujereada"</li>
+                    <li>El barco <strong>SIGUE</strong> funcionando hasta que <strong>TODAS</strong> las secciones sean destruidas</li>
+                    <li><strong>Barco hundido</strong> = Todas las secciones a 0 PV</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sección: Clase de Armadura -->
+        <section class="section fade-in">
+            <h2 class="section-title"><i class="fas fa-shield-alt"></i> CLASE DE ARMADURA DEL BARCO</h2>
+            
+            <div class="formula">
+                CA DEL BARCO = 10 + (CASCO ÷ 5) + (VELOCIDAD ÷ 8)
+            </div>
+
+            <div class="formula">
+                <i class="fas fa-dice-d20"></i> INICIATIVA DEL BARCO = 1d20 + (VELOCIDAD ÷ 4) + DEX del Capitán
+            </div>
+
+            <div class="info-card card">
+                <h3 class="section-subtitle"><i class="fas fa-crosshairs"></i> Cómo Funciona</h3>
+                <ul>
+                    <li><strong>CASCO:</strong> Armadura física - absorbe impactos directos</li>
+                    <li><strong>VELOCIDAD:</strong> Evasión - esquiva proyectiles (usa puntos de VELOCIDAD, no pies)</li>
+                    <li><strong>Ejemplos:</strong></li>
+                    <ul>
+                        <li>Barco con 25 Casco + 16 puntos VELOCIDAD (52 pies) = CA 17 (10+5+2)</li>
+                        <li>Barco con 40 Casco + 8 puntos VELOCIDAD (36 pies) = CA 19 (10+8+1)</li>
+                        <li>Barco con 15 Casco + 32 puntos VELOCIDAD (84 pies) = CA 17 (10+3+4)</li>
+                    </ul>
+                </ul>
+            </div>
+
+            <div class="warning-card card">
+                <h3 class="section-subtitle"><i class="fas fa-sword"></i> Reducción de Daño</h3>
+                <ul>
+                    <li><strong>Embestidas:</strong> -1 daño por cada 10 puntos de CASCO</li>
+                    <li><strong>Proyectiles:</strong> La CA determina si impactan</li>
+                    <li><strong>Críticos:</strong> INGENIERÍA puede dar inmunidad</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sección: Maniobras de Combate -->
+        <section class="section fade-in">
+            <h2 class="section-title"><i class="fas fa-bolt"></i> MANIOBRAS DE COMBATE</h2>
+            
+            <div class="info-card card">
+                <h3 class="section-subtitle"><i class="fas fa-crosshairs"></i> MANIOBRAS BÁSICAS</h3>
+                <ul>
+                    <li><strong>Esquivar:</strong> +4 CA contra el próximo ataque (Acción)</li>
+                    <li><strong>Embestida:</strong> +2d8 daño de impacto, -2 CA por 1 turno (Acción)</li>
+                    <li><strong>Giro Cerrado:</strong> Rotar 180° sin perder velocidad (Acción de movimiento)</li>
+                    <li><strong>Acelerar:</strong> +50% velocidad por 1 turno, -1 CA (Acción bonus), +2d8 daño embestida</li>
+                </ul>
+            </div>
+
+            <div class="success-card card">
+                <h3 class="section-subtitle"><i class="fas fa-waves"></i> MANIOBRAS AVANZADAS</h3>
+                <ul>
+                    <li><strong>Corriente Favorable:</strong> Doble velocidad por 1 turno (Requiere 20+ NAVEGACIÓN)</li>
+                    <li><strong>Salto de Ola:</strong> Evitar ataques cuerpo a cuerpo por 1 turno (Requiere 15+ VELOCIDAD)</li>
+                    <li><strong>Deriva Controlada:</strong> Cambiar dirección sin perder velocidad (Requiere 30+ NAVEGACIÓN)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sección: Sistema de Arpones -->
+        <section class="section fade-in">
+            <h2 class="section-title"><i class="fas fa-anchor"></i> SISTEMA DE ARPONES</h2>
+            
+            <div class="info-card card">
+                <h3 class="section-subtitle"><i class="fas fa-crosshairs"></i> ARPONES DE COMBATE</h3>
+                <ul>
+                    <li><strong>Requisito:</strong> Puntos de INGENIERÍA</li>
+                    <li><strong>Cantidad:</strong> 1 arpón por cada 3 puntos de Ingeniería</li>
+                    <li><strong>Alcance:</strong> 100 pies</li>
+                    <li><strong>Propósito:</strong> Enganchar barcos enemigos para abordaje o arrastre</li>
+                    <li><strong>Recarga:</strong> 1 acción para recargar cada arpón</li>
+                </ul>
+            </div>
+
+            <div class="success-card card">
+                <h3 class="section-subtitle"><i class="fas fa-bolt"></i> MECÁNICA DE ATAQUE</h3>
+                <ul>
+                    <li><strong>Acción:</strong> Acción estándar</li>
+                    <li><strong>Tirada de ataque:</strong> 1d20 + Bonificador de Destreza del artillero + Bonificador de competencia</li>
+                    <li><strong>CA objetivo:</strong> CA del barco enemigo</li>
+                    <li><strong>Impacto:</strong> El arpón se clava en el barco enemigo</li>
+                    <li><strong>Daño inicial:</strong> 2d8 perforante al impactar</li>
+                </ul>
+            </div>
+
+            <div class="warning-card card">
+                <h3 class="section-subtitle"><i class="fas fa-link"></i> EFECTO: ENGANCHADO</h3>
+                <ul>
+                    <li><strong>Estado:</strong> El barco enemigo queda <span class="danger-text">ENGANCHADO</span></li>
+                    <li><strong>Velocidad reducida:</strong> -50% de velocidad mientras está enganchado</li>
+                    <li><strong>Restricción de movimiento:</strong> No puede alejarse más de la longitud del arpón (100 pies)</li>
+                    <li><strong>Arrastre:</strong> El atacante puede arrastrar al enemigo con su movimiento</li>
+                    <li><strong>Múltiples arpones:</strong> Cada arpón adicional reduce velocidad en -25% más (máximo -100%)</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 class="section-subtitle"><i class="fas fa-fist-raised"></i> TIRADA DE ESCAPE</h3>
+                <div class="formula">
+                    CD DE ESCAPE = 8 + (VELOCIDAD del atacante ÷ 8) + (Puntos de Ingeniería del atacante ÷ 3)
+                </div>
+                <ul>
+                    <li><strong>Acción del barco enemigo:</strong> Acción estándar</li>
+                    <li><strong>Tirada:</strong> 1d20 + (INGENIERÍA ÷ 3) del barco enemigo</li>
+                    <li><strong>Éxito:</strong> El ingeniero logra cortar/desarmar UN arpón</li>
+                    <li><strong>Fallo:</strong> Sigue enganchado, puede intentarlo el próximo turno</li>
+                    <li><strong>Crítico (20 natural):</strong> Corta TODOS los arpones a la vez</li>
+                </ul>
+            </div>
+
+            <div class="success-card card">
+                <h3 class="section-subtitle"><i class="fas fa-chart-line"></i> TÁCTICAS CON ARPONES</h3>
+                <ul>
+                    <li><strong>Abordaje forzado:</strong> Arrastrar al enemigo cerca para abordaje</li>
+                    <li><strong>Inmovilización:</strong> Clavar múltiples arpones para reducir velocidad a 0</li>
+                    <li><strong>Control de posición:</strong> Mantener al enemigo en rango de cañones</li>
+                    <li><strong>Combo con artillería:</strong> Inmovilizar y bombardear</li>
+                    <li><strong>Defensa:</strong> Usar arpones para evitar que escapen</li>
+                </ul>
+            </div>
+
+            <div class="info-card card">
+                <h3 class="section-subtitle"><i class="fas fa-wrench"></i> EJEMPLO DE DISTRIBUCIÓN</h3>
+                <ul>
+                    <li><strong>9 puntos Ingeniería + 16 Velocidad:</strong> 3 arpones, CD 13 (8+2+3)</li>
+                    <li><strong>15 puntos Ingeniería + 24 Velocidad:</strong> 5 arpones, CD 16 (8+3+5)</li>
+                    <li><strong>21 puntos Ingeniería + 32 Velocidad:</strong> 7 arpones, CD 19 (8+4+7)</li>
+                    <li><strong>30 puntos Ingeniería + 40 Velocidad:</strong> 10 arpones, CD 23 (8+5+10) - ¡Barco cazador imparable!</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sección: Rompehielos especial -->
+        <section class="section fade-in">
+            <h2 class="section-title"><i class="fas fa-icicles"></i> ROMPEHIELOS</h2>
+            
+            <div class="warning-card card">
+                <h3 class="section-subtitle"><i class="fas fa-sword"></i> EQUIPAMIENTO ESPECIAL</h3>
+                <ul>
+                    <li><strong>Requisito:</strong> Casco al MÁXIMO (50 puntos)</li>
+                    <li><strong>Descripción:</strong> Pieza de metal afilada montada en la proa</li>
+                    <li><strong>Diseño original:</strong> Para romper hielo en zonas frías</li>
+                    <li><strong>Uso naval:</strong> Seccionar barcos enemigos</li>
+                </ul>
+                
+                <h4 class="section-subtitle"><i class="fas fa-crosshairs"></i> MECÁNICA DE EMBESTIDA</h4>
+                <ul>
+                    <li><strong>Ataque especial:</strong> Solo disponible con rompehielos</li>
+                    <li><strong>Objetivo:</strong> Centro del barco enemigo</li>
+                    <li><strong>Daño mínimo:</strong> Debe causar 50+ puntos de daño</li>
+                    <li><strong class="danger-text">Efecto crítico:</strong> EL BARCO SE PARTE POR LA MITAD</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sección: CARTAS DE ACCIÓN DE COMBATE NAVAL -->
+        <section class="section fade-in">
+            <h2 class="section-title"><i class="fas fa-scroll"></i> CARTAS DE ACCIÓN DE COMBATE</h2>
+            
+            <div class="card info-card">
+                <p style="text-align: center; font-size: 1.1rem; margin-bottom: 1rem;">
+                    <i class="fas fa-info-circle"></i> Las siguientes cartas definen las acciones de combate naval con sus fórmulas de daño exactas.
+                </p>
+            </div>
+
+            <!-- Carta 1: DISPARO DE ARTILLERÍA -->
+            <div class="ship-card card">
+                <h3 class="section-subtitle" style="text-align: center; color: var(--accent-gold); font-size: 1.6rem;">
+                    <i class="fas fa-crosshairs"></i> DISPARO DE ARTILLERÍA
+                </h3>
+                <div class="attribute-cost" style="text-align: center; margin-bottom: 1.5rem; color: var(--warning);">
+                    ACCIÓN ESTÁNDAR • REQUIERE: 3+ ARTILLERÍA
+                </div>
+
+                <div class="formula" style="background: linear-gradient(135deg, var(--danger), #a71d2a); font-size: 1.2rem;">
+                    DAÑO = 3d10 + (Cantidad de Cañones × 1d6)
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(212, 175, 55, 0.1); border-left: 4px solid var(--accent-gold); border-radius: 8px;">
+                    <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;"><i class="fas fa-calculator"></i> CÁLCULO DE CAÑONES</h4>
+                    <p><strong>Cañones disponibles:</strong> 1 cañón por cada 3 puntos de ARTILLERÍA</p>
+                    <ul style="margin-top: 0.5rem;">
+                        <li><strong>9 ARTILLERÍA:</strong> 3 cañones → Daño = 3d10 + 3d6</li>
+                        <li><strong>15 ARTILLERÍA:</strong> 5 cañones → Daño = 3d10 + 5d6</li>
+                        <li><strong>21 ARTILLERÍA:</strong> 7 cañones → Daño = 3d10 + 7d6</li>
+                        <li><strong>30 ARTILLERÍA:</strong> 10 cañones → Daño = 3d10 + 10d6</li>
+                        <li><strong>45 ARTILLERÍA:</strong> 15 cañones → Daño = 3d10 + 15d6</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0;">
+                    <h4 style="color: var(--accent-silver); margin-bottom: 0.8rem;"><i class="fas fa-bullseye"></i> MECÁNICA DE ATAQUE</h4>
+                    <ul>
+                        <li><strong>Acción:</strong> Acción estándar del barco</li>
+                        <li><strong>Tirada de ataque:</strong> 1d20 + (ARTILLERÍA ÷ 6) + bonificador de competencia</li>
+                        <li><strong>Contra:</strong> CA del barco enemigo</li>
+                        <li><strong>Alcance base:</strong> 300 pies (+50 pies por cada 9 puntos de ARTILLERÍA)</li>
+                        <li><strong>Crítico (20 natural):</strong> Dobla TODOS los dados de daño</li>
+                        <li><strong>Fallo crítico (1 natural):</strong> Un cañón explota, pierde 1d4 cañones</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(255, 193, 7, 0.15); border: 2px solid var(--warning); border-radius: 8px;">
+                    <h4 style="color: var(--warning); margin-bottom: 0.8rem;"><i class="fas fa-layer-group"></i> ANDANADA COMPLETA</h4>
+                    <p><strong>Variante:</strong> Disparo sincronizado de todos los cañones de un lado del barco</p>
+                    <ul>
+                        <li><strong>Acción:</strong> Acción completa (no puede moverse en el turno)</li>
+                        <li><strong>Efecto:</strong> +2d10 daño adicional</li>
+                        <li><strong>Requisito:</strong> 12+ ARTILLERÍA</li>
+                        <li><strong>Recarga:</strong> No puede disparar el siguiente turno</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                    <h4 style="color: var(--info); margin-bottom: 0.8rem;"><i class="fas fa-dice-d20"></i> EJEMPLOS DE DAÑO</h4>
+                    <table style="width: 100%; margin-top: 0.5rem;">
+                        <tr>
+                            <th>Artillería</th>
+                            <th>Cañones</th>
+                            <th>Fórmula</th>
+                            <th>Daño Promedio</th>
+                        </tr>
+                        <tr>
+                            <td>9 puntos</td>
+                            <td>3 cañones</td>
+                            <td>3d10 + 3d6</td>
+                            <td>27 pts</td>
+                        </tr>
+                        <tr>
+                            <td>15 puntos</td>
+                            <td>5 cañones</td>
+                            <td>3d10 + 5d6</td>
+                            <td>34 pts</td>
+                        </tr>
+                        <tr>
+                            <td>30 puntos</td>
+                            <td>10 cañones</td>
+                            <td>3d10 + 10d6</td>
+                            <td>51 pts</td>
+                        </tr>
+                        <tr>
+                            <td>45 puntos</td>
+                            <td>15 cañones</td>
+                            <td>3d10 + 15d6</td>
+                            <td>69 pts</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Carta 2: EMBESTIDA NAVAL -->
+            <div class="warning-card card">
+                <h3 class="section-subtitle" style="text-align: center; color: var(--danger); font-size: 1.6rem;">
+                    <i class="fas fa-ship"></i> EMBESTIDA NAVAL
+                </h3>
+                <div class="attribute-cost" style="text-align: center; margin-bottom: 1.5rem; color: var(--danger);">
+                    ACCIÓN DE MOVIMIENTO • REQUIERE: MOVIMIENTO COMPLETO EN LÍNEA RECTA
+                </div>
+
+                <div class="formula" style="background: linear-gradient(135deg, var(--ocean-blue), #004d6b); font-size: 1.2rem;">
+                    DAÑO = (VELOCIDAD ÷ 4)d8 + (CASCO ÷ 5)d6 + Bonificador de Tamaño
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(220, 53, 69, 0.15); border-left: 4px solid var(--danger); border-radius: 8px;">
+                    <h4 style="color: var(--danger); margin-bottom: 0.5rem;"><i class="fas fa-calculator"></i> COMPONENTES DEL DAÑO</h4>
+                    <ul>
+                        <li><strong>Velocidad:</strong> +1d8 por cada 4 puntos de VELOCIDAD (representa momentum e impacto)</li>
+                        <li><strong>Casco:</strong> +1d6 por cada 5 puntos de CASCO (representa masa y solidez)</li>
+                        <li><strong>Bonificador de Tamaño:</strong> Daño fijo según el tipo de barco</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0;">
+                    <h4 style="color: var(--accent-gold); margin-bottom: 0.8rem;"><i class="fas fa-balance-scale"></i> BONIFICADORES POR TAMAÑO</h4>
+                    <table style="width: 100%; margin-top: 0.5rem;">
+                        <tr>
+                            <th>Tipo de Barco</th>
+                            <th>Bonificador Fijo</th>
+                            <th>Ejemplo</th>
+                        </tr>
+                        <tr>
+                            <td>Bote / Lancha</td>
+                            <td>+2</td>
+                            <td>Esquife, bote de remos</td>
+                        </tr>
+                        <tr>
+                            <td>Bergantín / Balandra</td>
+                            <td>+5</td>
+                            <td>Barcos pequeños rápidos</td>
+                        </tr>
+                        <tr>
+                            <td>Fragata</td>
+                            <td>+8</td>
+                            <td>Barcos medianos</td>
+                        </tr>
+                        <tr>
+                            <td>Galeón</td>
+                            <td>+12</td>
+                            <td>Barcos grandes de guerra</td>
+                        </tr>
+                        <tr>
+                            <td>Buque de Línea</td>
+                            <td>+18</td>
+                            <td>Buques insignia masivos</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                    <h4 style="color: var(--info); margin-bottom: 0.8rem;"><i class="fas fa-dice-d20"></i> EJEMPLOS DE EMBESTIDA</h4>
+                    <ul style="margin-top: 0.5rem;">
+                        <li><strong>Fragata ligera (20 puntos VELOCIDAD = 60 pies, 20 CASCO):</strong>
+                            <br>→ Daño = (20÷4)d8 + (20÷5)d6 + 8 = 5d8 + 4d6 + 8 = <span class="highlight">38 pts promedio</span>
+                        </li>
+                        <li><strong>Galeón veloz (32 puntos VELOCIDAD = 84 pies, 30 CASCO):</strong>
+                            <br>→ Daño = (32÷4)d8 + (30÷5)d6 + 12 = 8d8 + 6d6 + 12 = <span class="highlight">69 pts promedio</span>
+                        </li>
+                        <li><strong>Galeón pesado con Rompehielos (24 puntos VELOCIDAD = 68 pies, 50 CASCO):</strong>
+                            <br>→ Daño = (24÷4)d8 + (50÷5)d6 + 12 = 6d8 + 10d6 + 12 = <span class="danger-text">74 pts promedio - ¡DESTRUCCIÓN!</span>
+                        </li>
+                        <li><strong>Buque insignia masivo (30 puntos VELOCIDAD = 80 pies, 50 CASCO):</strong>
+                            <br>→ Daño = (30÷4)d8 + (50÷5)d6 + 18 = 7d8 + 10d6 + 18 = <span class="danger-text">84 pts promedio - ¡ANIQUILACIÓN!</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0;">
+                    <h4 style="color: var(--accent-silver); margin-bottom: 0.8rem;"><i class="fas fa-cogs"></i> MECÁNICA DE EMBESTIDA</h4>
+                    <ul>
+                        <li><strong>Requisito:</strong> Movimiento completo en línea recta (mínimo 60 pies)</li>
+                        <li><strong>Tirada de ataque:</strong> 1d20 + (NAVEGACIÓN ÷ 4)</li>
+                        <li><strong>Contra:</strong> CA del barco enemigo</li>
+                        <li><strong>Impacto:</strong> Ambos barcos sufren daño (atacante recibe 50% del daño infligido)</li>
+                        <li><strong>Efecto secundario:</strong> Ambos barcos se detienen y deben usar acción para separarse</li>
+                        <li><strong>Ventaja:</strong> +4 al ataque si el enemigo está inmóvil o enganchado</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(220, 53, 69, 0.2); border: 2px solid var(--danger); border-radius: 8px;">
+                    <h4 style="color: var(--danger); margin-bottom: 0.8rem;"><i class="fas fa-skull-crossbones"></i> DESTRUCCIÓN TOTAL</h4>
+                    <p><strong>Si el daño de embestida alcanza o supera 50 puntos:</strong></p>
+                    <ul>
+                        <li><i class="fas fa-arrow-right"></i> El barco objetivo sufre <span class="danger-text">DAÑO CATASTRÓFICO</span></li>
+                        <li><i class="fas fa-arrow-right"></i> Se abre una brecha masiva en el casco</li>
+                        <li><i class="fas fa-arrow-right"></i> Empieza a hundirse en 5 turnos</li>
+                        <li><i class="fas fa-arrow-right"></i> La tripulación debe abandonar el barco o hacer reparaciones de emergencia</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 105, 148, 0.3), rgba(22, 33, 62, 0.3)); border: 3px solid var(--ocean-blue); border-radius: 12px; box-shadow: 0 0 20px rgba(0, 105, 148, 0.4);">
+                    <h4 style="color: var(--ocean-blue); margin-bottom: 1rem; font-size: 1.3rem; text-align: center;">
+                        <i class="fas fa-icicles"></i> EQUIPAMIENTO: ROMPEHIELOS
+                    </h4>
+                    <div style="padding: 1rem; background: rgba(0, 0, 0, 0.3); border-radius: 8px; margin-bottom: 1rem;">
+                        <p style="font-style: italic; color: var(--text-muted); margin-bottom: 1rem;">
+                            Pieza masiva de metal afilada montada en la proa del barco. Diseñada originalmente para romper hielo en mares polares, se ha convertido en el arma de embestida más letal jamás creada.
+                        </p>
+                        <ul>
+                            <li><strong>Requisito absoluto:</strong> CASCO al MÁXIMO (50 puntos) - sin esto, tu barco se destruye al embestir</li>
+                            <li><strong>Peso:</strong> Reduce VELOCIDAD en -5 pies</li>
+                            <li><strong>Apariencia:</strong> Cuchilla de hierro negro de 15 pies que sobresale de la proa</li>
+                        </ul>
+                    </div>
+
+                    <div style="padding: 1.5rem; background: rgba(220, 53, 69, 0.3); border: 3px solid var(--danger); border-radius: 8px;">
+                        <h5 style="color: var(--danger); margin-bottom: 0.8rem; font-size: 1.2rem;">
+                            <i class="fas fa-slash"></i> EFECTO: SECCIONAR BARCO
+                        </h5>
+                        <p style="margin-bottom: 1rem;"><strong>Si tu embestida causa 50+ puntos de daño CON Rompehielos equipado:</strong></p>
+                        <ul style="margin-bottom: 1rem;">
+                            <li><span class="danger-text" style="font-size: 1.1rem;">⚠️ EL BARCO ENEMIGO SE PARTE POR LA MITAD INSTANTÁNEAMENTE</span></li>
+                            <li><i class="fas fa-skull"></i> Ambas mitades se hunden en 2 turnos</li>
+                            <li><i class="fas fa-skull"></i> Todos a bordo caen al agua automáticamente</li>
+                            <li><i class="fas fa-skull"></i> No hay posibilidad de reparación</li>
+                            <li><i class="fas fa-skull"></i> El cargamento se pierde en el océano</li>
+                        </ul>
+                        <div style="padding: 1rem; background: rgba(0, 0, 0, 0.4); border-left: 4px solid var(--accent-gold); border-radius: 6px;">
+                            <p style="color: var(--accent-gold); margin-bottom: 0.5rem;"><strong><i class="fas fa-exclamation-circle"></i> CONTRA-RIESGO:</strong></p>
+                            <p>Tu barco también recibe <strong>50% del daño infligido</strong> por el impacto. Con CASCO 50, puedes sobrevivirlo. Con menos CASCO, es suicidio.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(0, 105, 148, 0.2); border-radius: 8px;">
+                        <h5 style="color: var(--info); margin-bottom: 0.8rem;"><i class="fas fa-calculator"></i> EJEMPLO DE SECCIONAR</h5>
+                        <p><strong>Galeón pesado "El Martillo de Hierro":</strong></p>
+                        <ul>
+                            <li>CASCO: 50 (máximo) ✓</li>
+                            <li>VELOCIDAD: 24 (después de -5 por Rompehielos)</li>
+                            <li>Equipamiento: Rompehielos instalado ✓</li>
+                            <li>Tipo: Galeón (Bonificador +12)</li>
+                        </ul>
+                        <p style="margin: 1rem 0; padding: 0.8rem; background: rgba(212, 175, 55, 0.2); border-radius: 6px;">
+                            <strong>Daño de embestida:</strong><br>
+                            (24÷4)d8 + (50÷5)d6 + 12 = <strong>6d8 + 10d6 + 12</strong><br>
+                            <span class="danger-text" style="font-size: 1.1rem;">= 74 puntos promedio</span>
+                        </p>
+                        <p style="color: var(--danger); font-weight: bold;">
+                            <i class="fas fa-check-circle"></i> ¡74 daño supera el umbral de 50!<br>
+                            <i class="fas fa-slash"></i> El enemigo se PARTE POR LA MITAD
+                        </p>
+                        <p style="margin-top: 0.8rem; color: var(--warning);">
+                            <i class="fas fa-shield-alt"></i> Tu barco recibe: 74 × 50% = 37 daño (sobrevivible con 500 HP)
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carta 3: MUNICIÓN ESPECIAL -->
+            <div class="success-card card">
+                <h3 class="section-subtitle" style="text-align: center; color: var(--success); font-size: 1.6rem;">
+                    <i class="fas fa-star"></i> MUNICIÓN ESPECIAL AVANZADA
+                </h3>
+                <div class="attribute-cost" style="text-align: center; margin-bottom: 1.5rem; color: var(--success);">
+                    REQUIERE: 15+ ARTILLERÍA • SOLO DISPONIBLE PARA CAÑONES
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(40, 167, 69, 0.15); border-left: 4px solid var(--success); border-radius: 8px;">
+                    <h4 style="color: var(--success); margin-bottom: 0.5rem;"><i class="fas fa-unlock"></i> DESBLOQUEO PROGRESIVO</h4>
+                    <p>A medida que aumenta tu puntuación de ARTILLERÍA, desbloqueas tipos de munición más poderosos:</p>
+                    <ul style="margin-top: 0.5rem;">
+                        <li><strong>15+ ARTILLERÍA:</strong> Munición táctica especial (Metralla, Cadenas)</li>
+                        <li><strong>39+ ARTILLERÍA:</strong> Munición mítica (Bala de Juicio Divino)</li>
+                    </ul>
+                </div>
+
+                <!-- Munición Nivel 1: 15+ Artillería -->
+                <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(0, 0, 0, 0.2); border: 2px solid var(--accent-silver); border-radius: 12px;">
+                    <h4 style="color: var(--accent-gold); margin-bottom: 1rem; font-size: 1.3rem;">
+                        <i class="fas fa-crosshairs"></i> MUNICIÓN TÁCTICA ESPECIAL (15+ ARTILLERÍA)
+                    </h4>
+
+                    <div style="margin: 1rem 0; padding: 1rem; background: rgba(212, 175, 55, 0.1); border-left: 3px solid var(--accent-gold); border-radius: 8px;">
+                        <h5 style="color: var(--accent-gold); margin-bottom: 0.5rem;"><i class="fas fa-users-slash"></i> METRALLA</h5>
+                        <ul>
+                            <li><strong>Efecto:</strong> Ataque de área contra la tripulación enemiga</li>
+                            <li><strong>Daño al barco:</strong> Reducido a 50% del normal</li>
+                            <li><strong>Daño a tripulación:</strong> 4d6 perforante en área de 20 pies</li>
+                            <li><strong>Salvación:</strong> Destreza CD 14 para mitad de daño</li>
+                            <li><strong>Uso táctico:</strong> Ideal para diezmar la tripulación antes de abordar</li>
+                            <li><strong>Costo:</strong> 15 po por disparo</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin: 1rem 0; padding: 1rem; background: rgba(192, 192, 192, 0.1); border-left: 3px solid var(--accent-silver); border-radius: 8px;">
+                        <h5 style="color: var(--accent-silver); margin-bottom: 0.5rem;"><i class="fas fa-link"></i> CADENAS</h5>
+                        <ul>
+                            <li><strong>Efecto:</strong> Destruye velas y aparejos</li>
+                            <li><strong>Daño al casco:</strong> Reducido a 25% del normal</li>
+                            <li><strong>Daño a velas:</strong> Reduce VELOCIDAD del enemigo en -2d8 pies</li>
+                            <li><strong>Duración:</strong> Permanente hasta reparación (requiere acción de Ingeniería CD 15)</li>
+                            <li><strong>Crítico (20 natural):</strong> Derriba un mástil completo (-50% velocidad)</li>
+                            <li><strong>Uso táctico:</strong> Inmovilizar al enemigo para huida o persecución</li>
+                            <li><strong>Costo:</strong> 20 po por disparo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Munición Mítica: 39+ Artillería -->
+                <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(0, 0, 0, 0.3); border: 3px solid var(--accent-gold); border-radius: 12px; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);">
+                    <h4 style="color: var(--accent-gold); margin-bottom: 1rem; font-size: 1.4rem; text-align: center;">
+                        <i class="fas fa-crown"></i> MUNICIÓN MÍTICA (39+ ARTILLERÍA)
+                    </h4>
+
+                    <div style="margin: 1rem 0; padding: 1.5rem; background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(139, 69, 19, 0.2)); border: 2px solid var(--accent-gold); border-radius: 8px;">
+                        <h5 style="color: var(--accent-gold); margin-bottom: 0.8rem; font-size: 1.2rem;">
+                            <i class="fas fa-meteor"></i> BALA DE JUICIO DIVINO
+                        </h5>
+                        <p style="font-style: italic; color: var(--text-muted); margin-bottom: 1rem;">
+                            La munición más devastadora jamás creada. Solo los maestros artilleros pueden cargarla sin destruir el cañón.
+                        </p>
+                        <ul>
+                            <li><strong>Daño base:</strong> Daño normal del cañón × 2</li>
+                            <li><strong>Fuego divino:</strong> +4d6 fuego inicial + 3d6 fuego persistente por 3 turnos</li>
+                            <li><strong>Explosión devastadora:</strong> +5d6 contundente en radio de 20 pies</li>
+                            <li><strong>Radiante sagrado:</strong> +6d6 radiante (triple vs no-muertos y criaturas malignas)</li>
+                            <li><strong>Onda de choque:</strong> Reduce velocidad enemiga -4d10 pies permanentemente</li>
+                            <li><strong>Tripulación:</strong> Salvación de Destreza CD 22 o 8d6 daño radiante</li>
+                            <li><strong>Efecto visual:</strong> Rayo de luz dorada atraviesa el cielo, visible a 10 millas</li>
+                            <li><strong>Efecto narrativo:</strong> El trueno del impacto resuena como campanas de catedral</li>
+                        </ul>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(220, 53, 69, 0.2); border-left: 4px solid var(--danger); border-radius: 6px;">
+                            <h6 style="color: var(--danger); margin-bottom: 0.5rem;"><i class="fas fa-exclamation-circle"></i> LIMITACIONES</h6>
+                            <ul style="margin-top: 0.5rem;">
+                                <li><strong>Solo 1 disparo por combate</strong> - El cañón necesita enfriarse</li>
+                                <li><strong>Requiere acción completa</strong> - No puedes moverte en el turno</li>
+                                <li><strong>Fallo crítico (1 natural):</strong> El cañón explota, 6d10 daño al barco</li>
+                                <li><strong>Extremadamente rara:</strong> Solo Gabiota la vende, stock limitado</li>
+                            </ul>
+                        </div>
+                        <div style="margin-top: 1rem; padding: 0.8rem; background: rgba(212, 175, 55, 0.3); border-radius: 6px; text-align: center;">
+                            <strong style="color: var(--accent-gold); font-size: 1.1rem;">
+                                <i class="fas fa-coins"></i> COSTO: 500 po por disparo
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabla resumen de costos -->
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: var(--accent-silver); margin-bottom: 1rem; text-align: center;">
+                        <i class="fas fa-coins"></i> RESUMEN DE MUNICIÓN ESPECIAL
+                    </h4>
+                    <table style="width: 100%; margin-top: 0.5rem;">
+                        <tr>
+                            <th>Munición</th>
+                            <th>Artillería Requerida</th>
+                            <th>Costo por Disparo</th>
+                            <th>Efecto Principal</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Metralla</strong></td>
+                            <td>15+</td>
+                            <td>15 po</td>
+                            <td>Daño masivo a tripulación (4d6)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cadenas</strong></td>
+                            <td>15+</td>
+                            <td>20 po</td>
+                            <td>Destruye velas y reduce velocidad</td>
+                        </tr>
+                        <tr style="background: rgba(212, 175, 55, 0.2);">
+                            <td><strong style="color: var(--accent-gold);">Juicio Divino</strong></td>
+                            <td>39+</td>
+                            <td>500 po</td>
+                            <td>Devastación total combinada</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(40, 167, 69, 0.2); border: 2px solid var(--success); border-radius: 8px;">
+                    <h4 style="color: var(--success); margin-bottom: 0.8rem;"><i class="fas fa-lightbulb"></i> NOTAS TÁCTICAS</h4>
+                    <ul>
+                        <li><i class="fas fa-arrow-right"></i> Toda la munición especial se compra de <strong>Gabiota</strong> en el puerto (ver vendedores_puerto.txt)</li>
+                        <li><i class="fas fa-arrow-right"></i> Cambiar entre tipos de munición requiere <strong>1 acción completa</strong></li>
+                        <li><i class="fas fa-arrow-right"></i> Cada cañón puede tener cargado un tipo diferente de munición</li>
+                        <li><i class="fas fa-arrow-right"></i> Capacidad de almacenaje: 50 disparos de Metralla, 50 de Cadenas, 3 de Juicio Divino</li>
+                        <li><i class="fas fa-arrow-right"></i> Los efectos de munición especial NO se combinan con Andanada Completa</li>
+                        <li><i class="fas fa-arrow-right"></i> <strong>Metralla:</strong> Úsala antes de abordar para debilitar la defensa</li>
+                        <li><i class="fas fa-arrow-right"></i> <strong>Cadenas:</strong> Úsalas para huir o atrapar barcos más rápidos</li>
+                        <li><i class="fas fa-arrow-right"></i> <strong>Juicio Divino:</strong> Guárdala para el barco insignia enemigo o momento crítico</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer fade-in">
+            <div class="footer-title">¡A NAVEGAR!</div>
+            <div class="footer-emojis"><i class="fas fa-flag-pirate"></i> <i class="fas fa-anchor"></i> <i class="fas fa-crosshairs"></i> <i class="fas fa-anchor"></i> <i class="fas fa-flag-pirate"></i></div>
+            <p>Que los vientos soplen a tu favor, capitán</p>
+        </footer>
+    </div>
+
+    <script>
+        // Animaciones al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section, .hero, .footer').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Efecto parallax sutil en el hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

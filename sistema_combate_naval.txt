@@ -1,0 +1,223 @@
+═══════════════════════════════════════════════════════════════════════════
+                    SISTEMA DE COMBATE NAVAL PERSONALIZADO
+                           PIRATAS NIVEL 20 - D&D 5E
+═══════════════════════════════════════════════════════════════════════════
+
+🏴‍☠️ SISTEMA DE SECCIONES (COMO BATTLESHIP):
+El barco se divide en SECCIONES según su tamaño. Solo se hunde cuando TODAS las secciones son destruidas.
+
+📏 TAMAÑO DEL BARCO (PERSONALIZABLE):
+• Los jugadores pueden DISTRIBUIR sus puntos de CASCO entre Ancho y Largo
+• Puntos Totales de Casco = Puntos de Ancho + Puntos de Largo
+• Ancho = Puntos de Ancho ÷ 5 (mínimo 2, máximo 8)
+• Largo = Puntos de Largo ÷ 5 (mínimo 2, máximo 10)
+
+⚠️ REGLA OBLIGATORIA - FORMA DE BARCO REALISTA:
+• EL LARGO SIEMPRE DEBE SER MAYOR O IGUAL AL ANCHO
+• Los barcos no pueden ser más anchos que largos (eso sería una balsa)
+• Ejemplo VÁLIDO: 3x4, 2x6, 4x4 (cuadrado mínimo aceptable)
+• Ejemplo INVÁLIDO: 4x3, 5x2 (demasiado anchos para ser barcos reales)
+
+🎯 EJEMPLOS DE DISTRIBUCIÓN (30 puntos de Casco):
+• 15 Ancho + 15 Largo = Barco 3x3 (compacto y cuadrado - mínimo aceptable)
+• 10 Ancho + 20 Largo = Barco 2x4 (delgado y rápido)
+• 12 Ancho + 18 Largo = Barco 2x3 (balanceado)
+• ❌ 20 Ancho + 10 Largo = Barco 4x2 (PROHIBIDO - más ancho que largo)
+
+⚠️ VIDA BALANCEADA:
+• Vida por sección = Puntos TOTALES de Casco ÷ 3 (sin importar la forma)
+• Esto evita que formas raras den ventajas injustas
+• Ejemplo: 30 puntos de Casco = 10 PV por sección (sin importar si es 3x3, 2x4, o 4x2)
+
+🎯 SECCIONES DE VIDA:
+• El barco se divide en secciones de 2x2 casillas
+• Número de secciones = (Ancho × Largo) ÷ 4
+• TODAS las secciones tienen la MISMA vida = Puntos Totales de Casco ÷ 3
+• Esto evita que formas raras sean súper tanques
+
+📊 VENTAJAS POR FORMA:
+• BARCOS LARGOS (largo mucho mayor que ancho): +2 a Velocidad, -1 a Maniobras
+• BARCOS MEDIANOS (largo moderadamente mayor que ancho): +1 a Velocidad
+• BARCOS CUADRADOS (igual ancho y largo): Balanceado, sin bonos ni penalizaciones
+• NOTA: No existen barcos "anchos" porque están prohibidos por realismo
+
+💗 VIDA POR SECCIÓN:
+Cada sección tiene: (Puntos TOTALES de CASCO ÷ 3) Puntos de Vida
+• Ejemplo: 30 puntos de Casco = 10 PV por sección
+• Ejemplo: 45 puntos de Casco = 15 PV por sección
+• No importa si el barco es 2x4, 3x3, o 4x2 - siempre es la misma vida por sección
+
+🚢 FUNCIONAMIENTO:
+• Cada sección puede ser atacada independientemente
+• Sección destruida = esa parte del barco está "agujereada"
+• El barco SIGUE funcionando hasta que TODAS las secciones sean destruidas
+• Barco hundido = Todas las secciones a 0 PV
+
+📊 SISTEMA DE PUNTOS PARA BARCOS:
+TODO EL BARCO 100 PUNTOS para distribuir entre los atributos del barco.
+
+⚓ ATRIBUTOS DEL BARCO:
+
+1. 🛡️ CASCO (Resistencia y Vida)
+   COSTO: 1 punto = +1 Multiplicador de Casco
+   QUÉ DA:
+   • +1 sección de vida por cada punto
+   • Reducción de daño por embestidas
+   • Resistencia a tormentas
+   LÍMITE: Máximo 50 puntos
+
+2. ⚡ VELOCIDAD (Maniobra y Escape) 
+   COSTO: 2 puntos = +10 pies de velocidad
+   QUÉ DA:
+   • +10 pies de movimiento por cada 2 puntos
+   • +1 a tiradas de esquivar proyectiles por cada 10 puntos
+   • Ventaja en persecuciones si tienes 20+ puntos
+   LÍMITE: Máximo 40 puntos
+
+3. 🎯 ARTILLERÍA (Cañones y Balistas)
+   COSTO: 3 puntos = +1 cañón o +1d6 daño
+   QUÉ DA:
+   • +1 cañón adicional por cada 3 puntos
+   • +1d6 daño por cañón por cada 6 puntos adicionales
+   • Alcance mejorado (+50 pies por cada 9 puntos)
+   LÍMITE: Máximo 45 puntos
+
+4. 🌊 NAVEGACIÓN (Maniobras Especiales)
+   COSTO: 2 puntos = +1 maniobra por combate
+   QUÉ DA:
+   • +1 maniobra especial por combate por cada 2 puntos
+   • Ignorar terreno difícil acuático (10+ puntos)
+   • Navegar en aguas peligrosas sin penalización (20+ puntos)
+   LÍMITE: Máximo 30 puntos
+
+5. ⚔️ ABORDAJE (Combate Cuerpo a Cuerpo)
+   COSTO: 2 puntos = +1 bono a abordajes
+   QUÉ DA:
+   • +1 a tiradas de ataque en abordajes por cada 2 puntos
+   • +1 daño por arma en abordajes por cada 4 puntos
+   • Arpones y garfios mejorados (10+ puntos)
+   LÍMITE: Máximo 25 puntos
+
+6. 🔮 MAGIA (Encantamientos y Defensas)
+   COSTO: 4 puntos = +1 encantamiento
+   QUÉ DA:
+   • +1 encantamiento activo por cada 4 puntos
+   • Resistencia a magias hostiles (8+ puntos)
+   • Invisibilidad temporal 1/día (20+ puntos)
+   LÍMITE: Máximo 40 puntos
+
+🎯 EJEMPLOS DE BARCOS:
+
+🏴‍☠️ "EL DESTRUCTOR" (Barco de Guerra)
+• Casco: 30 puntos → Ancho 3, Largo 6 = Barco 3x6 = 4 secciones + 1 pequeña de 15 PV cada una
+• Artillería: 45 puntos (15 cañones, +7d6 daño, +150 pies alcance)
+• Velocidad: 20 puntos (+100 pies velocidad, +10 esquivar)
+• Abordaje: 5 puntos (+2 abordaje, +1 daño)
+TOTAL: 100 puntos
+
+⚡ "RAYO MARINO" (Barco de Velocidad)
+• Casco: 20 puntos → Ancho 2, Largo 4 = Barco 2x4 = 2 secciones de 10 PV cada una
+• Velocidad: 40 puntos (+200 pies, +20 esquivar, ventaja persecución)
+• Navegación: 30 puntos (+15 maniobras, ignorar terreno, aguas peligrosas)
+• Magia: 10 puntos (+2 encantamientos, resistencia mágica)
+TOTAL: 100 puntos
+
+🔮 "SOMBRA ARCANA" (Barco Mágico)
+• Casco: 25 puntos → Ancho 2, Largo 5 = Barco 2x5 = 2 secciones + 1 pequeña de 12 PV cada una
+• Magia: 40 puntos (+10 encantamientos, resistencia, invisibilidad)
+• Navegación: 20 puntos (+10 maniobras, aguas peligrosas)
+• Velocidad: 15 puntos (+75 pies, +7 esquivar)
+TOTAL: 100 puntos
+
+🏴‍☠️ "LEVIATÁN" (Barco Gigante - Ejemplo de 50 puntos de Casco)
+• Casco: 50 puntos → Ancho 5, Largo 10 = Barco 5x10 = 12 secciones + 1 pequeña de 25 PV cada una
+• Artillería: 30 puntos (10 cañones, +5d6 daño, +100 pies alcance)
+• Velocidad: 10 puntos (+50 pies velocidad, +5 esquivar)
+• Navegación: 10 puntos (+5 maniobras)
+TOTAL: 100 puntos
+
+💥 REGLAS ESPECIALES - PARTIR BARCOS:
+
+⚔️ EMBESTIDA ROMPE-HIELOS:
+• Requisito: Barco atacante debe tener +20 puntos de Velocidad
+• Maniobra: Cargar directamente por el CENTRO del barco enemigo
+• Efecto: Si hace 50+ de daño en un solo ataque de embestida
+• Resultado: EL BARCO SE PARTE A LA MITAD
+• Consecuencia: Cada mitad se considera un barco separado
+• Ejemplo: Barco 6x4 partido = dos barcos 3x4 independientes
+• Cada mitad mantiene sus secciones restantes
+
+🎯 ATAQUES A SECCIONES ESPECÍFICAS:
+• Los atacantes pueden elegir QUÉ sección del barco atacar
+• Proa (frente): Afecta velocidad si se destruye
+• Popa (atrás): Afecta maniobras si se destruye  
+• Centro: Afecta estabilidad general
+• Costados: Afecta artillería de ese lado
+TOTAL: 100 puntos
+
+⚡ "RAYO MARINO" (Barco de Velocidad)
+• Velocidad: 40 puntos (+200 pies, +20 esquivar, ventaja persecución)
+• Navegación: 30 puntos (+15 maniobras, ignorar terreno, aguas peligrosas)
+• Casco: 20 puntos (20 multiplicador)
+• Magia: 10 puntos (+2 encantamientos, resistencia mágica)
+TOTAL: 100 puntos
+
+🔮 "SOMBRA ARCANA" (Barco Mágico)
+• Magia: 40 puntos (+10 encantamientos, resistencia, invisibilidad)
+• Casco: 25 puntos (25 multiplicador)
+• Navegación: 20 puntos (+10 maniobras, aguas peligrosas)
+• Velocidad: 15 puntos (+75 pies, +7 esquivar)
+TOTAL: 100 puntos
+
+⚔️ MECÁNICAS DE COMBATE:
+
+🎲 INICIATIVA DEL BARCO:
+1d20 + (Puntos en Velocidad ÷ 4) + modificador Destreza del Capitán
+
+🎯 ATAQUES DE CAÑÓN:
+1d20 + competencia + (Puntos en Artillería ÷ 6) + modificador Int del Artillero
+Daño: 3d10 + (dados extra por puntos) de tipo perforante
+
+🛡️ VIDA DEL BARCO:
+Vida Base = (Ancho ÷ Alto) × (Multiplicador de Casco)
+Ejemplo: Barco 6x3 con 25 puntos de Casco = (6÷3) × 25 = 50 PV
+
+⚡ MANIOBRAS ESPECIALES (Navegación):
+• Giro Cerrado: Cambiar dirección 180° sin perder velocidad
+• Embestida: +2d8 daño pero -2 CA por 1 turno
+• Esquivar: +4 CA contra el próximo ataque
+• Corriente Favorable: Doble velocidad por 1 turno
+• Salto de Ola: Evitar ataques cuerpo a cuerpo por 1 turno
+
+🔮 ENCANTAMIENTOS DISPONIBLES (Magia):
+• Casco Reforzado: Resistencia a un tipo de daño por combate
+• Viento Arcano: +50 pies de velocidad por 3 turnos
+• Niebla Mística: Desventaja en ataques a distancia contra ti
+• Reparación Mágica: Recuperar 2d8 PV como acción
+• Detectar Enemigos: Ver barcos invisibles en 1 milla
+• Barrera Elemental: Inmunidad a daño elemental por 1 turno
+
+💀 DAÑO CRÍTICO A BARCOS:
+19-20: +1d10 daño extra
+Nat 20: +2d10 daño extra + efecto crítico:
+• Vela Rota: -50% velocidad hasta reparar
+• Cañón Dañado: -1 cañón hasta reparar
+• Timón Roto: Desventaja en maniobras hasta reparar
+• Casco Agrietado: -1 PV por turno hasta reparar
+
+🏴‍☠️ ABORDAJE:
+• Distancia: Barcos deben estar a 10 pies o menos
+• Dificultad: CD = 15 + (diferencia de puntos de Abordaje)
+• Éxito: Los tripulantes pueden saltar al barco enemigo
+• Combate: Combate normal pero con movimiento limitado
+
+⚓ REPARACIONES:
+• Acción Completa: Reparar 1d4 + modificador Int PV
+• Kit de Reparación: +2 a la tirada de reparación
+• Madera Mágica: Repara el doble de PV
+• Costo: 10 po por PV reparado en puerto
+
+═══════════════════════════════════════════════════════════════════════════
+                              ¡A NAVEGAR!
+                           🏴‍☠️⚓🎯⚓🏴‍☠️
+═══════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,735 @@
+Deseo que este pesado cortejo termine de una vez por todas.Deseo que este pesado cortejo termine de una vez por todas.<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Leyenda del Erudito - Historia del Cáliz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --parchment: #f4f1e8;
+            --dark-text: #2c2416;
+            --gold: #d4af37;
+            --blood-red: #8b0000;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --border-gold: #b8941e;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2c1810 50%, #1a1a2e 100%);
+            background-attachment: fixed;
+            color: var(--parchment);
+            line-height: 1.8;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .parchment {
+            background: var(--parchment);
+            background-image: 
+                linear-gradient(rgba(139, 69, 19, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 69, 19, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--dark-text);
+            padding: 4rem 3rem;
+            border: 3px solid var(--border-gold);
+            border-radius: 5px;
+            box-shadow: 
+                0 0 30px rgba(212, 175, 55, 0.3),
+                inset 0 0 50px rgba(139, 69, 19, 0.1);
+            position: relative;
+        }
+
+        .parchment::before,
+        .parchment::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--gold);
+        }
+
+        .parchment::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .parchment::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            color: var(--blood-red);
+            text-shadow: 2px 2px 4px var(--shadow);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--gold);
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        .seal {
+            font-size: 3rem;
+            color: var(--gold);
+            margin: 1rem 0;
+            opacity: 0.7;
+        }
+
+        .section {
+            margin: 2.5rem 0;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--blood-red);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title i {
+            color: var(--gold);
+        }
+
+        .paragraph {
+            font-size: 1.2rem;
+            text-align: justify;
+            margin-bottom: 1.5rem;
+            text-indent: 2rem;
+            line-height: 2;
+        }
+
+        .first-letter::first-letter {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            float: left;
+            line-height: 0.8;
+            margin: 0.1rem 0.5rem 0 0;
+            color: var(--blood-red);
+            text-shadow: 2px 2px 4px var(--shadow);
+        }
+
+        .quote-box {
+            background: rgba(139, 0, 0, 0.1);
+            border-left: 4px solid var(--blood-red);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.3rem;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--blood-red);
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.3;
+        }
+
+        .warning-box {
+            background: rgba(212, 175, 55, 0.15);
+            border: 2px solid var(--gold);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .warning-box .icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .warning-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--blood-red);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 3px solid var(--gold);
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--gold);
+            border: 3px solid var(--parchment);
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        .timeline-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--blood-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 3rem 0;
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+
+        .chalice-symbol {
+            text-align: center;
+            font-size: 4rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .transformation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            font-size: 2.5rem;
+        }
+
+        .chalice-desire {
+            color: var(--gold);
+        }
+
+        .chalice-death {
+            color: var(--blood-red);
+        }
+
+        .arrow {
+            color: var(--dark-text);
+            font-size: 2rem;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--gold);
+            text-align: center;
+            font-style: italic;
+            color: #8b7355;
+        }
+
+        @media (max-width: 768px) {
+            .parchment {
+                padding: 2rem 1.5rem;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .paragraph {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="parchment">
+            <!-- Header -->
+            <div class="header">
+                <div class="seal"><i class="fas fa-book-dead"></i></div>
+                <h1 class="title">LA LEYENDA DEL ERUDITO</h1>
+                <p class="subtitle">La Historia Olvidada del Cáliz del Deseo y la Muerte</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #8b7355;">
+                    <i class="fas fa-skull-crossbones"></i> Manuscrito descubierto en la Cripta del Erudito <i class="fas fa-skull-crossbones"></i>
+                </p>
+            </div>
+
+            <!-- Introducción -->
+            <div class="section">
+                <p class="paragraph first-letter">
+                    Había una vez un hombre cuya sabiduría superaba la de todos los mortales de su tiempo. 
+                    Era conocido simplemente como <strong>El Erudito</strong>, pues su verdadero nombre se perdió 
+                    en las arenas del tiempo, eclipsado por la magnitud de sus logros. Su conocimiento abarcaba 
+                    todos los campos del saber humano: dominaba las artes arcanas, comprendía los secretos de la 
+                    alquimia, hablaba con las estrellas y caminaba entre los planos de la existencia.
+                </p>
+
+                <p class="paragraph">
+                    Tal era su poder y su prestigio que <strong>cenó con reyes y compartió vino con dioses</strong>. 
+                    Los monarcas más poderosos buscaban su consejo, y las deidades mismas descendían de sus tronos 
+                    celestiales para conversar con él como iguales. No había misterio que no pudiera desentrañar, 
+                    no había problema que no pudiera resolver, no había desafío que no pudiera superar.
+                </p>
+
+                <p class="paragraph">
+                    Sin embargo, todo su conocimiento, todo su poder, todo su prestigio... nada de eso lo preparó 
+                    para lo que vendría. Porque incluso el más sabio de los hombres puede ser derrotado por el más 
+                    simple de los sentimientos.
+                </p>
+            </div>
+
+            <div class="divider">
+                <i class="fas fa-heart-broken"></i> ❧ <i class="fas fa-heart-broken"></i>
+            </div>
+
+            <!-- El Amor -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-heart"></i>
+                    EL AMOR DEL ERUDITO
+                </h2>
+
+                <p class="paragraph">
+                    Un día, el destino puso en su camino a una mujer de belleza incomparable. Su nombre también 
+                    se ha perdido en la historia, pero su influencia en el destino del mundo permanece. El Erudito, 
+                    quien había resistido las tentaciones de emperatrices y las proposiciones de ninfas inmortales, 
+                    cayó perdidamente enamorado.
+                </p>
+
+                <p class="paragraph">
+                    Y como todo enamorado, se convirtió en un completo idiota.
+                </p>
+
+                <p class="paragraph">
+                    El hombre que había negociado con dragones y debatido con archidemonios comenzó a hacer lo 
+                    impensable: intentar conquistar el corazón de esta mujer con regalos materiales. Le ofreció 
+                    tesoros que habrían hecho palidecer de envidia a cualquier rey. Le presentó joyas creadas en 
+                    el corazón de estrellas moribundas. Le mostró paisajes de otros planos de existencia. Le compuso 
+                    poemas que hacían llorar a los bardos más experimentados.
+                </p>
+
+                <div class="quote-box">
+                    Nada funcionó. Su amada permanecía indiferente, distante, inalcanzable. 
+                    Cada regalo era aceptado con cortesía, pero sin el amor que él desesperadamente buscaba.
+                </div>
+
+                <p class="paragraph">
+                    La desesperación comenzó a consumirlo. El Erudito, acostumbrado a encontrar soluciones para todo, 
+                    se encontró por primera vez en su vida completamente impotente ante un problema. No había hechizo 
+                    de encantamiento que quisiera usar (pues deseaba amor verdadero, no ilusión), no había poción que 
+                    pudiera obligar genuinamente a alguien a amar.
+                </p>
+
+                <p class="paragraph">
+                    Así que hizo lo único que sabía hacer: investigar, experimentar, crear.
+                </p>
+            </div>
+
+            <div class="chalice-symbol">
+                <i class="fas fa-wine-glass-alt"></i>
+            </div>
+
+            <!-- La Creación del Cáliz -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-flask"></i>
+                    LA CREACIÓN DEL CÁLIZ DEL DESEO
+                </h2>
+
+                <p class="paragraph">
+                    Durante meses, el Erudito se encerró en su laboratorio. Consultó tomos prohibidos que habría sido 
+                    más sabio dejar cerrados. Realizó rituales que rozaban lo herético. Hizo pactos que ningún hombre 
+                    cuerdo haría. Todo por crear el artefacto definitivo.
+                </p>
+
+                <p class="paragraph">
+                    Y finalmente, lo logró: <strong>El Cáliz del Deseo</strong>.
+                </p>
+
+                <p class="paragraph">
+                    Era una copa de oro puro, adornada con gemas que parecían contener galaxias enteras en su interior. 
+                    Pero su verdadero poder no residía en su belleza, sino en su magia: cualquier líquido vertido en el 
+                    cáliz se transformaba en un elixir mágico. Quien bebiera de él podía expresar un deseo, y el cáliz 
+                    concedería su anhelo más profundo.
+                </p>
+
+                <p class="paragraph">
+                    El Erudito, con manos temblorosas por la esperanza y la anticipación, presentó su obra maestra a 
+                    su amada. Le explicó su poder. Le suplicó que bebiera de él, convencido de que su deseo más profundo 
+                    sería corresponder su amor.
+                </p>
+
+                <div class="warning-box">
+                    <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <p class="warning-text">Pero el Erudito había olvidado la primera regla de la magia:</p>
+                    <p style="font-size: 1.1rem;">
+                        Los artefactos de poder son literales. Peligrosamente literales. 
+                        Y las palabras vagas pueden tener consecuencias catastróficas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- La Tragedia -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-skull"></i>
+                    LA MALDICIÓN DE LAS PALABRAS VAGAS
+                </h2>
+
+                <p class="paragraph">
+                    La mujer, intrigada por el regalo pero sin comprender realmente su poder, tomó el cáliz. 
+                    Vertió vino en él y bebió. Y entonces, cansada de las constantes atenciones del Erudito, 
+                    suspirando con hastío, pronunció las palabras que sellarían el destino de ambos:
+                </p>
+
+                <div class="quote-box">
+                    "Deseo que este pesado cortejo termine de una vez por todas."
+                </div>
+
+                <p class="paragraph">
+                    Palabras simples. Directas. Sin malicia real. Solo el suspiro cansado de alguien que deseaba 
+                    ser dejada en paz.
+                </p>
+
+                <p class="paragraph">
+                    Pero el Cáliz del Deseo no conocía de matices. No entendía de intenciones. Solo cumplía deseos 
+                    de la manera más directa y eficiente posible.
+                </p>
+
+                <p class="paragraph">
+                    Y había encontrado la solución perfecta: <strong>Si ella moría, el cortejo terminaría definitivamente.</strong>
+                </p>
+
+                <p class="paragraph">
+                    En un instante, la vida abandonó su cuerpo. Cayó al suelo, el cáliz rodando de sus manos, 
+                    sus ojos abiertos en sorpresa y horror al comprender demasiado tarde lo que había hecho. 
+                    El Erudito observaba paralizado, viendo cómo la única persona que había amado moría por el 
+                    regalo que él mismo había creado para conquistarla.
+                </p>
+
+                <p class="paragraph">
+                    El Cáliz del Deseo había cumplido su función perfectamente. El cortejo, efectivamente, 
+                    había terminado de una vez por todas.
+                </p>
+            </div>
+
+            <div class="transformation">
+                <div class="chalice-desire">
+                    <i class="fas fa-wine-glass-alt"></i><br>
+                    <span style="font-size: 1rem;">Cáliz del Deseo</span>
+                </div>
+                <div class="arrow" style="color: var(--blood-red);">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="chalice-death">
+                    <i class="fas fa-skull"></i><br>
+                    <span style="font-size: 1rem;">Cáliz de la Muerte</span>
+                </div>
+            </div>
+
+            <!-- La Venganza del Dolor -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-fire-alt"></i>
+                    LA VENGANZA DEL DOLOR
+                </h2>
+
+                <p class="paragraph">
+                    El Erudito permaneció junto al cuerpo sin vida de su amada durante días. No comió. No durmió. 
+                    No habló. Solo miraba el Cáliz del Deseo que yacía cerca, la copa dorada que brillaba inocentemente, 
+                    ajena al horror que había causado.
+                </p>
+
+                <p class="paragraph">
+                    El dolor se transformó en furia. La furia en obsesión. Y la obsesión en un propósito terrible.
+                </p>
+
+                <p class="paragraph">
+                    Si había podido crear un cáliz que concedía deseos, <strong>podía crear uno que otorgara muerte</strong>.
+                </p>
+
+                <p class="paragraph">
+                    Durante semanas, el Erudito trabajó en su laboratorio con una furia que bordeaba la locura. 
+                    Donde antes había usado rituales de esperanza y amor para crear el Cáliz del Deseo, ahora empleaba 
+                    hechizos de venganza y desesperación. Donde había consultado textos sobre la vida, ahora estudiaba 
+                    grimorios de necromancias prohibidas.
+                </p>
+
+                <p class="paragraph">
+                    Y finalmente, lo completó: <strong>El Cáliz de la Muerte</strong>.
+                </p>
+
+                <p class="paragraph">
+                    Era el opuesto perfecto al Cáliz del Deseo. Donde aquel era dorado y hermoso, este era negro como 
+                    la noche. Donde aquel concedía lo que el corazón deseaba, este simplemente mataba a quien bebiera 
+                    de él. Sin preguntas. Sin interpretaciones. Solo muerte pura e inevitable.
+                </p>
+
+                <div class="warning-box">
+                    <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <p class="warning-text">DOS CÁLICES</p>
+                    <p style="font-size: 1.1rem;">
+                        El Cáliz del Deseo: oro puro, concede deseos, peligroso por su literalidad.<br>
+                        El Cáliz de la Muerte: negro absoluto, otorga solo muerte, peligroso por su propósito.
+                    </p>
+                </div>
+
+                <p class="paragraph">
+                    El Erudito miró ambos cálices. El que había creado por amor y el que había creado por dolor. 
+                    Juntos representaban su mayor triunfo y su mayor fracaso. Y ambos eran demasiado peligrosos 
+                    para existir en el mundo.
+                </p>
+            </div>
+
+            <div class="divider">
+                <i class="fas fa-cross"></i> ❧ <i class="fas fa-cross"></i>
+            </div>
+
+            <!-- La Cripta -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-dungeon"></i>
+                    LA CRIPTA DEL ERUDITO
+                </h2>
+
+                <p class="paragraph">
+                    El Erudito miró los dos cálices que había creado y tomó una decisión. Ambos artefactos debían 
+                    ser ocultados del mundo, pero no juntos. Nunca juntos. Porque si alguien los reuniera y 
+                    comprendiera su poder combinado, las consecuencias serían catastróficas.
+                </p>
+
+                <p class="paragraph">
+                    Así que diseñó su última obra maestra: una cripta dividida en dos cámaras.
+                </p>
+
+                <p class="paragraph">
+                    Usando los últimos vestigios de su poder y conocimiento, el Erudito creó una estructura monumental. 
+                    No una cripta cualquiera, sino una obra maestra de arquitectura mágica y mundana, diseñada para 
+                    proteger y engañar a partes iguales.
+                </p>
+
+                <div class="quote-box">
+                    En la cámara principal, visible y tentadora, colocó un pedestal magnífico. 
+                    Sobre él, el Cáliz de la Muerte, negro y amenazante, custodiado por magia y trampas. 
+                    Cualquier saqueador de tumbas lo vería primero, pensaría que era el gran tesoro, 
+                    y probablemente moriría intentando tomarlo.
+                </div>
+
+                <p class="paragraph">
+                    Pero en la cámara funeraria oculta, más profunda y mejor protegida, preparó el descanso final 
+                    de su amada. Trató su cuerpo con los mejores ungüentos de preservación conocidos por la humanidad 
+                    y algunos que solo él conocía. La vistió con sus mejores ropas y la colocó en un sarcófago de 
+                    mármol blanco.
+                </p>
+
+                <p class="paragraph">
+                    Y entre sus manos frías y sin vida, colocó el <strong>Cáliz del Deseo</strong>.
+                </p>
+
+                <p class="paragraph">
+                    El artefacto que la había matado sería su compañía eterna. Una ironía cruel, quizás, pero también 
+                    apropiada. El cáliz dorado descansaría donde había causado su mayor daño, sostenido por aquella 
+                    cuyas palabras descuidadas habían desatado su poder terrible.
+                </p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Los Sellos Mágicos</h3>
+                        <p>Tejió hechizos de ocultamiento tan poderosos que la cripta desaparecería del plano material, 
+                        existiendo en un espacio entre dimensiones.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Las Protecciones</h3>
+                        <p>Creó guardianes, trampas y puzzles que solo los más dignos (o desesperados) podrían superar.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">El Sacrificio Final</h3>
+                        <p>Cuando todo estuvo listo, el Erudito entró en la cripta, se tendió junto a su amada, y 
+                        pronunció las palabras finales del ritual de sellado.</p>
+                    </div>
+                </div>
+
+                <p class="paragraph">
+                    Se convertiría en el guardián eterno de su mayor error. Ni vivo ni muerto, existiendo en un estado 
+                    entre ambos, asegurándose de que el Cáliz de la Muerte nunca cayera en las manos equivocadas.
+                </p>
+            </div>
+
+            <!-- El Ciclo Milenario -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-moon"></i>
+                    EL CICLO DE LOS MIL AÑOS
+                </h2>
+
+                <p class="paragraph">
+                    Pero incluso la magia más poderosa tiene sus limitaciones. Los sellos que el Erudito creó en su 
+                    estado de dolor y desesperación, aunque monumentales, no eran perfectos. Contenían una falla, 
+                    quizás intencionada, quizás accidental.
+                </p>
+
+                <p class="paragraph">
+                    <strong>Cada mil años, la magia que mantiene la cripta oculta se debilita.</strong>
+                </p>
+
+                <p class="paragraph">
+                    Durante exactamente un día y una noche, los sellos se desvanecen lo suficiente como para que la 
+                    cripta emerja del espacio entre dimensiones y se manifieste en el mundo material. Aparece en un 
+                    lugar aleatorio, generalmente cerca del mar, como si las corrientes mágicas la arrastraran hasta 
+                    las costas.
+                </p>
+
+                <div class="warning-box">
+                    <div class="icon"><i class="fas fa-hourglass-half"></i></div>
+                    <p class="warning-text">CADA MILENIO, POR UN SOLO DÍA</p>
+                    <p style="font-size: 1.1rem; margin-top: 0.5rem;">
+                        La Cripta del Erudito sale a la superficie.<br>
+                        Durante 24 horas, puede ser encontrada, explorada, saqueada.<br>
+                        Y entonces, desaparece nuevamente por otros mil años.
+                    </p>
+                </div>
+
+                <p class="paragraph">
+                    Algunos creen que el Erudito, en su locura, dejó esta apertura intencionalmente. Quizás como una 
+                    última prueba para la humanidad: cada mil años, alguien tendría la oportunidad de encontrar los 
+                    cálices. ¿Los usarían sabiamente? ¿Los destruirían? ¿O repetirían los mismos errores? ¿Buscarían 
+                    el Cáliz de la Muerte visible, o descubrirían el Cáliz del Deseo oculto?
+                </p>
+
+                <p class="paragraph">
+                    Otros creen que simplemente fue un error en su trabajo, causado por el dolor y la prisa. Un defecto 
+                    en sellos que de otra forma habrían sido perfectos.
+                </p>
+
+                <p class="paragraph">
+                    La verdad, como tantas cosas relacionadas con el Erudito, permanece oculta en las sombras del tiempo. 
+                    Pero una cosa es cierta: ambos cálices esperan en la cripta, cada uno con su propio propósito, 
+                    cada uno con su propio peligro.
+                </p>
+            </div>
+
+            <!-- Epílogo -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-book"></i>
+                    EPÍLOGO: EL LEGADO DE DOS CÁLICES
+                </h2>
+
+                <p class="paragraph">
+                    Hoy, la Cripta del Erudito es considerada por muchos como un mito, una leyenda de marineros borrachos 
+                    y exploradores delirantes. Hablan de un cáliz maldito, pero confunden los detalles. Algunos dicen que 
+                    hay uno, otros que hay dos. Pocos conocen la verdad completa.
+                </p>
+
+                <p class="paragraph">
+                    Pero aquellos que han estudiado la verdadera historia saben mejor. Saben que no es un cáliz, sino dos. 
+                    Saben que uno fue creado por amor desesperado, y el otro por dolor vengativo. Saben que ambos son 
+                    peligrosos, pero por razones completamente diferentes.
+                </p>
+
+                <p class="paragraph">
+                    Saben que en algún lugar del mundo, en algún momento dentro de los próximos mil años, una estructura 
+                    antigua aparecerá misteriosamente en alguna costa. Saben que dentro de ella yacen los restos de un 
+                    amor condenado, custodiados por el espíritu roto del hombre más sabio que jamás existió.
+                </p>
+
+                <p class="paragraph">
+                    Y saben que quien sea lo suficientemente valiente (o lo suficientemente tonto) para adentrarse en 
+                    sus profundidades encontrará no uno, sino <strong>dos</strong> cálices de poder inimaginable:
+                </p>
+
+                <p class="paragraph">
+                    El <strong>Cáliz de la Muerte</strong>, negro como la noche, esperando en un pedestal como una 
+                    trampa mortal para los codiciosos que buscan solo poder y destrucción.
+                </p>
+
+                <p class="paragraph">
+                    Y escondido en la cámara más profunda, en las manos de una muerta, el <strong>Cáliz del Deseo</strong>, 
+                    dorado y hermoso, que concede lo que el corazón anhela... pero nunca de la manera que esperas.
+                </p>
+
+                <div class="quote-box">
+                    Porque esta es la lección final del Erudito: No importa cuán sabio seas, cuán poderoso, 
+                    cuán cuidadoso. El amor puede hacerte tonto, las palabras pueden ser armas, y crear un 
+                    artefacto de poder por las razones correctas no te protege de crear otro por las razones 
+                    equivocadas.
+                </div>
+
+                <div class="warning-box" style="margin-top: 2rem;">
+                    <div class="icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <p class="warning-text">PARA LOS QUE BUSCAN LA CRIPTA</p>
+                    <p style="font-size: 1.1rem; margin-top: 0.5rem;">
+                        <strong>Cámara Principal:</strong> El Cáliz de la Muerte espera en un pedestal. 
+                        Es una trampa mortal, pero también real. Quien lo tome y beba de él, morirá.<br><br>
+                        <strong>Cámara Funeraria Oculta:</strong> Más profunda, mejor protegida, más difícil de encontrar. 
+                        Allí yace la mujer que inició todo, y en sus manos, el Cáliz del Deseo.<br><br>
+                        Ambos son peligrosos. Ambos son poderosos. Pero solo uno fue creado con amor.
+                    </p>
+                </div>
+            </div>
+
+            <div class="chalice-symbol">
+                <i class="fas fa-wine-glass-alt"></i> + <i class="fas fa-skull"></i>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>
+                    <i class="fas fa-feather-alt"></i>
+                    Así termina la historia del Erudito, el hombre que cenó con reyes y dioses,
+                    <br>
+                    pero que fue derrotado por el más simple de los mortales: el amor no correspondido.
+                    <br><br>
+                    Que su error sirva de advertencia para todos aquellos que buscan el Cáliz.
+                    <br>
+                    Porque algunos deseos son mejor dejados sin cumplir.
+                    <br><br>
+                    <i class="fas fa-skull-crossbones"></i>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

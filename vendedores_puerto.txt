@@ -1,0 +1,426 @@
+================================================================================
+                    VENDEDORES DEL PUERTO - ANTES DE ZARPAR
+================================================================================
+
+================================================================================
+                          1. GABIOTA - "El Alquimista Volador"
+================================================================================
+
+DESCRIPCIÓN:
+Un gnomo nervioso y parlanchín con un parche en el ojo (puramente estético, 
+le parece "pirata"). Siempre tiene manchas de pólvora en la cara y huele a 
+azufre mezclado con hierbas medicinales. Su puesto es un carromato destartalado 
+con un letrero que dice "GABIOTA'S: SI EXPLOTA O CURA, LO TENGO".
+
+PERSONALIDAD:
+- Habla rapidísimo y hace gestos exagerados
+- Ofrece "degustaciones" de pociones (solo agua con colorante)
+- Jura que cada producto "salvó su vida al menos 3 veces"
+- Tiene un loro mecánico que repite los precios
+
+FRASE TÍPICA:
+"¡Eh eh eh! ¿Navegando hacia la muerte? ¡No sin mis productos, amigo!"
+
+--------------------------------------------------------------------------------
+                              CATÁLOGO DE BALAS
+--------------------------------------------------------------------------------
+
+MUNICIÓN ESTÁNDAR:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Producto                          │ Cantidad    │ Precio      │ Descripción │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Balas de mosquete                 │ 20 balas    │ 3 po        │ Estándar    │
+│ Balas de pistola                  │ 20 balas    │ 2 po        │ Estándar    │
+│ Perdigones (escopeta)             │ 10 cargas   │ 4 po        │ Cono 15 pies│
+│ Pólvora negra                     │ 1 cuerno    │ 5 po        │ 20 disparos │
+│ Pólvora negra (barril pequeño)    │ 100 cargas  │ 20 po       │ Explosivo   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+MUNICIÓN ESPECIAL:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Producto                          │ Cantidad    │ Precio      │ Efecto      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Balas de plata                    │ 10 balas    │ 15 po       │ vs licántrop│
+│ Balas incendiarias                │ 5 balas     │ 25 po       │ +1d6 fuego  │
+│ Balas perforantes                 │ 5 balas     │ 20 po       │ Ignora 2 CA │
+│ Balas aturdidoras                 │ 5 balas     │ 30 po       │ CD 13 CON   │
+│                                   │             │             │ o aturdido  │
+│ Balas explosivas                  │ 3 balas     │ 50 po       │ +2d6 fuego  │
+│                                   │             │             │ 5 pies radio│
+│ Balas de humo                     │ 5 balas     │ 15 po       │ Niebla 10'  │
+│ Balas marcadoras (tinta)          │ 10 balas    │ 8 po        │ Marca 24h   │
+│ Balas silbadoras                  │ 10 balas    │ 5 po        │ Señal/ruido │
+│ Balas de agua bendita             │ 5 balas     │ 35 po       │ +2d6 radiante│
+│                                   │             │             │ vs no-muertos│
+└─────────────────────────────────────────────────────────────────────────────┘
+
+MUNICIÓN DE CAÑÓN (para barcos):
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Producto                          │ Cantidad    │ Precio      │ Efecto      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Bala de cañón estándar            │ 1           │ 5 po        │ 3d10 contund│
+│ Metralla (clavos/cadenas)         │ 1 carga     │ 8 po        │ 3d6 cono 30'│
+│ Bala encadenada                   │ 1           │ 12 po       │ Daña velas  │
+│ Bala incendiaria de cañón         │ 1           │ 20 po       │ +2d6 fuego  │
+│                                   │             │             │ incendia    │
+│ Barril de pólvora (grande)        │ 1           │ 50 po       │ 8d6 fuego   │
+│                                   │             │             │ 20' radio   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+--------------------------------------------------------------------------------
+                             CATÁLOGO DE POCIONES
+--------------------------------------------------------------------------------
+
+POCIONES CURATIVAS:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Poción                            │ Precio      │ Efecto                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Poción de curación                │ 50 po       │ Recupera 2d4+2 PG          │
+│ Poción de curación mayor          │ 150 po      │ Recupera 4d4+4 PG          │
+│ Poción de curación superior       │ 450 po      │ Recupera 8d4+8 PG          │
+│ Poción de curación suprema        │ 1,350 po    │ Recupera 10d4+20 PG        │
+│ Poción de vitalidad               │ 960 po      │ Cura enfermedades/venenos  │
+│                                   │             │ y elimina agotamiento      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+POCIONES DE MEJORA:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Poción                            │ Precio      │ Efecto (1 hora)            │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Poción de fuerza de gigante       │ 700 po      │ FUE 21 durante 1 hora      │
+│ (de las colinas)                  │             │                            │
+│ Poción de fuerza de gigante       │ 2,500 po    │ FUE 23 durante 1 hora      │
+│ (de piedra)                       │             │                            │
+│ Poción de heroísmo                │ 180 po      │ 10 PG temp + bendición 1h  │
+│ Poción de velocidad               │ 400 po      │ Efecto de Celeridad 1 min  │
+│ Poción de invulnerabilidad        │ 3,840 po    │ Resistencia a todo daño 1m │
+│ Poción de forma gaseosa           │ 300 po      │ Te vuelves niebla 1 hora   │
+│ Poción de invisibilidad           │ 180 po      │ Invisible 1 hora           │
+│ Poción de vuelo                   │ 500 po      │ Vuelo 60 pies por 1 hora   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+POCIONES MARINAS (ESPECIALIDAD DE GABIOTA):
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Poción                            │ Precio      │ Efecto                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Poción de respiración acuática    │ 180 po      │ Respira bajo el agua 1h    │
+│ Elixir de las profundidades       │ 250 po      │ Resp. agua + visión osc 1h │
+│ Poción de nado veloz              │ 150 po      │ Velocidad nado 60 pies 1h  │
+│ Poción contra el mareo            │ 25 po       │ Inmune a mareo 24 horas    │
+│ Aceite de impermeabilidad         │ 100 po      │ 1 objeto inmune al agua 24h│
+│ Tónico anti-sirena                │ 200 po      │ Ventaja vs encantamiento   │
+│                                   │             │ de criaturas marinas 8h    │
+│ Brebaje de branquias              │ 300 po      │ Branquias temporales 8h    │
+│ Ungüento de presión               │ 350 po      │ Inmune daño por presión 4h │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+POCIONES UTILITARIAS:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Poción                            │ Precio      │ Efecto                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Poción de visión en la oscuridad  │ 120 po      │ Visión oscura 60' por 8h   │
+│ Poción de trepar                  │ 75 po       │ Trepar velocidad normal 1h │
+│ Poción de resistencia al fuego    │ 250 po      │ Resistencia fuego 1 hora   │
+│ Poción de resistencia al frío     │ 250 po      │ Resistencia frío 1 hora    │
+│ Poción de reducción               │ 270 po      │ Tamaño reducido 1d4 horas  │
+│ Poción de crecimiento             │ 270 po      │ Tamaño aumentado 1d4 horas │
+│ Antídoto universal                │ 120 po      │ Cura cualquier veneno      │
+│ Elixir de salud                   │ 120 po      │ Cura ceguera/sordera/      │
+│                                   │             │ parálisis/veneno           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+VENENOS (bajo el mostrador, guiña el ojo):
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Veneno                            │ Precio      │ Efecto                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Veneno básico (vial)              │ 100 po      │ 1d4 veneno, CD 10 CON      │
+│ Aceite de Taggit                  │ 400 po      │ CD 13 CON o inconsciente   │
+│ Veneno de serpiente (dosis)       │ 200 po      │ 3d6 veneno, CD 11 CON      │
+│ Esencia de éter                   │ 300 po      │ CD 15 CON o inconsciente 8h│
+│ Polvo de medianoche               │ 1,500 po    │ CD 17 CON o 9d6 veneno     │
+│ Lágrimas de sirena (paralizante)  │ 600 po      │ CD 14 CON o paralizado 1m  │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+DESCUENTOS DE GABIOTA:
+- Compra 5+ pociones de curación: 10% descuento
+- Compra 50+ balas: Una bala especial gratis
+- Si le cuentas un buen chiste: 5% descuento (CD 15 Persuasión)
+- Primera compra del día: Poción contra el mareo GRATIS
+
+================================================================================
+
+
+================================================================================
+                        2. "MADRE CORAL" - La Curandera del Muelle
+================================================================================
+
+DESCRIPCIÓN:
+Una mujer mayor, humana, con la piel curtida por el sol y tatuajes de anclas 
+y olas en los brazos. Fue cirujana de barco durante 40 años. Su puesto es una 
+tienda de campaña con olor a alcohol medicinal y hierbas. Tiene un gato tuerto 
+llamado "Escorbuto".
+
+PERSONALIDAD:
+- Directa y sin filtro - te dice si vas a morir o no
+- Regaña a quien no cuida su salud
+- Cuenta historias de amputaciones mientras atiende
+- Ofrece consejos médicos gratis (no pedidos)
+
+FRASE TÍPICA:
+"He cosido más tripas que años tienes tú, muchacho. Siéntate y cállate."
+
+SERVICIOS:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Servicio                          │ Precio      │ Efecto                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Curación básica                   │ 5 po        │ Recupera 1d8+2 PG          │
+│ Tratamiento de heridas graves     │ 25 po       │ Recupera 3d8+5 PG          │
+│ Cirugía menor                     │ 50 po       │ Elimina 1 nivel agotamiento│
+│ Cirugía mayor                     │ 150 po      │ Restaura miembro (24h rep.)│
+│ Tratamiento de enfermedades       │ 75 po       │ Cura enfermedad no mágica  │
+│ Extracción de veneno              │ 40 po       │ Elimina veneno del sistema │
+│ Descanso supervisado              │ 10 po/día   │ Descanso largo cuenta x2   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+PRODUCTOS MEDICINALES:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Producto                          │ Precio      │ Efecto                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Kit de primeros auxilios          │ 15 po       │ 10 usos, estabilizar       │
+│ Kit de cirujano                   │ 50 po       │ Ventaja en Medicina        │
+│ Vendajes empapados en hierbas     │ 5 po (x5)   │ +1d4 curación desc. corto  │
+│ Sales aromáticas                  │ 3 po        │ Despierta inconscientes    │
+│ Ungüento cicatrizante             │ 20 po       │ Previene infección         │
+│ Jarabe para la tos del marinero   │ 8 po        │ Cura resfriados            │
+│ Tónico vitamínico                 │ 15 po       │ Previene escorbuto 30 días │
+│ Emplasto de algas                 │ 25 po       │ Cura quemaduras 2d4+2 PG   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+CONSEJO GRATIS DE MADRE CORAL:
+"Lleva siempre limones. El escorbuto mata más marineros que las balas."
+
+================================================================================
+
+
+================================================================================
+                     3. "RIZOS" MCGRAW - El Armero Borracho
+================================================================================
+
+DESCRIPCIÓN:
+Un enano pelirrojo con una barba trenzada llena de anillos de metal. Siempre 
+tiene una botella de ron en una mano y un martillo en la otra. Su fragua está 
+en un barco varado reconvertido en taller. Sorprendentemente, hace mejor 
+trabajo cuando está borracho.
+
+PERSONALIDAD:
+- Cuenta cada precio en "tragos de ron"
+- Se ofende si cuestionas la calidad de sus armas
+- Ofrece "probar" las armas en él mismo para demostrar durabilidad
+- Tiene una canción para cada arma que vende
+
+FRASE TÍPICA:
+"¡Esta espada tiene mejor filo que mi ex-esposa y es igual de peligrosa!"
+
+CATÁLOGO DE ARMAS:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Arma                              │ Precio      │ Daño          │ Propiedades│
+├─────────────────────────────────────────────────────────────────────────────┤
+│ ARMAS CUERPO A CUERPO             │             │               │            │
+│ Daga                              │ 2 po        │ 1d4 perforant │ Ligera,    │
+│                                   │             │               │ arrojadiza │
+│ Machete/Cimitarra                 │ 25 po       │ 1d6 cortante  │ Ligera,    │
+│                                   │             │               │ sutil      │
+│ Espada corta                      │ 10 po       │ 1d6 perforant │ Ligera,sut │
+│ Espada larga                      │ 15 po       │ 1d8 cortante  │ Versátil   │
+│ Sable de abordaje                 │ 25 po       │ 1d8 cortante  │ ---        │
+│ Estoque                           │ 25 po       │ 1d8 perforant │ Sutil      │
+│ Hacha de abordaje                 │ 10 po       │ 1d6 cortante  │ Ligera,arj │
+│ Hacha de batalla                  │ 30 po       │ 1d8 cortante  │ Versátil   │
+│ Garfio de mano                    │ 5 po        │ 1d4 perforant │ Ligera     │
+│ Garrote/Belaying pin              │ 1 po        │ 1d4 contund   │ Ligera     │
+│ Pica de abordaje                  │ 5 po        │ 1d6 perforant │ Alcance    │
+│ Tridente                          │ 5 po        │ 1d6 perforant │ Arrojadiza │
+│ Red de abordaje                   │ 3 po        │ ---           │ Especial   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+ARMAS DE FUEGO:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Arma                              │ Precio      │ Daño          │ Propiedades│
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Pistola                           │ 250 po      │ 1d10 perfor   │ Munición   │
+│                                   │             │               │ (30/90)    │
+│                                   │             │               │ recarga    │
+│ Pistola doble                     │ 400 po      │ 1d10 perfor   │ 2 disparos │
+│                                   │             │               │ antes rec. │
+│ Mosquete                          │ 500 po      │ 1d12 perfor   │ Munición   │
+│                                   │             │               │ (40/120)   │
+│                                   │             │               │ dos manos  │
+│ Trabuco (Blunderbuss)             │ 400 po      │ 2d8 perfor    │ Cono 15'   │
+│                                   │             │               │ dos manos  │
+│ Pistola de chispa (fiable)        │ 350 po      │ 1d10 perfor   │ No falla   │
+│                                   │             │               │ en humedad │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+ARMADURAS:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Armadura                          │ Precio      │ CA            │ Propiedades│
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Chaqueta de cuero                 │ 10 po       │ 11 + DES      │ Ligera     │
+│ Cuero tachonado                   │ 45 po       │ 12 + DES      │ Ligera     │
+│ Cota de malla ligera              │ 50 po       │ 13 + DES(máx2)│ Media      │
+│ Peto de acero                     │ 400 po      │ 14 + DES(máx2)│ Media      │
+│ Cota de malla                     │ 75 po       │ 16            │ Pesada,DES │
+│ Armadura de placas                │ 1,500 po    │ 18            │ Pesada,FUE │
+│ Escudo de madera                  │ 5 po        │ +2            │ ---        │
+│ Escudo de acero                   │ 15 po       │ +2            │ Resistente │
+│ Rodela (buckler)                  │ 8 po        │ +1            │ Ligera     │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+MEJORAS DE RIZOS (tarda 1 día):
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Mejora                            │ Precio      │ Efecto                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Afilar arma                       │ 10 po       │ +1 daño por 1 semana       │
+│ Reforzar armadura                 │ 25 po       │ +1 CA vs críticos          │
+│ Grabado personalizado             │ 5 po        │ Tu nombre/símbolo          │
+│ Mango antideslizante              │ 15 po       │ Ventaja vs desarmar        │
+│ Funda rápida                      │ 20 po       │ Desenfundar como obj libre │
+│ Conversión a plateado             │ +100 po     │ Cuenta como plata          │
+│ Punta hueca (armas fuego)         │ 30 po/10    │ Puede llevar veneno        │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+ESPECIAL DE RIZOS - "EL FILO DEL BORRACHO":
+Si le ganas en un concurso de beber (CD 18 CON), te hace 20% de descuento.
+Si pierdes, pagas 10% más y te tatúa algo vergonzoso.
+
+================================================================================
+
+
+================================================================================
+                    4. "TENTÁCULOS" WONG - El Mercader de lo Extraño
+================================================================================
+
+DESCRIPCIÓN:
+Un humano calvo con un pulpo vivo enroscado permanentemente en su cabeza 
+(nadie sabe si es mascota o parásito, él no lo aclara). Vende objetos raros, 
+curiosidades, mapas dudosos y "garantías de buena suerte". Su tienda es un 
+laberinto de estanterías en un almacén abandonado.
+
+PERSONALIDAD:
+- Susurra todo como si fuera un secreto
+- Jura que cada objeto tiene "una historia"
+- Acepta trueques por información o favores
+- El pulpo ("Sr. Bigotes") parece opinar sobre los precios
+
+FRASE TÍPICA:
+"Este objeto... no debería existir. Y sin embargo, aquí está. ¿Coincidencia?"
+
+OBJETOS ÚTILES:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Objeto                            │ Precio      │ Efecto                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Catalejo de latón                 │ 1,000 po    │ Ver x3 más lejos           │
+│ Brújula de navegante              │ 50 po       │ Siempre apunta al norte    │
+│ Sextante                          │ 100 po      │ +2 a navegación            │
+│ Reloj de arena impermeable        │ 25 po       │ Funciona bajo agua         │
+│ Cuerda de seda (50 pies)          │ 10 po       │ Más resistente, ligera     │
+│ Gancho de abordaje                │ 5 po        │ Para trepar barcos         │
+│ Linterna de tormenta              │ 15 po       │ No se apaga con viento     │
+│ Aceite para linterna (frasco)     │ 1 po        │ 6 horas de luz             │
+│ Campana de buceo                  │ 200 po      │ 30 min de aire bajo agua   │
+│ Tinta invisible (vial)            │ 15 po       │ Visible con calor          │
+│ Código de señales marítimas       │ 25 po       │ Comunicación entre barcos  │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+MAPAS Y CARTAS:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Mapa                              │ Precio      │ Descripción                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Mapa de la costa local            │ 15 po       │ Confiable, incluye puertos │
+│ Carta de corrientes marinas       │ 50 po       │ +2 a navegación en la zona │
+│ Mapa del tesoro (¿legítimo?)      │ 100-500 po  │ 50% chance de ser real     │
+│ Mapa de rutas comerciales         │ 75 po       │ Mejores rutas de comercio  │
+│ Carta de arrecifes peligrosos     │ 40 po       │ Evita encallar             │
+│ Mapa del nido de piratas          │ 200 po      │ Ubicación de guarida pirata│
+│ Mapa de "La Isla que No Existe"   │ 500 po      │ Probablemente maldito      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+CURIOSIDADES Y AMULETOS:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Objeto                            │ Precio      │ Efecto (puede ser placebo) │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Diente de tiburón (collar)        │ 10 po       │ "Protección contra tiburon"│
+│ Ojo de tritón en frasco           │ 25 po       │ "Ve fantasmas marinos"     │
+│ Escama de sirena                  │ 50 po       │ "Suerte en el amor" (quizá)│
+│ Arena de isla maldita             │ 30 po       │ "Para rituales"            │
+│ Brújula que apunta a un lugar     │ 150 po      │ Apunta siempre al mismo    │
+│                                   │             │ sitio (nadie sabe cuál)    │
+│ Moneda del hombre ahogado         │ 75 po       │ +1 salvación vs ahogarse   │
+│ Hueso de marinero perdido         │ 100 po      │ Componente para Hablar     │
+│                                   │             │ con muertos                │
+│ Campana de barco hundido          │ 200 po      │ Atrae espíritus marinos    │
+│ Faro en miniatura (encantado)     │ 300 po      │ Brilla hacia el peligro    │
+│ Botella con mensaje real          │ 50-500 po   │ Contiene coordenadas       │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+OBJETOS MÁGICOS MENORES:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Objeto                            │ Precio      │ Efecto                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Piedra de mensaje                 │ 500 po/par  │ Comunicación a 1 milla     │
+│ Gafas de lectura mágicas          │ 200 po      │ Leer cualquier idioma      │
+│ Capa impermeable                  │ 150 po      │ Siempre seca               │
+│ Botas de mar                      │ 250 po      │ Caminar en cubierta mojada │
+│                                   │             │ sin caer                   │
+│ Parche del ojo verdadero          │ 400 po      │ Visión oscura 30' con parche│
+│ Loro mecánico mensajero           │ 600 po      │ Lleva mensajes, vuelve solo│
+│ Ancla de bolsillo                 │ 800 po      │ Se agranda, ancla pequeñas │
+│                                   │             │ embarcaciones              │
+│ Red de pesca encantada            │ 350 po      │ +3 a pesca, nunca vacía    │
+│ Brújula de almas                  │ 1,000 po    │ Apunta a persona conocida  │
+│ Timón miniatura                   │ 750 po      │ Control menor de corrientes│
+└─────────────────────────────────────────────────────────────────────────────┘
+
+INFORMACIÓN A LA VENTA:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Información                       │ Precio      │ Tipo                       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Rumor de taberna                  │ 5 po        │ 50% útil                   │
+│ Ubicación de barco mercante       │ 30 po       │ Ruta y carga aproximada    │
+│ Horarios de patrulla naval        │ 50 po       │ Para evitar autoridades    │
+│ Nombre de contacto en otro puerto │ 40 po       │ Facilita negocios          │
+│ Secreto de NPC importante         │ 100+ po     │ Chantaje potencial         │
+│ Ubicación de barco pirata enemigo │ 150 po      │ Para emboscada o evitarlo  │
+│ Código de señales de piratas      │ 200 po      │ Identificarse como pirata  │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+SERVICIO ESPECIAL DE TENTÁCULOS:
+"Si el Sr. Bigotes te toca la cara, significa que confía en ti. Te hago 15% 
+de descuento... o te está marcando para comer después. Nunca se sabe."
+
+================================================================================
+
+                              NOTAS PARA EL DM
+================================================================================
+
+INTERACCIONES ENTRE VENDEDORES:
+- Gabiota y Madre Coral son competencia. Se odian públicamente pero se 
+  respetan en secreto.
+- Rizos le debe dinero a Tentáculos. Puede ser aprovechado por los PJs.
+- Todos conocen rumores útiles si los PJs gastan +100 po con ellos.
+
+QUESTS SECUNDARIAS:
+- Gabiota busca ingredientes raros del mar profundo
+- Madre Coral quiere venganza contra un capitán que la abandonó
+- Rizos perdió su martillo favorito en una apuesta
+- Tentáculos busca un objeto específico que un PJ podría tener
+
+PRECIOS NEGOCIABLES:
+- Persuasión CD 15: 5% descuento
+- Persuasión CD 20: 10% descuento  
+- Persuasión CD 25: 15% descuento + un pequeño regalo
+- Intimidación funciona con Gabiota, no con los demás
+
+================================================================================
+                         FIN DEL DOCUMENTO DE VENDEDORES
+================================================================================
